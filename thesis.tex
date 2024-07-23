@@ -1,0 +1,197 @@
+\documentclass[twoside,b5paper,12pt,openright]{book}
+
+% pagina di ogni capitolo sia sulla pagina destra
+\usepackage{style}
+\usepackage[figuresright]{rotating}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{calc} 
+\usepackage{array}
+\usetikzlibrary{shapes}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{listings}
+\usepackage{style}
+\usepackage{epstopdf}
+\usepackage{fancybox}
+\usepackage{pifont}
+
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{eucal}
+\usepackage{latexsym}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{chngpage}
+%\usepackage{natbib}
+\usepackage[latin1]{inputenc}
+%\usepackage[italian]{babel} % Togliere il commento se si scrive la tesi in italiano
+\usepackage[numbers]{natbib}
+\usepackage{import}
+\usepackage{pdfpages}
+
+\usepackage{epigraph}
+
+
+\usepackage{graphicx} 
+%\usepackage{subfig}
+%\usepackage{subfigure}
+\usepackage{morefloats}
+\usepackage{fancyhdr} % Package dello stile pagina
+\usepackage{comment}
+\usepackage{enumerate}
+\usepackage{subcaption}
+\usepackage{amssymb}
+
+\newcommand{\todo}[1]{{\color{red}#1}}
+\newcommand{\updated}[1]{{\color{blue}#1}}
+
+\newcommand{\splitcell}[1]{\begin{tabular}{@{}c@{}}#1\end{tabular}}
+\newcommand{\bsplitcell}[1]{$\left[\splitcell{#1}\right]$}
+
+\usepackage{hyperref}
+%\hypersetup{colorlinks=true,linkcolor=blue}
+
+\graphicspath{ {./figures/}
+		{./figures/problems/}}
+
+\def\beq{\begin{equation}}   	% Definisce comando per inizio equazioni
+\def\eeq{\end{equation}}			% Definisce comando per fine equazioni
+
+% ------------- Sezione NUOVI COMANDI --------------------------
+\definecolor{mygreen}{rgb}{0,0.6,0}
+
+\newcommand{\ale}[1]{{\color{blue}#1}}
+
+\newcommand{\ls}{\hspace{4mm}}
+
+\newcommand{\clearemptydoublepage}{\newpage {\pagestyle{empty} \cleardoublepage}}
+
+% Nuovo comando per le caption delle figure
+\renewcommand\caption[1]{\refstepcounter{figure} \linespread{1}\footnotesize  {\bf \figurename\ \thefigure} \ #1 \addcontentsline{lof}{figure}{\thefigure \ls #1}} 
+
+% Nuovo comando per le caption delle tabella
+\newcommand\captiont[1]{\refstepcounter{table} \linespread{1}\footnotesize  {\bf \tablename\ \thetable} \ #1}
+
+% ------------- Sezione NUOVI COMANDI (fine) -------------------
+
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+
+\linespread{1} % Imposta l'interlinea singola per l'intero documento
+
+\begin{document}
+
+\pagestyle{plain}
+\pagenumbering{roman}
+
+%%%%INSERT FRONT PAGE
+% \includepdf{Frontespizio.pdf}
+
+
+\include{chapters/abstract.tex}
+
+\tableofcontents       % Inserisce l'indice della Tesi
+
+\clearemptydoublepage
+\thispagestyle{empty}
+
+\begin{flushright}
+	\null\vspace{\stretch{1}}
+
+	\emph{ToDo.}
+
+	\emph{}
+
+	- ToDo -
+
+	\vspace{\stretch{5}}\null
+\end{flushright}
+
+\pagestyle{fancy} % Abilita lo stile Fancy per le pagine
+
+%\include{Acknowledgment} % Togliere commento per inserire i ringraziamenti (file esterno Ringraziamenti.tex)
+
+
+% --- Definisce gli header per le pagine pari e dispari ---
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+%\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername\ \thechapter.\ #1}}{}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+
+\fancyhf{}
+
+\fancyhead[LE,RO]{\footnotesize \slshape \bfseries \thepage}
+\fancyhead[LO]{\footnotesize \slshape \bfseries \rightmark}
+\fancyhead[RE]{\footnotesize \slshape \bfseries \leftmark}
+\fancypagestyle{plain}{\fancyhead{} \renewcommand{\headrulewidth}{0pt}}
+
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\headheight}{0.5pt}
+
+% --- Fine definizione header
+
+
+\pagenumbering{arabic} % Definisce il nuovo stile di numerazione delle pagine
+
+% THEOREMS ----  Si ridefiniscono gli stili dei teor., lemmi corollari
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+%
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+%
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}[section]
+
+
+% Thesis chapters -------------------------------------------------------
+% Ogni capitolo è scritto in un file .tex da includere.
+% Tali file devono cominciare con il comando \chapter{}
+% I file di Introduzione e Conclusione possono cominciare con \chapter*{}
+
+%\addcontentsline{toc}{chapter}{Introduction}
+%\thispagestyle{empty}
+
+%\thispagestyle{empty}
+
+
+%\addcontentsline{toc}{chapter}{State of the Art}
+%\include{StateArt}
+%\thispagestyle{empty}
+
+%% Add content
+
+%\addcontentsline{toc}{chapter}{Conclusions}
+%\include{Conclusions}
+%\thispagestyle{empty}
+
+
+% ---------- Appendix -------------- 
+% Togliere il commento alle prossime righe qualora voglia inserire l'Appendice
+%
+%\renewcommand{\chaptermark}[1]{\markboth{Appendix \thechapter.\ #1}{}}
+%\appendix
+%\include{annex/Annex1}
+%\thispagestyle{empty}
+%\include{app2}
+%\thispagestyle{empty}
+%\include{app3}
+%\thispagestyle{empty}
+
+\small
+% ---------- Bibiography --------------
+\addcontentsline{toc}{chapter}{Bibliography}
+%\bibliographystyle{mystyle}  % Tipo  - da B. D'Auria (da usare con ``natbib'')
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{amsalpha} % Stile bibliografia [iniziali autori + 2 cifre per l'anno] (da usare senza ``natbib'')
+%\bibliographystyle{plainnat} % Stile della bibliografia [autore (et al.), anno] - usare \citep{}.
+\bibliography{thesis}     % Comando per inserire il file della bibliografia (ex. PhDThesis.bib)
+
+\listoffigures
+\listoftables
+
+\end{document}
