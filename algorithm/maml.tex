@@ -1,0 +1,16 @@
+\begin{algorithm}[h]
+\caption{Model-Agnostic Meta-Learning (MAML) \cite{finn2017maml}}
+\label{alg:maml}
+\begin{algorithmic}
+\Require Distribution over tasks $p(\mathcal{T})$
+\State Randomly initialize $\theta$
+\While {$i=1, \dots N$}
+    \State Sample batch of tasks $ \mathcal{T}_{i} \sim p(\mathcal{T})$
+    \For {\textbf{all} $\mathcal{T}_{i}$}
+        \State Evaluate $\nabla_\theta \mathcal{L}_{\mathcal{T}_{i}}(f_{\theta})$ w.r.t. $K$ examples
+        \State Compute adapted parameters with gradient descent: $\theta'_{i} = \theta - \alpha \nabla_\theta\mathcal{L}_{\mathcal{T}_{i}}(f_{\theta})$
+    \EndFor
+    \State Update $\theta \leftarrow \theta - \beta \nabla_\theta \sum_{\mathcal{T}_{i} \sim p(\mathcal{T})} \mathcal{L}_{\mathcal{T}_{i}}(f_{\theta'_{i}})$
+\EndWhile
+\end{algorithmic}
+\end{algorithm}

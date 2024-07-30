@@ -2,7 +2,7 @@
 \label{sec:problem_formulation}
 In this section, the problem of Learning from Demonstration, also known as Imitation Learning (IL), will be formalized.
 
-The core idea behind Imitation Learning (IL) is to program a robot by allowing a human expert to demonstrate how to solve a specific task. This approach avoids methods that demand intricate, handcrafted rules dictating the actions of machines and the dynamics of their operating environments, which require significant time and coding expertise. To achieve this goal, a way to transfer knowledge from the expert to the robot is necessary. One possibility is to leverage \textit{data-driven} methods that can extrapolate control rules from demonstrated trajectories~\cite{osa2018algorithmic}.
+The core idea behind IL is to program a robot by allowing a human expert to demonstrate how to solve a specific task. This approach avoids methods that demand intricate, handcrafted rules dictating the actions of machines and the dynamics of their operating environments, which require significant time and coding expertise. To achieve this goal, a way to transfer knowledge from the expert to the robot is necessary. One possibility is to leverage \textit{data-driven} methods that can extrapolate control rules from demonstrated trajectories~\cite{osa2018algorithmic}.
 
 In this context, we need to define two general actors: the \textbf{expert}, who demonstrates the desired behaviors, and the \textbf{learner}, whose goal is to learn and replicate the behaviors demonstrated by the expert~\cite{osa2018algorithmic,zare2024survey}. Both the expert behaviors and the learner behaviors are described in terms of \textbf{policy}, generally denoted as $\pi^{E}$ and $\pi^{L}$ respectively.
 

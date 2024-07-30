@@ -1,0 +1,16 @@
+\begin{equation}
+    \label{formula:elbo}
+    \underset{\beta}{max} \ \mathbb{E}_{q_{\beta}}\left[\sum_{t} \log(\mathcal{\hat{U}}_{\beta}(s_{t}|z_{t})) + \mathbb{D}_{KL}(q_{\beta}(z_{t}|s_{t},z_{t-1},a_{t-1})|| \mathcal{\hat{T}}_{\beta}(z_{t}|z_{t-1},a_{t-1})) \right]
+\end{equation}
+
+\begin{equation}
+    \label{formula:discriminator}
+    \underset{\theta}{min} \ \mathbb{E}_{(z,a) \sim \rho^{E}(z,a)} \left[-log(D_{\theta}(z,a))\right] + \mathbb{E}_{(z,a) \sim \rho^{\pi^{L}}_{\hat{\mathcal{T}}}} \left[-\log(1 - D_{\theta}(z,a))\right]
+\end{equation}
+
+\begin{equation}
+    \label{formula:value_function}
+    \underset{\pi^{L}_{\theta}}{max} \ V^{K}_{\theta,\beta}(z_{t}) = \underset{\pi^{L}_{\theta}}{max} \ \mathbb{E}_{\pi^{L}_{\theta}, \mathcal{\hat{T}}_{\beta}}\left[ \sum_{\tau = t}^{t+K-1} \gamma^{\tau-t} \log(D_{\theta}(z_{\tau}^{\pi^{L}_{\theta}}, a_{\tau}^{\pi^{L}_{\theta}})) + \gamma^{K}V_{\beta}(z_{t+K}^{\pi^{L}_{\theta}})\right]
+\end{equation}
+    
+    

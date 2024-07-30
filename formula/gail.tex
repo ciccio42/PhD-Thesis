@@ -1,0 +1,25 @@
+\begin{equation}
+    \label{formula:regularized_max_ent}
+    IRL_{\psi}(\pi^{E}) = \underset{c \in R^{S \times A}}{arg \ max} - \psi(c) +  (\underset{\pi^{L} \in \Pi}{\min} -\mathcal{H}(\pi^{L}) + \mathbb{E}_{\pi^{L}} \left [ c(s,a) \right ]) - \mathbb{E}_{\pi^{E}} \left [ c(s,a) \right ]
+\end{equation}
+
+\begin{equation}
+    \label{formula:policy_characterization}
+    RL \circ IRL_{\psi}(\pi^{E}) = \underset{\pi^{L} \in \Pi}{arg \ min}-\mathcal{H}(\pi^{L}) + \psi^{*}(\rho_{\pi^{L}} - \rho_{\pi^{E}}) 
+\end{equation}
+
+\begin{equation}
+    \label{formula:ga_regularization}
+    \psi_{GA}(c) = \left\{\begin{matrix}
+        \mathbb{E}_{\pi^{E}}\left [ g(c(s,a)) \right ] &  if \ c < 0\\ 
+        + \infty & otherwise
+        \end{matrix}\right., \  g(x) = \left\{\begin{matrix}
+                        -x - log(1- e^{x}) &  if \ c < 0\\ 
+                        + \infty & otherwise
+                        \end{matrix}\right.
+\end{equation}
+
+\begin{equation}
+    \label{formula:ga_regularizer_conjugate}
+    \psi^{*}_{GA}(\rho_{\pi^{L}} - \rho_{\pi^{E}}) = \underset{D\in(0,1)^{S \times A}}{max} \mathbb{E}_{\pi^{L}}\left [ \log(D(s,a))\right ] +\mathbb{E}_{\pi^{E}}\left [ \log(1 - D(s,a))\right ]
+\end{equation}

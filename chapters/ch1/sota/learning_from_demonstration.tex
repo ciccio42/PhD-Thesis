@@ -1,25 +1,18 @@
 \subsection{Learning from demonstration}
 \label{sec:lfd}
-\subsubsection{Behavioral Cloning}
-This section is dedicated to the presentation of \textit{ Behavioral Cloning} (BC) methods.
-\paragraph*{Dynamical Movement Primitives}\mbox{}\\
-Dynamical Movement Primitives (DMPs), offer a robust framework for encoding and reproducing complex movements through differential equations and attractor dynamics.
-\paragraph*{Single-Task Imitation Learning}\mbox{}\\
-The \textit{Single-Task Imitation Learning} refers to deep architecture designed to learn and replicate specific tasks from given demonstrations.
-\paragraph*{Interactive Imitation Learning}\mbox{}\\
-In \textit{Interactive Imitation Learning} the learning process is augmented by interaction with a teacher, allowing for real-time feedback and adjustments to improve performance.
-\paragraph*{Multi-Task Imitation Learning}\mbox{}\\
-\textit{Multi-Task Imitation Learning} enables the learning and execution of multiple tasks from a set of demonstrations, highlighting the scalability and versatility of these methods.
-\paragraph*{Object-Oriented Imitation Learning}\mbox{}\\
-\textit{Object-Oriented Imitation Learning} focuses on learning behaviors in relation to specific objects and their interactions, providing a more structured and contextual approach to imitation learning.
+This section is dedicated to presenting and analyzing various approaches for solving the LfD problem described in Section~\ref{sec:problem_formulation}. Specifically, this section follows the taxonomy derived from studying different review papers~\cite{kaelbling1996reinforcement_survey,argall2009robot_learning_from_demonstration,hussein2017imitation_learning_survey,fang2019survey,zheng2021imitation_progress_taxonomies_opportunities,zare2024survey}. Figure~\ref{fig:il_taxonomy} provides a graphical representation of the proposed taxonomy. The methods are first categorized based on the type of demonstration, either \textit{State-Action} or \textit{State-only}, followed by an overview of the different methodologies. The proposed taxonomy highlights the learning algorithm and main components for each methodology.
 
-\subsubsection{Inverse Reinforcement Learning}
-This section will be dedicated to the introduction of the \textit{Inverse Reinforcement Learning} (IRL) approach. 
+This chapter is divided into the following sections. Section~\ref{sec:bc} reviews methods for the fully-supervised learning methodology known as Behavioral Cloning. 
+\newline Section~\ref{sec:irl} discusses methods under the umbrella of Inverse Reinforcement Learning, which solve the inverse optimization problem by first learning the reward function and then using it to guide policy optimization following a reinforcement paradigm
+\newline Section~\ref{sec:gail} reviews methods leveraging the concept of \textit{Generative Adversarial Learning} to optimize policy parameters and learn demonstrated behaviors, classified as Generative Adversarial Imitation Learning methods.
+\newline Finally, Section~\ref{sec:lfo} covers the most recent methodology, Learning from Observation, characterized by optimizing the learner policy using state-only demonstrations.
+\input{figures/ch1/taxonomy.tex}
 
-\subsubsection{Generative Adversarial Imitation Learning}
-This section will be dedicated to the introduction of the \textit{Generative Adversarial Imitation Learning} (GAIL) approach. 
+\input{chapters/ch1/sota/bc.tex}
+\input{chapters/ch1/sota/irl.tex}
+\input{chapters/ch1/sota/gail.tex}
+\input{chapters/ch1/sota/lfo}
 
-\subsubsection{Learning from Observation}
-This section will be dedicated to the introduction of the \textit{Learning from Observation} (LfO) approach. 
-\paragraph{Model-Free}
-\paragraph{Model-Based}
+
+
+

@@ -1,0 +1,14 @@
+\begin{algorithm}
+\caption{DAgger Algorithm \cite{ross2011dagger}}\label{alg:dagger}
+\begin{algorithmic}
+\Require Initial Dataset $\mathcal{D} \leftarrow \emptyset$, Initial policy $\pi^{L}_{1}$
+\Ensure The best policy $\pi^{L}_{i}$
+\For {$i=1, \dots N$}
+    \State Sample $T-step$ trajectories using $\pi^{L}_{i}$
+    \State Let $\mathcal{D}_{i} = {(s_{t}, \pi^{E}(s_{t}))}$, state $s_{t}$ visited by policy $\pi^{L}_{i}$, and actions given by the expert
+    \State Aggregate Dataset, $\mathcal{D} \leftarrow \mathcal{D} \bigcup \mathcal{D}_{i}$
+    \State Train policy $\pi^{L}_{i}$ on $\mathcal{D}$
+    \State Let $\pi^{L}_{i+1} = \beta_{i}\pi^{E} + (1- \beta_{i})\pi^{L}_{i}$
+\EndFor
+\end{algorithmic}
+\end{algorithm}

@@ -1,0 +1,18 @@
+\begin{equation}
+\label{formula:output_discriminator}
+D_{\theta}(s_{t},s_{t+1}) = \frac{1}{2}
+\begin{bmatrix}
+s_{t}
+\\ 
+s_{t+1}
+\end{bmatrix}^{T}C^{ss}(s_{t},s_{t+1})
+\begin{bmatrix}
+s_{t}
+\\ 
+s_{t+1}
+\end{bmatrix} + \begin{bmatrix}
+s_{t}
+\\ 
+s_{t+1}
+\end{bmatrix}^{T} c^{ss}(s_{t}, s_{t+1})
+\end{equation}

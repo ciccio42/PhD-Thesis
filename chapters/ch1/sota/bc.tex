@@ -1,0 +1,48 @@
+\subsubsection{Behavioral Cloning (BC)}
+\label{sec:bc}
+\input{algorithm/algorithm_bc.tex}
+\textit{Behavioral Cloning} is one of the first approaches used to solve the LfD problem~\cite{pomerleau1988alvinn}. The high-level \textbf{supervised-learning} procedure followed by BC methods is outlined in Algorithm~\ref{alg:bc}. Generally, BC methods take as input the expert demonstration dataset $\mathcal{D}^{E}$ and a learner policy modeled as a parameterized function $\pi_{\theta}^{L}$. The parameters $\theta$ can be either the weights of a neural network~\cite{pomerleau1988alvinn} or the parameters of a dynamic system~\cite{ijspeert2002learning}. As a supervised approach, the goal is to find the optimal parameters $\theta^{*}$ that can replicate the \textbf{ground-truth behaviors} contained in the dataset $\mathcal{D}^{E}$. This is achieved by solving an optimization problem, which can generally be described by Formula~\ref{eq:bc_formula}.
+\input{formula/bc_optimization.tex}
+
+In the following section, different ways in which the general optimization problem described by Formula~\ref{eq:bc_formula} is formulated and solved will be discussed.
+
+\paragraph*{Dynamical Movement Primitives}\mbox{}\\
+% Dynamical Movement Primitives (DMPs), offer a robust framework for encoding and reproducing complex movements through differential equations and attractor dynamics.
+The \textit{Dynamical-Movement Primitives} (DMPs) methods are among the first successful applications of the BC methodology to the LfD problem. Their success is attributed to their ease of implementation and efficiency in learning. DMPs do not require learning or estimating the system dynamics, nor do they require a reward function or interaction with the environment during the learning procedure, as they are supervised learning methods.
+
+DMPs were first formalized in \cite{ijspeert2002learning}. They derive the policy directly in the trajectory space, allowing for explicit modeling of constraints such as smooth convergence toward the goal state. The core idea behind DMPs, as proposed in \cite{ijspeert2002learning,ijspeert2013dynamical}, is to model the trajectory as a \textbf{point-to-point attractor system}, described by the set of differential equations in Formula~\ref{eq:dmp}.
+\input{formula/dmp.tex}
+
+Here, $\beta_{s}$, $\alpha_{s}$, and $\alpha_{z}$ are constants, $s$ is the system state, $z$ is the phase-variable function of time $t$, and $f$ is the forcing term that describes the trajectory's non-linear behavior. Generally, $f$ is a linear combination of basis functions $\psi_{i}(z)$ (e.g., Gaussian basis functions), such that $f(z(t)) = (g - s_{0}) \sum_{i=1}^{M} \psi_{i}(z(t)) \omega_{i} z$. Essentially, a DMP describes a point-attractor system where the current system state $s$ must converge to the goal state $g$, starting from $s_{0}$. In this context, the aim is to learn the set of weights $\{\omega_{i}, i=1,\dots,M\}$, which can be obtained by solving a supervised learning problem with the loss function described in Formula~\ref{eq:dmp_loss}.
+\input{formula/dmp_loss.tex}
+The function $f_{target}(t)$ is equal to $f_{target}(t) = \tau^{2} \ \ddot{s}^{E}_{t} - \beta_{s}(\alpha_{s}(g - s^{E}_{t})-\tau \dot{s}^{E}_{t})$ represents the evolution of the expert state $s^{E}_{t}$ towards the goal state $g$, and represents the dynamic to mimic through the learned linear combination of basis function $f(z_{t})$. 
+
+The initial DMPs formulation proposed in \cite{ijspeert2002learning} has several issues that can be categorized as follows:
+\begin{itemize}
+    \item \textbf{Handling stochasticity in demonstrations}: Different demonstrations can vary slightly due to differences in demonstrators, task completion methods, speeds, and paths. This variability creates a distribution in the demonstration space, requiring a method to manage it.
+    
+    \item \textbf{Defining different basis function}: In DMPs, the weights $\omega_{i}$ of the basis functions are learned. However, the force term can also be defined using other formalisms, such as Gaussian Mixture Models \cite{si2023composite}, Neural-Network Radial Basis Functions \cite{li2023human}, or Gaussian Processes \cite{fanger2016gaussian}. Therefore, the choice of how to model the force term is a hyper-parameter of the problem.
+
+    \item \textbf{Managing arbitrary desired trajectories with intermediate via-points}: Once the behavior encoded in the demonstration is learned, generating novel trajectories that pass through new points (possibly defined by a human agent) is not possible. Therefore, a method to generalize to different waypoints is needed.
+    
+    \item \textbf{Handling high-dimensional inputs}: To use the DMPs algorithm, it is necessary to work in the robot space, recording joint and gripper trajectories through teleoperation or kinesthetic teaching. However, in complex scenarios involving interaction with objects that do not have fixed initial positions, it becomes essential to infer the initial object state from high-level inputs, such as images.
+\end{itemize}
+To address these drawbacks, several solutions have been proposed. Notably, the authors in \cite{paraschos2013ProMPs} introduced the \textit{Probabilistic Movement Primitives} (ProMPs) framework. This probabilistic framework offers an alternative movement primitive representation, capturing the variability across different demonstrations and degrees of freedom (DoFs) through a covariance matrix. Specifically, the trajectory $\mathbf{\tau}$ is modeled as a distribution: $\boldsymbol{\tau} = \underset{t}{\prod} \ \mathcal{N}(s(t)|\Psi(z(t))^{T}\omega, \Sigma_{s})$, where $\Psi$ is a time-dependent basis matrix.
+
+Generally, modeling the problem in probabilistic terms has several advantages, particularly the ability to generalize to new goals by conditioning the learned distribution on a given novel goal state \cite{saveriano2023dynamic}.
+
+About the possibility to manage arbitrary desired trajectories, authors in \cite{zhou2019learning} proposed a novel framework for learning movement primitives, named \textit{Via-points Movement Primitives} (VMP). This is basically an extension of both DMPs (that can only adapt to new starts and goals, but cannot directly handle intermediate via-points) and ProMPs (that can adapt to via-points within the statistical distribution of the demonstrated trajectories).
+\textcolor{red}{ToContinue}
+
+Despite all the successfully applications saw previsously, DMPs and all the variants have a very relevant limitation, that is related to the difficulty of handling high-dimensional input such as images. For this reason, the scientific community has focused the attention on methods that leverage deep architecture, that will be explained in detail in the following paragraphs.
+
+\paragraph*{Single-Task Imitation Learning}\mbox{}\\
+The \textit{Single-Task Imitation Learning} refers to deep architecture designed to learn and replicate specific tasks from given demonstrations.
+\paragraph*{Interactive Imitation Learning}\mbox{}\\
+In \textit{Interactive Imitation Learning} the learning process is augmented by interaction with a teacher, allowing for real-time feedback and adjustments to improve performance.
+\paragraph*{Multi-Task Imitation Learning}\mbox{}\\
+\textit{Multi-Task Imitation Learning} enables the learning and execution of multiple tasks from a set of demonstrations, highlighting the scalability and versatility of these methods.
+\paragraph*{Object-Oriented Imitation Learning}\mbox{}\\
+\textit{Object-Oriented Imitation Learning} focuses on learning behaviors in relation to specific objects and their interactions, providing a more structured and contextual approach to imitation learning.
+
+\paragraph{Discussion}

@@ -1,0 +1,33 @@
+\begin{equation}
+\label{formula:linear_gaussian_controller}
+    \pi(a_{t}|s_{t}) = \mathcal{N}(K_{t}s_{t} + k_{t}, S_{t})
+\end{equation}
+
+\begin{equation}
+\label{formula:quadratic_cost_function}
+c(s_{t},a_{t}) = \begin{bmatrix}
+s_{t}
+\\ 
+a_{t}
+\end{bmatrix}^{T}C_{t}\begin{bmatrix}
+s_{t}
+\\ 
+a_{t}
+\end{bmatrix} + \begin{bmatrix}
+s_{t}
+\\ 
+a_{t}
+\end{bmatrix}^{T} c_{t} + cc_{t}
+\end{equation}
+
+\begin{equation}
+\label{formula:gaussian_dyn}
+s_{t+1} \sim P(s_{t+1}|s_{t},a_{t}) = \mathcal{N}(F_{t}
+\begin{bmatrix}
+s_{t}
+\\ 
+a_{t}
+\end{bmatrix} + f_{t}, \Sigma_{t})
+\end{equation}
+
+

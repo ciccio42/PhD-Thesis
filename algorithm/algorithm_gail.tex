@@ -1,0 +1,11 @@
+\begin{algorithm}[tb]
+\caption{Generative Adversarial Imitation Learning Algorithm}\label{alg:gail}
+\begin{algorithmic}
+\Require Expert Trajectories $\tau^{E} \sim \pi^{E}$, initial policy $\pi^{L}_{\theta}$, discriminator $D_{\omega}$
+\For {$i=1, \dots, N$} 
+    \State Sample trajectories, $\tau^{L}_{i} \sim \pi^{L}_{\theta}$
+    \State Update Discriminator, $\mathbb{\hat{E}}_{\tau^{L}_{i}}\left [\nabla_{\omega} \log(D_{\omega}(s,a))\right ] +\mathbb{\hat{E}}_{\tau^{E}}\left [\nabla_{\omega} \log(1 - D_{\omega}(s,a))\right ]$
+    \State Update Policy $\pi_{\theta}$, with TRPO \cite{schulman2015trpo}, and cost-function $C(s,a)=\log(D_{\omega}(s,a))$ 
+\EndFor
+\end{algorithmic}
+\end{algorithm}

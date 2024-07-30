@@ -1,0 +1,17 @@
+% \begin{equation}
+%     \label{eq:mse}
+%     \mathcal{L}(D^{E}, \pi^{L}_{\theta}) = \frac{1}{n} \sum_{\mathcal{D}^{i} \sim \mathcal{D}^{E}} \frac{1}{N} \sum_{(\tau_{m_{i}}^{j}, c_{m_{i}}) \sim \mathcal{D}^{i}} \frac{1}{T}\sum_{t=0}^{T} (a_{t} - \pi^{L}_{\theta}(s_{t}, c_{m_{i}}))
+% \end{equation}
+% \begin{equation}
+%     \label{eq:nll}
+%     \mathcal{L}(D^{E}, \pi^{L}_{\theta}) = \frac{1}{n} \sum_{\mathcal{D}^{i} \sim \mathcal{D}^{E}} \frac{1}{N} \sum_{(\tau_{m_{i}}^{j}, c_{m_{i}}) \sim \mathcal{D}^{i}} \frac{1}{T}\sum_{t=0}^{T} (a_{t} - \pi^{L}_{\theta}(s_{t}, c_{m_{i}}))
+% \end{equation}
+
+\begin{equation}
+    \label{eq:mse}
+    \mathcal{L}(\tau_{m_{i}}^{j}, c_{m_{i}},\pi^{L}_{\theta}) = \frac{1}{T}\sum_{t=0}^{T} (a_{t} - \pi^{L}_{\theta}(s_{t}, c_{m_{i}}))^{2}
+\end{equation}
+\begin{equation}
+    \label{eq:nll}
+    \mathcal{L}(\tau_{m_{i}}^{j}, c_{m_{i}},\pi^{L}_{\theta}) = - \frac{1}{T}\sum_{t=0}^{T} log(\pi^{L}_{\theta}(a_{t}|s_{t}, c_{m_{i}}))
+\end{equation}

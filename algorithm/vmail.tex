@@ -1,0 +1,23 @@
+\begin{algorithm}
+    \caption{Variational Model-Based Adversarial Imitation Learning \cite{rafailov2021visual_ail}}
+    \label{alg:vmail}
+    \begin{algorithmic}
+    \Require Expert Demonstrations $\mathcal{D}^{E}$, environment buffer $\mathcal{D}^{\pi^{L}}$
+    \Require Policy $\pi^{L}_{\theta}$, discriminator $D_{\omega}$, variational model $(q_{\beta}, \hat{\mathcal{T}}_{\beta})$
+    \For {$i=1, \dots, N$}
+        \For {$t=1, \dots, T$}
+            \Comment Data Collection
+            \State Estimate latent state, $z_{t} \sim q_{\theta}(.|s_{t},z_{t-1},a_{t-1})$
+            \State Sample action, $a_{t} \sim  \pi^{L}_{\theta}(a_{t}|z_{t})$
+            \State Observ new state, $s_{t+1}$
+        \EndFor
+        \State Add transitions ${s_{1:T}, a_{1:T-1}}$ to $\mathcal{D}^{\pi^{L}}$
+        \For {training iterations}
+            \Comment Dynamic Learning
+            \State Optimize Variational Model $(q_{\beta}, \hat{\mathcal{T}}_{\beta})$, Formula \ref{}
+            \State Infer Expert Latent Space, $z_{1:T}^{E} \sim q_{\theta}(.| s_{1_T}^{E}, a_{1:T-1}^{E})$
+            \State Generate latent rollouts, $z_{1:H}^{L} $ 
+        \EndFor
+    \EndFor
+\end{algorithmic}
+\end{algorithm}
