@@ -1,13 +1,13 @@
-\begin{algorithm}[b]
+\begin{algorithm}[t]
 \caption{GAIfO algorithm \cite{torabi2018gaifo}}
 \label{alg:gaifo_algorithm}
 \begin{algorithmic}
-\Require Initial policy $\pi^{L}_{\phi}$, Initial Discriminator $D_{\theta}$
-\Require State-only expert demonstration trajectories $\tau^{E} = \left \{ (s,s') \right \}$
-\While {Policy Improves}
-    \State Execute $\pi^{L}_{\phi}$ and collect state transitions $\tau^{L} = \left \{ (s,s') \right \}$
-    \State Update $D_{\theta}$, with $\mathcal{L}_{D_{\theta}} = - \ ( \ \mathbb{E}_{\tau^{L}}[\log (D_{\theta}(s, s')) ] + \mathbb{E}_{\tau^{E}}[\log(1 - D_{\theta}(s, s'))] \ )$
-    \State Update $\pi^{L}_{\phi}$, with reward $ r_{\pi^{L}_{\phi}} = - \ ( \ \mathbb{E}_{\tau^{L}}[\log(D_{\theta}(s, s'))] \ )$
-\EndWhile
+\REQUIRE Initial policy $\pi^{L}_{\phi}$, Initial Discriminator $D_{\theta}$
+\REQUIRE State-only expert demonstration trajectories $\tau^{E} = \left \{ (s,s') \right \}$
+\WHILE {Policy Improves}
+    \STATE Execute $\pi^{L}_{\phi}$ and collect state transitions $\tau^{L} = \left \{ (s,s') \right \}$
+    \STATE Update $D_{\theta}$, with $\mathcal{L}_{D_{\theta}} = - \ ( \ \mathbb{E}_{\tau^{L}}[\log (D_{\theta}(s, s')) ] + \mathbb{E}_{\tau^{E}}[\log(1 - D_{\theta}(s, s'))] \ )$
+    \STATE Update $\pi^{L}_{\phi}$, with reward $ r_{\pi^{L}_{\phi}} = - \ ( \ \mathbb{E}_{\tau^{L}}[\log(D_{\theta}(s, s'))] \ )$
+\ENDWHILE
 \end{algorithmic}
 \end{algorithm}

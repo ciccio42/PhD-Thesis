@@ -1,0 +1,13 @@
+\begin{equation}
+    \label{eq:cycle_gan_loss}
+    \begin{aligned}
+        \mathcal{L}(G,F,D_X,D_Y) &= \mathcal{L}_{GAN}(G,D_Y,X,Y) + \\
+        &\quad \mathcal{L}_{GAN}(F,D_X,Y,X) + \lambda\mathcal{L}_{cyc}(G,F) 
+        \\ \\
+        \mathcal{L}_{GAN}(Z,D_{K},S,T) &= \mathbb{E}_{t \sim p_{data}(t)}\left[ \log(D_K(t)) \right] + \\
+        &\quad \mathbb{E}_{s \sim p_{data}(s)}\left[ \log(1 - D_K(Z(s))) \right]    
+        \\ \\
+        \mathcal{L}_{cyc}(G,F) &= \mathbb{E}_{x \sim p_{data}(x)}\left[ \|F(G(x)) - x\|_{1} \right] +  \\
+        &\quad \mathbb{E}_{y \sim p_{data}(y)}\left[ \|G(F(y)) - y\|_{1} \right]
+        \end{aligned}
+\end{equation}
