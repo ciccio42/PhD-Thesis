@@ -1,5 +1,6 @@
 \subsubsection{Learning from Observation}
 \textcolor{red}{VEDERE CITAZIONI RECENTI MIMICPLAY,qian2024contrast}
+
 \input{figures/ch1/embodiment_mismatch.tex}
 \label{sec:lfo}
 In all the previous sections, the methodologies assume access to the agent actions, working with state-action trajectories. In \textit{Learning from Observation} (LfO), this assumption is relaxed, and methods for learning from \textbf{state-only} demonstrations are proposed. This approach has gained attention in recent years~\cite{torabi2019recent_advances_lfo} because it theoretically allows a robotic system to be programmed as naturally as possible. Ideally, a robotic system should be able to reproduce a task by observing a human or another robot performing it, without access to the actions performed, unlike the methods described so far.
@@ -140,3 +141,4 @@ Experiments performed in simulation with low-dimensional state spaces showed pro
 
 \input{figures/ch1/dealio_performance.tex}
 
+Generally, LfO methods have demonstrated interesting features, such as generating a policy from state-based information alone. This supports the hypothesis that the primary source of information for task learning is the sequence of state transitions. Extrapolating the valuable information to perform actions that induce the desired behavior may not be trivial, especially if the state space is represented by images of a human operator. This complexity leads to the design of architectures composed of different stages, which not only increase the complexity of the system itself but also the amount and diversity of data required for their training. Furthermore, many methods of interest have been tested in simulated or relatively simple scenarios, still leaving open whether these methods can be used in real-world complex robotic manipulation tasks.

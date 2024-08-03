@@ -2,12 +2,12 @@
 \caption{Guided-Cost-Learning Algorithm \cite{finn2016guided_cost_learning}}
 \label{alg:guided_cost_learning}
 \begin{algorithmic}
-\Require Initial controller $q_{k}(\tau)$ 
-\For {i = 1, \dots, N}
-    \State Generate $D_{traj}$ from $q_{k}(\tau)$
-    \State $\mathcal{D}_{samp} \leftarrow \mathcal{D}_{samp} \bigcup \mathcal{D}_{traj}$
-    \State Update the cost-function parameters, using $\mathcal{D}_{samp}$ and $\nabla_{\theta}\mathcal{L(\theta)}$
-    \State Update the controller $q_{k+1}(\tau) \leftarrow q_{k}(\tau)$ according to \cite{levine2014lqr_flm} and using $\mathcal{D}_{traj}$
-\EndFor
+\REQUIRE Initial controller $q_{k}(\tau)$ 
+\FOR {i = 1, \dots, N}
+    \STATE Generate $D_{traj}$ from $q_{k}(\tau)$
+    \STATE $\mathcal{D}_{samp} \leftarrow \mathcal{D}_{samp} \bigcup \mathcal{D}_{traj}$
+    \STATE Update the cost-function parameters, using $\mathcal{D}_{samp}$ and $\nabla_{\theta}\mathcal{L(\theta)}$
+    \STATE Update the controller $q_{k+1}(\tau) \leftarrow q_{k}(\tau)$ according to \cite{levine2014lqr_flm} and using $\mathcal{D}_{traj}$
+\ENDFOR
 \end{algorithmic}
 \end{algorithm}
