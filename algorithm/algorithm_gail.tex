@@ -1,11 +1,13 @@
 \begin{algorithm}[tb]
 \caption{Generative Adversarial Imitation Learning Algorithm}\label{alg:gail}
 \begin{algorithmic}
-\Require Expert Trajectories $\tau^{E} \sim \pi^{E}$, initial policy $\pi^{L}_{\theta}$, discriminator $D_{\omega}$
-\For {$i=1, \dots, N$} 
-    \State Sample trajectories, $\tau^{L}_{i} \sim \pi^{L}_{\theta}$
-    \State Update Discriminator, $\mathbb{\hat{E}}_{\tau^{L}_{i}}\left [\nabla_{\omega} \log(D_{\omega}(s,a))\right ] +\mathbb{\hat{E}}_{\tau^{E}}\left [\nabla_{\omega} \log(1 - D_{\omega}(s,a))\right ]$
-    \State Update Policy $\pi_{\theta}$, with TRPO \cite{schulman2015trpo}, and cost-function $C(s,a)=\log(D_{\omega}(s,a))$ 
-\EndFor
+\REQUIRE Expert Trajectories $\tau^{E} \sim \pi^{E}$, initial policy $\pi^{L}_{\theta}$, discriminator $D_{\omega}$
+\FOR {$i=1, \dots, N$} 
+    \STATE Sample trajectories, $\tau^{L}_{i} \sim \pi^{L}_{\theta}$
+    \STATE \textit{Update Discriminator}, with the gradient \\ $\vcenter{\begin{equation*}\mathbb{\hat{E}}_{\tau^{L}_{i}}\left [\nabla_{\omega} \log(D_{\omega}(s,a))\right ] +\mathbb{\hat{E}}_{\tau^{E}}\left [\nabla_{\omega} \log(1 - D_{\omega}(s,a))\right ]\end{equation*}}$
+    \STATE \textit{Update Policy} $\pi_{\theta}^{L}$, with TRPO \cite{schulman2015trpo}, using the cost-function $C(s,a)=\log(D_{\omega}(s,a))$, and the KL-constrained gradient step 
+   $\vcenter{\begin{equation*}\hat{\mathbb{E}}_{\tau_i}\left[\nabla_\theta \log \pi_\theta(a \mid s) Q(s, a)\right]-\lambda \nabla_\theta H\left(\pi_\theta\right) \end{equation*}}$ 
+   $\vcenter{\begin{equation*}Q(\bar{s}, \bar{a})=\hat{\mathbb{E}}_{\tau_i}\left[\log \left(D_{w}(s, a)\right) \mid s_0=\bar{s}, a_0=\bar{a}\right]\end{equation*}}$
+\ENDFOR
 \end{algorithmic}
 \end{algorithm}

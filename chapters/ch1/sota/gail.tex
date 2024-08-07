@@ -1,3 +1,58 @@
 \subsubsection{Generative Adversarial Imitation Learning}
 \label{sec:gail}
-This section will be dedicated to the introduction of the \textit{Generative Adversarial Imitation Learning} (GAIL) approach. 
+The \textit{Generative Adversarial Imitation Learning} (GAIL) is a Learning from Demonstration (LfD) approach proposed by the authors of \cite{ho2016gail}. The rationale behind GAIL was to improve the Inverse Reinforcement Learning (IRL) setting, which is expensive to run due to the double-nested optimization procedure. To achieve this objective, the authors in \cite{ho2016gail} started from the Max-Ent formulation in Formula \ref{formula:regularized_max_ent}, and obtained a characterization of the learned policy. This characterization combines the learning of the reward function and the learning of the policy through a reinforcement learning algorithm. In Formula \ref{formula:regularized_max_ent}, $\psi(c)$ is a cost-regularizer, $\psi^{*}(c)$ is its conjugate, and $\rho_{\pi}$ is the occupancy measure, i.e., the distribution of state-action pairs that the agent encounters when navigating the environment with policy $\pi$. 
+
+The next step was to choose an appropriate regularization function. In particular, by choosing the regularizer in Formula \ref{formula:ga_regularization}, the conjugate in Formula \ref{formula:ga_regularizer_conjugate} can be obtained. This is the classic Adversarial Learning Loss, where the current policy $\pi^{L}$ acts as the GAN generator, and $D$ is the GAN discriminator, which must distinguish between state-action pairs generated either by the expert policy or by the current policy.
+
+\input{formula/gail.tex}
+Based on these considerations, Algorithm \ref{alg:gail} has been proposed. Specifically, the GAIL algorithm is an iterative procedure composed of two main steps. The first step involves updating the discriminator $D$, which must distinguish between trajectories produced by the learned policy $\tau^{L}_{i}$ and trajectories produced by the expert $\tau^{E}$. The second step involves updating the learner policy $\pi^{L}$ according to some reinforcement learning algorithm (e.g., TRPO was used in \cite{ho2016gail}). The policy is updated in such a way that the trajectories it generates become indistinguishable from those of the expert for the discriminator, i.e., the learner produces state transitions that are similar to those of the expert.
+\input{algorithm/algorithm_gail.tex}
+
+In the seminal work \cite{ho2016gail}, GAIL has proven to be more effective than classic IRL (Inverse Reinforcement Learning) algorithms \cite{ziebart2008maximum_entropy,ho2016model}. The authors evaluated the GAIL algorithm on nine classic simulated control tasks from the OpenAI Gym simulator \cite{brockman2016openai}: Cartpole, Acrobot, MountainCar, HalfCheetah, Hopper, Walker, Ant, Humanoid, and Reacher.
+
+\input{figures/ch1/gail_performance.tex}
+\input{tables/ch1/gaill_tasks.tex} 
+
+The observation and control spaces for these tasks are detailed in Table \ref{table:gail_tasks}, and the performance results are shown in Figure \ref{fig:gail_performance}. From these results, it is evident that the GAIL algorithm overcomes classic IRL algorithms in terms of both pure reward and sample efficiency. Consequently, subsequent research has focused on improving the algorithm's efficiency in terms of environment interaction. This has been achieved by replacing the model-free, on-policy TRPO algorithm with an off-policy RL algorithm, as seen in \cite{kostrikov2018discriminator}, or by modifying the reward function input to the RL algorithm \cite{fu2018airl,ghasemipour2020divergence_minimization_perspective}.
+
+However, as noted in Table \ref{table:gail_tasks}, the tested tasks are characterized by low-dimensional state spaces. More recent research \cite{liu2018imitation_from_observation,reddy2019sqil,zolna2021task_relevant_ail,rafailov2021visual_ail} has focused on testing the GAIL algorithms in high-dimensional state spaces, where the input is an image. Specifically, with respect to the Adversarial Imitation Learning setting, works of interest are \cite{zolna2021task_relevant_ail,rafailov2021visual_ail}. 
+
+In \cite{zolna2021task_relevant_ail}, the authors focused on solving the \textbf{casual-confusion} problem. This problem occurs when the discriminator, during the learning process, focuses on task-irrelevant features between expert and policy generated transitions, for example a difference in the expert and agent embodiment like the gripper, this causes the rewards to become uninformative. To reduce the casual-confusion problem, in \cite{zolna2021task_relevant_ail} two elements have been proposed: 
+\begin{enumerate}[label=\arabic*.]
+    \item A \textit{regularization term}, with the aim to make the discriminator \textbf{unable} to distinguish between constraining sets $I_{E}$ and $I_{A}$. These sets are composed of expert and agent observations, such that a sample can belong either to $I_{E}$ or $I_{A}$, based on spurious features (e.g., a different gripper color);
+    \item An \textit{early-stopping policy} called Actor Early-Stopping (AES), that restarts the episode if the discriminator score at the current step exceeds the median score of the episode so far for $T_{patience}$ consecutive steps.
+\end{enumerate} 
+
+To prevent the discriminator from focusing on task-irrelevant features, the authors proposed a regularization term based on the constraining-set accuracy defined in Formula \ref{eq:trail}. The idea is that if the discriminator achieves an accuracy greater than $\frac{1}{2}$ on the constraining set, the maximized adversarial cost function should be inverted, as shown in Formula \ref{eq:trail_discriminator}.
+
+\begin{equation}
+\label{eq:trail}
+\textit{accuracy}(I_{E}, I_{A}) = \frac{1}{2} \ \mathbb{E}_{s \in I_{E}} \left[ \mathbf{1}_{D_{\omega} \geq  \frac{1}{2}}\right] + \frac{1}{2} \ \mathbb{E}_{s \in I_{A}} \left[ \mathbf{1}_{D_{\omega} <  \frac{1}{2}}\right] 
+\end{equation}
+\begin{equation}
+    \label{eq:trail_discriminator}
+    \begin{aligned}
+        \mathcal{L}_\psi\left(s_E, s_A, \hat{s}_E, \hat{s}_A\right) 
+        &= G_\psi\left(s_E, s_A\right) \\
+        &\quad - \mathbf{1}_{\text {accuracy }\left(\hat{s}_E, \hat{s}_A\right) \geq \frac{1}{2}} G_\psi\left(\hat{s}_E, \hat{s}_A\right), \\ \\
+        \text{where} \ \ G_\psi\left(s_E, s_A\right) 
+        &= \sum_{i=1}^N \log D_\psi\left(s_E^{(i)}\right) \\
+        &\quad + \log \left[1 - D_\psi\left(s_A^{(i)}\right)\right]
+    \end{aligned}
+\end{equation}
+\input{figures/ch1/trail_tasks.tex}
+The proposed system was tested on 4 tasks (Figure \ref{fig:trail_tasks}), with the agent trained on each single task, according to the \textit{Distributed Distributional Deterministic Policy Gradients} (D4PG) \cite{barth2018d4pg} RL algorithm, with reward-function $R(s_{t}) = - \log(1-D_{\omega}(s_{t}))$. Experimental results have shown how the proposed system overcomes the GAIL \cite{ho2016gail} baseline, both in setting with spurious features and without spurious features (Figure \ref{fig:trail_results}).
+\input{figures/ch1/trail_results.tex}
+
+
+The authors of \cite{rafailov2021visual_ail} proposed a more data-efficient Adversarial Imitation Learning method. They leveraged a model-based approach within a high-dimensional state space. Instead of generating a dynamic model in the image space, i.e., training a generative model to produce the next image based on the current image and the performed action.Their method encodes observations defined in the image space into a corresponding latent space characterized by vectors of smaller dimensions. Then, they learn a dynamic model in that space, training a generative model to produce the next embedding based on the current encoded observation and the performed action. The proposed learning procedure is based on three main steps:
+\begin{enumerate}[label=\arabic*.]
+    \item Learn the \textit{Latent Dynamic Model}, $(\hat{\mathcal{U}}_{\beta},\hat{\mathcal{T}}_{\beta}, q_{beta})$, by maximizing the Evidence Lower Bound (Formula \ref{formula:elbo}), where $\hat{\mathcal{U}}_{\beta}$ is the decoder, $q_{beta}$ is the encoder, and $\hat{\mathcal{T}}_{\beta}$ is the transition model;
+    \item Train a \textit{discriminator}, $D_{\theta}$, by minimizing the Adversarial Loss function (Formula \ref{formula:discriminator});
+    \item Train a \textit{policy} $\pi^{L}_{\theta}$, by maximizing the Value function (Formula \ref{formula:value_function}).
+\end{enumerate}
+\input{formula/vmail.tex}
+With this learning setting the proposed system outperforms previous works such as \cite{reddy2019sqil,kostrikov2018discriminator} both in terms of \textbf{data-efficiency} and \textbf{overall performance}, on a set of continous control tasks.
+% \input{Figures/vmail.tex}
+
+Generally speaking, the Generative Adversarial Imitation Learning has shown very promising performance in simulated control tasks and simulated robot manipulation tasks, even in complex high-dimensional state-space. However, it is not so clear, how these methods could perform in real-world robotic manipulation tasks, in terms of data-efficiency, generalization capability, and safety during real-world interactions. 
