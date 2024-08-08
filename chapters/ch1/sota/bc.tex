@@ -1,4 +1,4 @@
-\subsubsection{Behavioral Cloning (BC)}
+\subsubsection{Behavioral Cloning}
 \label{sec:bc}
 \input{algorithm/algorithm_bc.tex}
 \textit{Behavioral Cloning} is one of the first approaches used to solve the LfD problem~\cite{pomerleau1988alvinn}. The high-level \textbf{supervised-learning} procedure followed by BC methods is outlined in Algorithm~\ref{alg:bc}. Generally, BC methods take as input the expert demonstration dataset $\mathcal{D}^{E}$ and a learner policy modeled as a parameterized function $\pi_{\theta}^{L}$. The parameters $\theta$ can be either the weights of a neural network~\cite{pomerleau1988alvinn} or the parameters of a dynamic system~\cite{ijspeert2002learning}. As a supervised approach, the goal is to find the optimal parameters $\theta^{*}$ that can replicate the \textbf{ground-truth behaviors} contained in the dataset $\mathcal{D}^{E}$. This is achieved by solving an optimization problem, which can generally be described by Formula~\ref{eq:bc_formula}.
@@ -36,10 +36,11 @@ About the possibility to manage arbitrary desired trajectories, authors in \cite
 
 Despite all the successfully applications saw previsously, DMPs and all the variants have a very relevant limitation, that is related to the difficulty of handling high-dimensional input such as images. For this reason, the scientific community has focused the attention on methods that leverage deep architecture, that will be explained in detail in the following paragraphs.
 
-\paragraph*{Single-Task Imitation Learning}\mbox{}\\
-The \textit{Single-Task Imitation Learning} refers to deep architecture designed to learn and replicate specific tasks from given demonstrations.
-\paragraph*{Interactive Imitation Learning}\mbox{}\\
-In \textit{Interactive Imitation Learning} the learning process is augmented by interaction with a teacher, allowing for real-time feedback and adjustments to improve performance.
+\input{chapters/ch1/sota/bc_single_task_imitation_learning.tex}
+\input{chapters/ch1/sota/interactive_imitation_learning.tex}
+
+
+
 \paragraph*{Multi-Task Imitation Learning}\mbox{}\\
 \textit{Multi-Task Imitation Learning} enables the learning and execution of multiple tasks from a set of demonstrations, highlighting the scalability and versatility of these methods.
 \paragraph*{Object-Oriented Imitation Learning}\mbox{}\\

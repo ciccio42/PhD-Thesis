@@ -1,0 +1,22 @@
+% \usepackage{graphicx}
+% \usepackage{hhline}
+
+
+\begin{table}
+    \centering
+    \caption{Statistics of Training set, and Test Success rate~\cite{zhang2018deep_vr_teleoperation}}
+    \label{table:deep_vr_teleoperation_results}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|} 
+    \hline
+    \textbf{Task} & \textbf{Reaching} & \textbf{Grasping} & \textbf{Pushing} & \textbf{Plane} & \textbf{Cube} & \textbf{Nail} & \begin{tabular}[c]{@{}c@{}}\textbf{Grasp-}\\\textbf{and-}\\\textbf{Place}\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Grasp-}\\\textbf{Drop-}\\\textbf{Push}\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Grasp-}\\\textbf{Place-x2}\end{tabular} & \textbf{Cloth} \\ 
+    \hhline{|===========|}
+    \#demo & 200 & 180 & 175 & 319 & 206 & 215 & 109 & 100 & 60 & 100 \\ 
+    \hline
+    \begin{tabular}[c]{@{}c@{}}demo duration \\(min)\end{tabular} & 13.7 & 11.1 & 16.9 & 25.0 & 12.7 & 13.6 & 12.3 & 14.5 & 11.6 & 10.1 \\ 
+    \hline
+    \begin{tabular}[c]{@{}c@{}}Test success rate\\(\%)\end{tabular} & 91.6 & 97.2 & 98.9 & 87.5 & 85.7 & 87.5 & 96.0 & 83.3 & 80.0 & 97.4 \\
+    \hline
+    \end{tabular}
+    }
+    \end{table}
