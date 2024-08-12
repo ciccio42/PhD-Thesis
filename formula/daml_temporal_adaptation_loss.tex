@@ -1,0 +1,7 @@
+\begin{equation}
+ \label{eq:daml_temporal_adaptation_loss}
+ \begin{matrix}
+    (\theta, \psi) \leftarrow(\theta, \psi)-\beta \nabla_{\theta, \psi} \mathcal{L}_{\mathrm{BC}}\left(\phi_{\mathcal{T}}, \mathbf{d}^r\right) \\ \\
+   \phi_{\mathcal{T}}=\theta-\alpha \nabla_\theta \mathcal{L}_\psi\left(\theta, \mathbf{d}^h\right)
+   \end{matrix}
+\end{equation}
