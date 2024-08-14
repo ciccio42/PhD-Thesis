@@ -1,0 +1,26 @@
+% \usepackage{graphicx}
+% \usepackage{hhline}
+
+
+\begin{table}
+    \centering
+    \caption{Results reported in \cite{brohan2022rt} by training the same model RT-1 with different dataset size}
+    \label{table:rt1_results}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|c|c|c|} 
+    \cline{5-8}
+    \multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \multicolumn{1}{c}{} &  & \multicolumn{4}{c|}{Generalization} \\ 
+    \hline
+    Models & \% Tasks & \% Data & Seen Tasks & All & Unseen Tasks & Distractors & Backgrounds \\ 
+    \hhline{|========|}
+    RT-1 & 100 & \textbf{100} & 97 & 73 & 76 & \textbf{83} & 59 \\ 
+    \hline
+    RT-1 & 100 & \textbf{51} & 71 & 50 & 52 & \textbf{39} & 59 \\ 
+    \hline
+    RT-1 & 100 & \textbf{37} & 55 & 46 & 57 & \textbf{35} & 47 \\ 
+    \hline
+    RT-1 & 100 & \textbf{22} & 59 & 29 & 14 & \textbf{31} & 41 \\
+    \hline
+    \end{tabular}
+    }
+    \end{table}

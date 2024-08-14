@@ -1,0 +1,36 @@
+% \usepackage{graphicx}
+% \usepackage{hhline}
+
+
+\begin{table}
+    \centering
+    \caption{Distribution of tasks in large-scale dataset proposed in \cite{brohan2022rt}}
+    \label{table:rf1_dataset}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{|c|c|c|c|} 
+    \hline
+    \textbf{Skill} & \textbf{Count} & \textbf{Description} & \textbf{Example Instruction} \\ 
+    \hhline{|====|}
+    Pick Object & 130 & Lift the object off the surface & pick iced tea can \\ 
+    \hline
+    Move Object Near Object & 337 & Move the first object near the second & move pepsi can near rxbar blueberry \\ 
+    \hline
+    Place Object Upright & 8 & Place an elongated object upright & place water bottle upright~ ~ \\ 
+    \hline
+    Knock Object Over & 8 & Knock an elongated object over & knock redbull can over \\ 
+    \hline
+    Open Drawer & 3 & Open any of the cabinet drawers & open the top drawer \\ 
+    \hline
+    Close Drawer & 3 & Close any of the cabinet drawers & close the middle drawer \\ 
+    \hline
+    Place Object into Receptacle & 84 & Place an object into a receptacle & place brown chip bag into white bowl \\ 
+    \hline
+    \begin{tabular}[c]{@{}c@{}}Pick Object from Receptacle\\and Place on the Counter\end{tabular} & 162 & \begin{tabular}[c]{@{}c@{}}Pick an object up from a location \\and then place it on the counter\end{tabular} & \begin{tabular}[c]{@{}c@{}}pick green jalapeno chip bag from\\~paper~bowl and place on counter\end{tabular} \\ 
+    \hline
+     & 9 & Skills trained for realistic, long instructions & \begin{tabular}[c]{@{}c@{}}open the large glass jar of pistachios \\~pull napkin out of dispenser grab scooper\end{tabular} \\ 
+    \hhline{|====|}
+    \textbf{Total} & 744 &  &  \\
+    \hline
+    \end{tabular}
+    }
+    \end{table}
