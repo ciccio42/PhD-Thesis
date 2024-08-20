@@ -1,0 +1,47 @@
+% \usepackage{graphicx}
+% \usepackage{multirow}
+% \usepackage{hhline}
+
+
+\begin{table}[t]
+    \scriptsize
+    \selectfont
+    \centering
+    \caption{Results obtained in single-task and multi-task one-shot imitation learning \cite{mandi2022towards_more_generalizable_one_shot}.}
+    \label{table:mosaic}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|} 
+    \hline
+    Task & Setup & DAML \cite{yu2018daml} & TOSIL \cite{dasari2021transformers_one_shot} & MOSAIC \cite{mandi2022towards_more_generalizable_one_shot} \\ 
+    \hhline{|=====|}
+    \multirow{2}{*}{Open door} & single & 23.3~$\pm$ 5.2 & 57.9~$\pm$~7.1 & \textbf{67.1} $\pm$ \textbf{5.5} \\ 
+    \cline{2-5}
+     & multi & 10.8~$\pm$ 5.4 & 49.2~$\pm$ 6.0 & \textbf{68.3}~$\pm$~\textbf{6.3} \\ 
+    \hhline{|=====|}
+    \multirow{2}{*}{Open drawer} & single & 15.4~$\pm$ 5.5 & 57.5~$\pm$~3.9 & \textbf{65.4}~$\pm$~\textbf{3.4} \\ 
+    \cline{2-5}
+     & multi & 3.3~$\pm$~1.4 & 53.3~$\pm$~4.0 & \textbf{55.8}~$\pm$~\textbf{3.6} \\ 
+    \hhline{|=====|}
+    \multirow{2}{*}{Press button} & single & 62.8~$\pm$~3.9 & 56.4~$\pm$ 2.4 & \textbf{71.7}~$\pm$ \textbf{3.9} \\ 
+    \cline{2-5}
+     & multi & 1.7~$\pm$~0.7 & 63.3 $\pm$ 3.5 & \textbf{69.4}~$\pm$~\textbf{3.4} \\ 
+    \hhline{|=====|}
+    \multirow{2}{*}{Pick-and-Place} & single & 0.0~$\pm$~0.0 & 74.4~$\pm$~2.1 & \textbf{88.5}~$\pm$~\textbf{1.1} \\ 
+    \cline{2-5}
+     & multi & 0.0~$\pm$~0.0 & 19.5~$\pm$~0.4 & \textbf{42.1}~$\pm$ \textbf{2.3} \\ 
+    \hhline{|=====|}
+    \multirow{2}{*}{Stack block} & single & 10.0~$\pm$~1.8 & 13.3~$\pm$~2.6 & \textbf{79.3}~$\pm$~\textbf{1.8} \\ 
+    \cline{2-5}
+     & multi & 0.0~$\pm$~0.0 & 34.4~$\pm$~3.4 & \textbf{70.6}~$\pm$~\textbf{2.4} \\ 
+    \hhline{|=====|}
+    \multirow{2}{*}{Basketball} & single & 0.4~$\pm$~0.3 & 12.5~$\pm$~1.6 & \textbf{67.5}~$\pm$~\textbf{2.7} \\ 
+    \cline{2-5}
+     & multi & 0.0~$\pm$~0.0 & 6.9~$\pm$~1.3 & \textbf{49.7}~$\pm$~\textbf{2.2} \\ 
+    \hhline{|=====|}
+    \multirow{2}{*}{Nut assembly} & single & 2.2$\pm$~1.4 & 6.3 $\pm$~1.9 & \textbf{55.2}~$\pm$~\textbf{2.8} \\ 
+    \cline{2-5}
+     & multi & 0.0~$\pm$~0.0 & 6.3 $\pm$~1.3 & \textbf{30.7}~$\pm$~\textbf{2.5} \\
+    \hline
+    \end{tabular}
+    }
+    \end{table}

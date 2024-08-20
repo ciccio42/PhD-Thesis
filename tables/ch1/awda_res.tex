@@ -1,0 +1,22 @@
+% \usepackage{graphicx}
+% \usepackage{hhline}
+
+
+\begin{table}
+    \scriptsize
+    \selectfont
+    \centering
+    \caption{Success rates achieved using the MOSAIC and AWDA methods. In this scenario, training is conducted on 5 out of the 6 tasks, with the remaining task reserved for testing.}
+    \label{table:awda_results}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|c|c|} 
+    \cline{2-7}
+    \multicolumn{1}{c|}{} & Door & Drawer & Button & Blocks & Basketball & Nut Assembly \\ 
+    \hhline{|-======|}
+    MOSAIC & \textbf{0.05} & \textbf{0.15} & \textbf{0.05} & 0 & 0 & 0 \\ 
+    \hline
+    AWDA & \textbf{0.10} & \textbf{0.29} & 0.01 & 0 & 0 & \textbf{0.02} \\
+    \hline
+    \end{tabular}
+    }
+    \end{table}
