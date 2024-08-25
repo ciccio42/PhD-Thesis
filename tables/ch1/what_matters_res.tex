@@ -1,0 +1,34 @@
+% \usepackage{graphicx}
+% \usepackage{hhline}
+
+
+\begin{table}
+    \centering
+    \caption{Results on low-dimentational observation space for simulated tasks, which include gripper pose, gripper fingers positions and oject-pose. }
+    \label{table:mosaic}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|} 
+    \hline
+    \textbf{Dataset} & \textbf{BC} & \textbf{BC-RNN} & \textbf{BCQ} & \textbf{CQL} \\ 
+    \hhline{|=====|}
+    Lift $(\mathrm{PH})$ & $\mathbf{1 0 0 . 0} \pm \mathbf{0 . 0}$ & $\mathbf{1 0 0 . 0} \pm \mathbf{0 . 0}$ & $\mathbf{9 8 . 0} \pm \mathbf{1 . 6}$ & $52.0 \pm 13.0$ \\ 
+    \hline
+    Can $(\mathrm{PH})$ & $\mathbf{9 7 . 3} \pm \mathbf{1 . 9}$ & $\mathbf{9 8 . 0} \pm \mathbf{0 . 9}$ & $86.7 \pm 2.5$ & $0.7 \pm 0.9$ \\ 
+    \hline
+    Square $(\mathrm{PH})$ & $62.0 \pm 4.9$ & $\mathbf{8 2 . 0} \pm \mathbf{0 . 0}$ & $41.3 \pm 4.1$ & - \\ 
+    \hline
+    Transport $(\mathrm{PH})$ & $55.3 \pm 6.2$ & $\mathbf{7 2 . 0} \pm \mathbf{4 . 3}$ & $0.7 \pm 0.9$ & - \\ 
+    \hline
+    Tool Hang $(\mathrm{PH})$ & $20.0 \pm 5.9$ & $\mathbf{6 7 . 3} \pm \mathbf{4 . 1}$ & $3.3 \pm 0.9$ & - \\ 
+    \hhline{|=====|}
+    Lift $(\mathrm{MH})$ & $\mathbf{1 0 0 . 0} \pm \mathbf{0 . 0}$ & $\mathbf{1 0 0 . 0} \pm \mathbf{0 . 0}$ & $93.3 \pm 0.9$ & $11.3 \pm 9.3$ \\ 
+    \hline
+    Can $(\mathrm{MH})$ & $85.3 \pm 0.9$ & $\mathbf{9 6 . 0} \pm \mathbf{1 . 6}$ & $77.3 \pm 6.8$ & $0.0 \pm 0.0$ \\ 
+    \hline
+    Square $(\mathrm{MH})$ & $46.0 \pm 1.6$ & $\mathbf{7 6 . 7} \pm \mathbf{3 . 4}$ & $17.3 \pm 7.5$ & - \\ 
+    \hline
+    Transport $(\mathrm{MH})$ & $18.7 \pm 2.5$ & $\mathbf{4 2 . 0} \pm \mathbf{1 . 6}$ & $0.0 \pm 0.0$ & - \\
+    \hline
+    \end{tabular}
+    }
+    \end{table}
