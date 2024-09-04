@@ -43,8 +43,8 @@
 % \usepackage{enumerate}
 \usepackage{subcaption}
 \usepackage{amssymb}
-
-\newcommand{\todo}[1]{{\color{red}#1}}
+\usepackage{todonotes}
+\newcommand{\smalltodo}[1]{\todo[inline]{\small #1}}
 \newcommand{\updated}[1]{{\color{blue}#1}}
 
 \newcommand{\splitcell}[1]{\begin{tabular}{@{}c@{}}#1\end{tabular}}

@@ -1,2 +1,15 @@
 \section{Problem formulation}
 \label{sec:cod_problem}
+As stated in previous chapters the main objective of this thesis is to validate the possiblity of leveraging object priors to improve the ability of the system to ignore distractor objects during task execution, while returning some human readable information about the behavior of the robot.
+
+In Section \ref{sec:bc} some methods that leverage object priors in the context of Imitation Learning have been described. However, all the works described in that section leverage some kind of pre-trained object detector to identify the region of interest, i.e., the regions where possibly there is an object, indipendently from both its class (e.g., box, nut, bin, peg, etc\dots) and its semantic state (i.e., object of interest or distractor). Morevoer, any of those works are used in a multi-variation scenario, i.e., the semantic state (object of interest or distractor) is dynamically defined by the requested task. 
+
+
+Specifically, in the context of interest the object detection problem can be formulated as follow. For a given couple of agent-observation and command $\left(o_t^{a}, c_{m_{i}}\right)$, a parametrized function $f_{\theta}$ must be able to generate a set of bounding-boxes $\left\{bb^{j}_{t} | j \in C \right\}$ that identifies \textbf{specific} regions of interest. Here, $C$ is a set of classes assigned to the bounding-box, that differ from the classic definition of classes used in classic object detection. Indeed, there is no interest in predictiing the object category like box, nut, bin and so on, but intestad there is the interest in predicting the semantic attribute associated to the object, which are in the context of interest:
+\begin{itemize}
+    \item \textit{Target}, which means the bounding-box refers to the object to be manipulated in the demonstrated variation $c_{m_{i}}$.
+    \item \textit{No-target}, any other object in the scene that is not manipulated.
+    \item \textit{Target-Place}, which is the final region of interest for the manipulated object, which differes based on the given task. For example, in pick-place it represents the bin where to place the object, in nut-assembly the peg where to insert the object, in button task the region after the button has been pressed and so on.
+    \item \textit{No-Target-Place}, any other final region not of interest for the demonstrated variation, i.e., any other bin in pick-place or any other peg in nut-assembly.
+\end{itemize}
+
