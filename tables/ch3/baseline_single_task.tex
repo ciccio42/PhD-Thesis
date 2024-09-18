@@ -1,0 +1,123 @@
+% \usepackage{makecell}
+% \usepackage{graphicx}
+% \usepackage{multirow}
+% \usepackage{hhline}
+
+
+\begin{table}[t]
+    \centering
+    \refstepcounter{table}
+    \label{table:occp_single_task_baseline_res}
+    \caption{The single-task performance of the baseline methods, TOSIL \cite{dasari2021transformers_one_shot} and MOSAIC \cite{mandi2022towards_more_generalizable_one_shot}, was evaluated. For each model, additional tests were conducted by generating the first 2 steps and 10 steps using the hand-written controller.}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|} 
+    \hline
+    \textbf{Task} & \textbf{Model} & \textbf{GT Action} & \begin{tabular}[c]{@{}c@{}}\textbf{Reaching}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Picking}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Success}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Reaching} \\\textbf{Wrong}~\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Picking}\\\textbf{Wrong}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Success with}\\\textbf{Wrong Object}\\{[}\%]\end{tabular} \\ 
+    \hhline{|=========|}
+    \multirow{6}{*}{\rotatebox[origin=c]{90}{Pick-Place}} & \multirow{3}{*}{MOSAIC} & 0 & 62.90$\pm$0.95 & 62.08$\pm$0.95 & 58.75$\pm$1.87 & 36.67$\pm$0.95 & 36.67$\pm$0.95 & \textbf{37.71$\pm$0.72} \\ 
+    \cline{3-9}
+     & & 2 & 89.17$\pm$1.30 & 88.12$\pm$
+      0.62 & 84.17$\pm$
+      1.57 & 11.25$\pm$
+      1.25 & 11.25$\pm$
+      1.25 & 11.46$\pm$
+      1.30 \\ 
+    \cline{3-9}
+     &  & 10 & 99.79$\pm$0.36 & 98.54$\pm$0.72 & \textbf{95.63$\pm$0.63} & 1.25$\pm$0.63 & 1.25$\pm$0.63 & 0.41$\pm$0.36 \\ 
+    \cline{2-9}
+     & \multirow{3}{*}{TOSIL} & 0 & 33.12$\pm$1.08 & 27.92$\pm$
+      0.72 & 26.87$\pm$
+      0.62 & 63.96$\pm$
+      2.36 & 63.75$\pm$
+      2.72 & \textbf{66.04$\pm$1.57} \\ 
+    \cline{3-9}
+     & & 2 & 69.17$\pm$1.30 & 60.83$\pm$2.52 & 59.38$\pm$2.17 & 29.17$\pm$0.95 & 28.96$\pm$1.30 & 30.83$\pm$2.20 \\ 
+    \cline{3-9}
+     &  & 10 & 98.58$\pm$0.36 & 92.71$\pm$
+      1.44 & \textbf{90.00$\pm$1.08} & 2.70$\pm$
+      1.30 & 2.70$\pm$
+      1.30 & 1.25$\pm$
+      0.62 \\ 
+    \hhline{|=========|}
+    \multirow{6}{*}{\rotatebox[origin=c]{90}{Nut-Assembly}} & \multirow{3}{*}{MOSAIC} & 0 & 38.89$\pm$1.11 & 36.67$\pm$1.11 & 33.33$\pm$1.11 & 59.26$\pm$1.69 & 55.93$\pm$1.69 & \textbf{51.48$\pm$2.31} \\ 
+    \cline{3-9}
+     & & 2 & 85.19$\pm$
+      4.49 & 83.33$\pm$
+      5.09 & 78.89$\pm$
+      4.01 & 13.33$\pm$
+      4.84 & 11.85$\pm$
+      2.31 & 11.11$\pm$
+      2.22 \\ 
+    \cline{3-9}
+     &  & 10 & 100.00$\pm$100.00 & 99.26$\pm$1.28 & \textbf{90.74$\pm$2.79} & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
+    \cline{2-9}
+     & \multirow{3}{*}{TOSIL} & 0 & 36.30$\pm$
+      1.28 & 35.19$\pm$
+      2.31 & 31.11$\pm$
+      1.92 & 63.33$\pm$
+      1.11 & 62.59$\pm$
+      1.28 & \textbf{56.30$\pm$3.57} \\ 
+    \cline{3-9}
+     & & 2 & 83.33$\pm$2.22 & 82.96$\pm$2.31 & 77.78$\pm$2.22 & 16.67$\pm$2.22 & 16.67$\pm$2.22 & 14.44$\pm$1.11 \\ 
+    \cline{3-9}
+     &  & 10 & 100.00$\pm$
+      0.00 & 99.26$\pm$
+      1.28 & \textbf{88.89$\pm$2.22} & 0.00$\pm$
+      0.00 & 0.00$\pm$
+      0.00 & 0.00$\pm$
+      0.00 \\ 
+    \hhline{|=========|}
+    \multirow{6}{*}{\rotatebox[origin=c]{90}{Stack-Block}} & \multirow{3}{*}{MOSAIC} & 0 & 60.56$\pm$0.96 & 60.56$\pm$0.96 & 53.33$\pm$1.66 & 39.44$\pm$0.96 & 39.44$\pm$0.96 & \textbf{36.11$\pm$0.96} \\ 
+    \cline{3-9}
+     & & 2 & 91.11$\pm$
+      0.96 & 90.56$\pm$
+      0.96 & 73.89$\pm$
+      4.19 & 7.70$\pm$
+      0.96 & 7.70$\pm$
+      0.96 & 7.20$\pm$
+      0.96 \\ 
+    \cline{3-9}
+     &  & 10 & 100.00$\pm$0.00 & 99.44$\pm$0.96 & \textbf{77.78$\pm$1.92} & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
+    \cline{2-9}
+     & \multirow{3}{*}{TOSIL} & 0 & 69.44$\pm$
+      0.96 & 60.00$\pm$
+      0.16 & 48.89$\pm$
+      2.54 & 42.78$\pm$
+      0.96 & 42.78$\pm$
+      0.96 & \textbf{41.67$\pm$1.66} \\ 
+    \cline{3-9}
+     & & 2 & 90.56$\pm$0.96 & 87.78$\pm$0.96 & 79.44$\pm$1.92 & 12.22$\pm$0.96 & 11.67$\pm$0.00 & 11.67$\pm$0.00 \\ 
+    \cline{3-9}
+     &  & 10 & 100.00$\pm$
+      0.00 & 99.44$\pm$
+      0.96 & \textbf{88.89$\pm$1.92} & 1.66$\pm$
+      1.66 & 1.11$\pm$
+      0.96 & 0.00$\pm$
+      0.00 \\ 
+    \hhline{|=========|}
+    \multirow{6}{*}{\rotatebox[origin=c]{90}{Press-Button}} & \multirow{3}{*}{MOSAIC} & 0 & 100.00$\pm$0.00 & - & \textbf{100.00$\pm$0.00} & 0.00$\pm$0.00 & - & 0.00$\pm$0.00 \\ 
+    \cline{3-9}
+     & & 2 & 100.00$\pm$
+      0.00 & - & 100.00,
+      0.00 & 0.00$\pm$
+      0.00 & - & 0.00$\pm$
+      0.00 \\ 
+    \cline{3-9}
+     &  & 10 & 100.00$\pm$0.00 & - & 100.00$\pm$0.00 & 0.00$\pm$0.00 & - & 0.00$\pm$0.00 \\ 
+    \cline{2-9}
+     & \multirow{3}{*}{TOSIL} & 0 & 83.33$\pm$
+      1.66 & - & \textbf{83.33$\pm$1.66} & 17.78$\pm$
+      1.93 & - & 16.67$\pm$
+      1.67 \\ 
+    \cline{3-9}
+     & & 2 & 80.56$\pm$1.92 & - & 80.56$\pm$1.92 & 20.00$\pm$2.88 & - & 18.33$\pm$2.89 \\ 
+    \cline{3-9}
+     &  & 10 & 92.22$\pm$
+      0.96 & - & 81.67$\pm$
+      3.33 & 9.44$\pm$
+      0.96 & - & 9.44$\pm$
+      0.96 \\
+    \hline
+    \end{tabular}
+    }
+    \end{table}
