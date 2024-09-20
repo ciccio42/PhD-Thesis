@@ -1,6 +1,6 @@
 \section{Problem formulation}
 \label{sec:ocpl_problem}
-As described in Section \ref{sec:motivation}, this thesis primarily addresses the problem of Visual-Conditioned Multi-Task Imitation Learning. The goal is to train a single control function, $\pi_{\theta}$, that can guide a robotic agent in solving both variations of a given task and entirely different tasks. The input consists of a command, represented as a video demonstration of the requested task, along with the current observation of the agent.
+As described in Section \ref{sec:motivation}, this thesis primarily addresses the problem of Visual-Conditioned Multi-Task Imitation Learning. The goal is to train a single conditioned control function, $\pi_{\theta}(a_{t}| o^{a}_{t}, c_m)$, that can guide a robotic agent in solving both variations of a given task and entirely different tasks. Where, the input consists of a command $c_m$, represented as a video demonstration of the requested task, along with the current observation of the agent $o^{a}_{t}$.
 
 The approach proposed in this thesis is based on the observation that solving this problem involves two key tasks:
 \begin{itemize}

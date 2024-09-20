@@ -5,6 +5,19 @@ In this section, the performed experiments are going to be described. Specifical
 Section~\ref{sec:ocpl_dataset} the dataset used for training procedure will be described. Section~\ref{sec:ocpl_results} will report the obtained results.
 \subsection{Dataset}
 \label{sec:ocpl_dataset}
+The dataset used for training the control architectures is described in this section. It consists of the same tasks outlined in Section \ref{sec
+}, following the same collection procedure. For each task variation, 100 trajectories were collected for both the agent and the demonstrator. Each trajectory presents a novel object configuration, according to the rules defined in Section \ref{sec
+}.
+
+In this section, the dataset is analyzed in terms of the distribution of the action space, in order to highlight the challenges from a control perspective.
+
+Figure \ref{} illustrates the trajectories followed by the robot. \textcolor{red}{TO-Continue}
+\smalltodo{Add figure here.}
+
+Notably, each task exhibits a \textbf{multi-modal behavior}. This is evident across different variations, as the final placing position changes with each variation. Additionally, during the reaching phase, the robot traverses almost all possible locations within the working area.
+
+It is also important to discuss that, for a given task, the trajectories vary significantly in length. This poses a challenge because as the task progresses over time, the likelihood of errors increases, and the impact of compounding errors becomes more significant.
+This multi-modal behavior presents a significant challenge for the learning process. The dataset does not contain any form of prior distribution (i.e., the robot does not always approach the target object from the same direction), making it difficult for the architecture to learn and exploit consistent patterns during training.
 
 \subsection{Results}
 \label{sec:ocpl_results}
@@ -67,7 +80,71 @@ After evaluating the baseline, the proposed MOSAIC-CTOD was tested, using the sa
 \input{tables/ch3/ctod_multi_task.tex}
 
 \subsubsection{Double control modules}
-In this section the results obtained with the Double Control Module (Section \ref{sec:ocpl_architecture_dcm}) are going to be discussed.  
+In this section the results obtained with the Double Control Module (Section \ref{sec:ocpl_architecture_dcm}) are going to be discussed.
 \label{sec:ocpl_results_dcm}
 \paragraph*{Single-task multi-variation scenario}\mbox{}\\
+As discussed in Section \ref{sec:ocpl_architecture_dcm}, the introduction of the Double Control Module (DCM) was motivated by the need to reduce errors associated with incorrect object placement. These errors arise from inaccurate bounding-box predictions, which can lead to error propagation. 
+
+To address this issue, the architecture of the Double Control Module evolved through incremental design iterations and validation steps.
+Specifically, the process started by observing that the positional information given by the bouding-box is usefull only during the reaching phase, while it becomes useless after it. For this reason, the training of the MOSAIC-CTOD has been changed, setting to zero the bounding-box after the picking. Then, observing the obtained results and the error cases, the Double Control Module has been realized.
+
+\input{tables/ch3/double_policy_single_task.tex}
+Table \ref{table:double_policy_single_task} summarizes the obtained results, from which several important considerations can be made.
+
+Firstly, it is noteworthy that removing the bounding box after picking reduces the error percentage for the \textit{Place Wrong Correct Object} category to 0.00\%, confirming the earlier observation regarding the noisy nature of the predicted bounding box after the picking phase. However, this modification alone does not lead to a general improvement in the overall success rate. In fact, the \textit{MOSAIC-CTOD (no-bb after pick)} model has a lower picking rate. This occurs because the control module issues the closing command too early, creating an out-of-distribution sample, which drives the robot into a novel state that was not encountered during training, rendering it unable to complete the task (Figure \ref{}).
+
+\smalltodo{add figure}
+
+Regarding the performance of the proposed \textit{MOSAIC-COD} module, it is notable that it achieves the highest success rate in 3 out of 4 tasks. Specifically, for tasks prone to placing the correct object in the wrong position, such as Pick-Place and Nut-Assembly, this type of error is eliminated, resulting in an overall improvement in the success rate.
+
+Moreover, a novel variant of the MOSAIC baseline, \textit{MOSAIC-DP}, has been implemented. This model follows the classic MOSAIC architecture proposed in \cite{mandi2022towards_more_generalizable_one_shot} but is equipped with two control modules: one for the reaching primitive and another for the primitive used in the final part of the task (i.e., placing, assembly, stacking, or pushing, respectively). 
+
+It is important to note that the performance of this variation is very similar to the original MOSAIC baseline, even though the control problem is simplified by splitting it into two phases corresponding to different primitives. Specifically, the most significant error in this case also stems from manipulating the wrong object. The success rates with the wrong object are 54.38\%, 46.67\%, 46.67\%, and 7.59\% for the Pick-Place, Nut-Assembly, Stack-Block, and Press-Button tasks, respectively. 
+
+This further supports the central thesis, which suggests that the end-to-end architecture struggles to create an optimal embedding that addresses both cognitive and control tasks effectively.
+
 \paragraph*{Multi-task multi-variation scenario}\mbox{}\\
+\input{tables/ch3/double_policy_multi_task.tex}
+Given the results and observations from the previous section, the MOSAIC-COD module is directly compared to the baselines MOSAIC and MOSAIC-CTOD in the Multi-Task setting. Table \ref{table:cod_multi_task_performance} summarizes the results. As can be seen, the use of specialized models trained for the two task phases, reaching and placing, leads to a system that consistently picks the target object. This improvement is particularly evident in the more complex tasks, such as Pick-Place and Nut-Assembly. The enhanced picking rate demonstrates that having accurate information about the target object position enables correct target acquisition, while the presence of two control modules allows for training specific controllers for simpler primitives.
+
+However, despite the improvements observed in Pick-Place and Nut-Assembly, MOSAIC-COD has the lowest overall success rate. This can be attributed to two main factors. First, the Press-Button task is substantially different from the other three tasks. Unlike the others, it does not involve pick-and-place primitives, making it an out-of-distribution task. Second, the instability of the bounding boxes produced can lead to undesirable behaviors, such as sudden movements or freezing (Figure \ref{}).
+\smalltodo{add figure}
+
+
+\subsubsection{Proprioceptive state and Generalization tests}
+In this section, additional experiments are described, focusing on two key objectives.
+
+The first set of experiments aims to determine whether incorporating proprioceptive information can enhance the system's robustness. This is particularly important for tasks requiring fine manipulation, such as the Nut-Assembly task, where the goal is to reduce errors during the assembly phase, specifically avoiding instances where the nut hits the peg.
+
+The second set of experiments explores the generalization capabilities of the proposed system. Specifically, the goal is to assess whether the system can generalize to previously unseen task variations. To evaluate this, the system is trained on a subset of task variations selected as follows: for a set of variations involving a specific target object (e.g., a green box), one variation is excluded (e.g., placing the box into the first bin). However, in other sets involving different objects, the variation that requires placing the object into the first bin is retained. This setup allows for testing how well the system can transfer knowledge across different variations. By doing so, it becomes possible to evaluate whether the system can achieve robust performance with less training data, eliminating the need to collect every possible variation for each object.
+\smalltodo{add figure}
+
+\paragraph*{Proprioceptive information}\mbox{}\\
+The proprioceptive information selected for the four tasks considered includes the joint positions and the gripper state. This vector of elements, $x^{prop}$, is provided as input directly to the Control Module, as shown in Figure \ref{}. 
+\smalltodo{add figure}
+
+Specifically, for each baseline method, \textit{MOSAIC}, \textit{MOSAIC-CTOD}, and \textit{MOSAIC-COD}, a version of the model incorporating proprioceptive information was trained. Table \ref{table:proprioceptive} presents the success rates for both the Single-Task and Multi-Task scenarios. 
+
+It is important to note that for 3 out of 4 tasks, the best performance is achieved by combining the Double-Policy approach with proprioceptive information, effectively solving the manipulation tasks of Pick-Place, Nut-Assembly, and Stack-Block in a robust manner. The greatest improvement is seen in the Nut-Assembly task, where the proprioceptive information resolves issues related to collisions and robot freezing.
+
+However, this improvement is not observed in the Press-Button task, where a 35\% drop in success rate is seen, even with the \textit{MOSAIC} baseline. In this task, the main failure cases are related to unstable robot behavior. Additionally, in variations focused on object orientation, the robot often gets stuck when correctly approaching the button.
+
+\input{tables/ch3/proprioceptive.tex}
+
+
+\paragraph*{Generalization}\mbox{}\\
+Regarding the generalization tests, we evaluated only the three tasks where the previously explained variation selection was applicable. Specifically, the following variations were removed for each task:
+
+\begin{itemize}
+    \item \textbf{Pick-Place}: Variations 1, 6, 11, and 16 were excluded.
+    \item \textbf{Nut-Assembly}: Variations 1, 5, and 9 were excluded.
+    \item \textbf{Stack-Block}: Variations 1, 4, and 6 were excluded.
+\end{itemize}
+
+The models were trained on the remaining variations and tested on the excluded ones following the same procedure.
+
+Table \ref{table:generalization} summarizes the success rates obtained for both the Single-Task and Multi-Task settings. Notably, with the introduction of the CTOD and COD modules, the system consistently reaches the correct target object in unseen variations. Similarly, the robot is able to pick and complete tasks, outperforming the MOSAIC baseline across all tested tasks.
+
+This is a promising result, as it demonstrates that the system can effectively share knowledge across different variations, enabling robust training with less data.
+
+\input{tables/ch3/generalization.tex}

@@ -1,0 +1,60 @@
+\begin{table}[t]
+  \centering
+  \caption{The results obtained by integrating proprioceptive information in both Single-Task and Multi-Task scenarios. For each baseline model, MOSAIC, MOSAIC-CTOD, and MOSAIC-COD, the corresponding version that includes the proprioceptive state (P) was trained and tested.}
+  \label{table:proprioceptive}
+  \resizebox{\linewidth}{!}{%
+  \begin{tabular}{|c|c|c|c|} 
+  \hline
+  \textbf{Task} & \textbf{Model} & \begin{tabular}[c]{@{}c@{}}\textbf{Success}\\\textbf{(Single-Task)}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Success}\\\textbf{(Multi-Task)}\\{[}\%]\end{tabular} \\ 
+  \hhline{|====|}
+  \multirow{6}{*}{Pick-Place} & MOSAIC & 58.75$\pm$1.87 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-P} & 12.84$\pm$0.31 &  \\ 
+  \cline{2-4}
+   & MOSAIC-CTOD & 77.11$\pm$5.60 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-CTOD-P} & 87.84$\pm$2.43 &  \\ 
+  \cline{2-4}
+   & MOSAIC-COD & 93.33$\pm$0.72 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-COD-P} & \textbf{96.04$\pm$0.56} &  \\ 
+  \hhline{|====|}
+  \multirow{6}{*}{Nut-Assembly} & MOSAIC & 33.33$\pm$1.11 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-P} & 13.83$\pm$0.57 &  \\ 
+  \cline{2-4}
+   & MOSAIC-CTOD & 64.07$\pm$0.64 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-CTOD-P} & 95.06$\pm$0.56 &  \\ 
+  \cline{2-4}
+   & MOSAIC-COD & 81.11$\pm$3.84 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-COD-P} & \textbf{95.06$\pm$0.57} &  \\ 
+  \hhline{|====|}
+  \multirow{6}{*}{Stack-Block} & MOSAIC & 53.33$\pm$1.66 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-P} & 29.07$\pm$2.50 &  \\ 
+  \cline{2-4}
+   & MOSAIC-CTOD & 91.67$\pm$2.88 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-CTOD-P} & 91.11$\pm$6.90 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-COD} & 95.00$\pm$1.66 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-COD-P} & \textbf{96.67$\pm$1.66} &  \\ 
+  \hhline{|====|}
+  \multirow{6}{*}{Press-Button} & MOSAIC & \textbf{100.00$\pm$0.00} &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-P} & 65.00$\pm$3.33 &  \\ 
+  \cline{2-4}
+   & MOSAIC-CTOD & 95.56$\pm$1.92 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-CTOD-P} & 86.66$\pm$6.66 &  \\ 
+  \cline{2-4}
+   & MOSAIC-COD & 91.11$\pm$1.92 &  \\ 
+  \cline{2-4}
+   & \textit{MOSAIC-COD-P} & 72.03$\pm$3.39 &  \\
+  \hline
+  \end{tabular}
+  }
+  \end{table}
