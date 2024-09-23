@@ -1,12 +1,6 @@
-% \usepackage{makecell}
-% \usepackage{graphicx}
-% \usepackage{multirow}
-% \usepackage{hhline}
-
-
 \begin{table}[t]
   \centering
-  \caption{The multi-task performance of the baseline methods, TOSIL \cite{dasari2021transformers_one_shot} and MOSAIC \cite{mandi2022towards_more_generalizable_one_shot}, was evaluated. For each model, additional tests were conducted by generating the first 2 steps and 10 steps using the hand-written controller.}
+  \caption{The multi-task performance of the baseline methods$\pm$ TOSIL \cite{dasari2021transformers_one_shot} and MOSAIC \cite{mandi2022towards_more_generalizable_one_shot}$\pm$ was evaluated. For each model$\pm$ additional tests were conducted by generating the first 2 steps and 10 steps using the hand-written controller.}
   \label{table:occp_multi_task_baseline_res}
   \resizebox{\linewidth}{!}{%
   \begin{tabular}{|c|c|c|c|c|c|c|c|c|} 
@@ -21,23 +15,23 @@
   \cline{2-9}
    & \multirow{3}{*}{TOSIL} & 0 & 35.42$\pm$0.72 & 27.08$\pm$1.30 & 26.46$\pm$1.80 & 60.21$\pm$1.57 & 59.58$\pm$1.44 & 59.58$\pm$1.44 \\ 
   \cline{3-9}
-   &  & 2 &  &  &  &  &  &  \\ 
+   &  & 2 & 62.57$\pm$0.64 & 48.19$\pm$1.26 & 48.06$\pm$1.26 & 31.88$\pm$3.13 & 31.81$\pm$3.13 & 37.08$\pm$2.82 \\ 
   \cline{3-9}
-   &  & 10 &  &  &  &  &  &  \\ 
+   &  & 10 & 98.13$\pm$ 0.63 & 86.18$\pm$ 1.88 & 85.90$\pm$ 2.19 & 1.88$\pm$ 0.63 & 1.88$\pm$ 0.63 & 1.88$\pm$ 0.63 \\ 
   \hhline{|=========|}
-  \multirow{6}{*}{\rotatebox[origin=c]{90}{Stack-Block}} & \multirow{3}{*}{MOSAIC} & 0 & 32.96$\pm$1.28 & 30.74$\pm$2.31 & 28.53$\pm$2.31 & 56.30$\pm$4.49 & 48.15$\pm$4.20 & 41.67$\pm$1.66 \\ 
+  \multirow{6}{*}{\rotatebox[origin=c]{90}{Nut-Assembly}} & \multirow{3}{*}{MOSAIC} & 0 & 32.96$\pm$1.28 & 30.74$\pm$2.31 & 28.53$\pm$2.31 & 56.30$\pm$4.49 & 48.15$\pm$4.20 & 41.67$\pm$1.66 \\ 
   \cline{3-9}
    &  & 2 & 76.67$\pm$1.11 & 73.33$\pm$1.92 & 65.56$\pm$4.00 & 19.63$\pm$0.64 & 17.41$\pm$1.28 & 17.04$\pm$1.69 \\ 
   \cline{3-9}
-   &  & 10 & 100.00$\pm$0.00 & 97.78$\pm$1.11 & \textbf{82.96$\pm$1.28} & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
+   &  & 10 & 100.00$\pm$0.00 & 97.78$\pm$1.11 & 82.96$\pm$1.28 & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
   \cline{2-9}
    & \multirow{3}{*}{TOSIL} & 0 & 27.78$\pm$2.94 & 24.44$\pm$2.94 & 22.59$\pm$3.57 & 70.37$\pm$2.57 & 67.78$\pm$2.22 & \textbf{64.81$\pm$2.57} \\ 
   \cline{3-9}
-   &  & 2 &  &  &  &  &  &  \\ 
+   &  & 2 & 87.04$\pm$1.70 & 85.43$\pm$2.23 & 80.86$\pm$2.83 & 12.96$\pm$1.70 & 12.96$\pm$1.70 & 12.96$\pm$1.70 \\ 
   \cline{3-9}
-   &  & 10 &  &  &  &  &  &  \\ 
+   &  & 10 & 100.00$\pm$ 0.00 & 98.27$\pm$ 0.57 & \textbf{94.94$\pm$ 0.57} & 0.00$\pm$ 0.00 & 0.00$\pm$ 0.00 & 0.00$\pm$ 0.00 \\ 
   \hhline{|=========|}
-  \multirow{6}{*}{\rotatebox[origin=c]{90}{Nut-Assembly}} & \multirow{3}{*}{MOSAIC} & 0 & 57.78$\pm$1.92 & 57.78$\pm$1.92 & 55.56$\pm$2.54 & 42.22$\pm$1.92 & 42.22$\pm$1.93 & 41.11$\pm$1.67 \\ 
+  \multirow{6}{*}{\rotatebox[origin=c]{90}{Stack-Block}} & \multirow{3}{*}{MOSAIC} & 0 & 57.78$\pm$1.92 & 57.78$\pm$1.92 & 55.56$\pm$2.54 & 42.22$\pm$1.92 & 42.22$\pm$1.93 & 41.11$\pm$1.67 \\ 
   \cline{3-9}
    &  & 2 & 95.56$\pm$0.96 & 95.56$\pm$0.96 & 89.44$\pm$1.92 & 4.44$\pm$0.96 & 4.44$\pm$0.96 & 4.44$\pm$0.96 \\ 
   \cline{3-9}
@@ -45,9 +39,9 @@
   \cline{2-9}
    & \multirow{3}{*}{TOSIL} & 0 & 54.44$\pm$0.96 & 54.44$\pm$0.96 & 48.89$\pm$0.96 & 46.11$\pm$0.96 & 45.56$\pm$0.96 & \textbf{45.56$\pm$0.96} \\ 
   \cline{3-9}
-   &  & 2 &  &  &  &  &  &  \\ 
+   &  & 2 & 87.59$\pm$0.85 & 87.59$\pm$0.85 & 74.81$\pm$1.70 & 12.41$\pm$0.85 & 12.41$\pm$0.85 & 12.41$\pm$0.85 \\ 
   \cline{3-9}
-   &  & 10 &  &  &  &  &  &  \\ 
+   &  & 10 & 100.00$\pm$ 0.00 & 100.00$\pm$ 0.00 & 82.22$\pm$ 4.19 & 0.00$\pm$ 0.00 & 0.00$\pm$ 0.00 & 0.00$\pm$ 0.00 \\ 
   \hhline{|=========|}
   \multirow{6}{*}{\rotatebox[origin=c]{90}{Press-Button}} & \multirow{3}{*}{MOSAIC} & 0 & 78.33$\pm$1.66 & - & 77.22$\pm$2.54 & 22.78$\pm$2.54 & - & 22.78$\pm$2.54 \\ 
   \cline{3-9}
@@ -57,9 +51,9 @@
   \cline{2-9}
    & \multirow{3}{*}{TOSIL} & 0 & 70.56$\pm$7.52 & - & 60.59$\pm$11.34 & 27.22$\pm$2.47 & - & \textbf{27.22$\pm$2.47} \\ 
   \cline{3-9}
-   &  & 2 &  & - &  &  & - &  \\ 
+   &  & 2 & 74.44$\pm$2.55 & - & 60.37$\pm$4.24 & 25.56$\pm$2.55 & - & 25.56$\pm$2.55 \\ 
   \cline{3-9}
-   &  & 10 &  & - &  &  & - &  \\
+   &  & 10 & 75.93$\pm$ 2.51 & - & 60.00$\pm$ 1.67 & 25.74$\pm$ 0.85 & - & 25.74$\pm$ 0.85 \\
   \hline
   \end{tabular}
   }

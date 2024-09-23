@@ -18,6 +18,7 @@ For each task, 100 trajectories were collected for both the agent (UR5e robot) a
 The bounding-boxes are automatically generated. The procedure followed to generate the bounding boxes assume the knowledge of the pose and dimention of the object, as well as the knowledge of the pose of the camera and its intrinsic parameters. Giving all these information, it is possible to build a 3D bounding-box around the object in the continous world space, then project the corners in the 2D discrete camera space through a sequence of transformations described in Formula \ref{}.
 \begin{equation}
 \end{equation}
+\smalltodo{add equation}
 \subsection{Results}
 \label{sec:cod_results}
 This section presents the obtained results, divided into two main blocks. The first block (Section~\ref{sec:cod_tod}) discusses the results of the method trained to detect only the target object. The second block (Section~\ref{sec:cod_tod}) covers the results of the method trained to detect both the target object and the final (placing) location. For each method, results are reported for two different scenarios: first, where the method is trained in a single-task multi-variation scenario; and second, where the method is trained in a multi-task multi-variation scenario.
@@ -61,7 +62,8 @@ Furthermore, compared to the single-task setting, a slight reduction in Average 
 
 \subsubsection{Target object and final position detector}
 \label{sec:cod_tofpd}
-This set of validation tests focuses on training the COD module in the complete scenario described in Section \ref{sec:cod_problem}. In this setting, the COD module is trained to predict bounding boxes for both the target object and the final location of interest. Specifically, for the three tasks involving the ``pick-and-place" primitive (i.e., Pick-Place, Nut-Assembly, and Stack-Block), the final location corresponds to the target bin, peg, and block to be stacked, respectively. In contrast, for the Press-Button task, the target location is defined as the bounding box of the initial button, translated to the final position of the pressed button (Figure \ref{}).
+This set of validation tests focuses on training the COD module in the complete scenario described in Section \ref{sec:cod_problem}. In this setting, the COD module is trained to predict bounding boxes for both the target object and the final location of interest. Specifically, for the three tasks involving the ``pick-and-place" primitive (i.e., Pick-Place, Nut-Assembly, and Stack-Block), the final location corresponds to the target bin, peg, and block to be stacked, respectively. In contrast, for the Press-Button task, the target location is defined as the bounding box of the initial button, translated to the final position of the pressed button (Figure \ref{fig:press_button_target_placing}).
+\input{figures/ch2/press_button_target_placing.tex}
 
 \input{tables/ch2/cod_performance.tex}
 \paragraph*{Single-task multi-variation scenario}\mbox{}\\
