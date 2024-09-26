@@ -1,7 +1,11 @@
 \chapter{Object conditioned control policy}
 \label{ch:occp}
-In this chapter the OCCP is going to be described. Specifically, Section~\ref{sec:ocpl_problem} will outline the problem being addressed. Section~\ref{sec:ocpl_architecture} will detail the proposed architecture designed to solve the described problem. Section~\ref{sec:ocpl_experimental} will discuss the experimental setup and present the results obtained from testing the proposed architecture.
+In this chapter, the main contribution of this thesis will be presented: the \textit{Object Conditioned Control Policy} (OCCP). As outlined in Section \ref{sec:motivation}, the central challenge addressed in this thesis is \textit{target-object misidentification} within Visual-Conditioned Multi-Task Imitation Learning systems. To tackle this issue, a modular control architecture is proposed, based on the hypothesis that separating the cognitive task from the control task into distinct modules can improve the overall robustness and interpretability of these systems.
 
+Specifically, Section \ref{sec:occp_related_works} will provide an extensive and detailed review of prior research in both Multi-Task Imitation Learning and Object-Oriented Imitation Learning, which are the two fields most closely related to the proposed approach. Section~\ref{sec:ocpl_problem} will outline the problem being addressed, while Section~\ref{sec:ocpl_architecture} will describe the proposed architecture designed to solve this problem. Finally, Section~\ref{sec:ocpl_experimental} will discuss the experimental setup and present the results obtained from testing the proposed architecture.
+
+
+\input{chapters/ch3/related_works.tex}
 \input{chapters/ch3/problem_formulation.tex}
 \input{chapters/ch3/proposed_architecture.tex}
 \input{chapters/ch3/experimental_results.tex}

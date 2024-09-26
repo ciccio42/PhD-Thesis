@@ -1,0 +1,11 @@
+\section{Related Works}
+\label{sec:gnn_related_works}
+This section reviews prior research on the application of Graph Neural Networks (GNNs) to robot learning tasks. As illustrated in Figure \ref{fig:gnn_taxonomy}, GNNs can be utilized in various ways; however, all applications share a fundamental concept: leveraging GNNs' ability to explicitly represent dynamic relationships between objects involved in robotic manipulation, which is crucial information for robotics and task execution.
+
+\input{figures/ch4/gnn_taxonomy.tex}
+
+In general, most research has focused on solving \textit{task planning} problems. According to classical literature \cite{geffner2013concise}, a task-planning problem can be defined as a state-transition model $\Pi = \left( S, A, s_{0}, G \right)$, where $S$ is the set of states, $A$ is the set of actions, $s_{0}$ is the initial state, and $G$ is the goal state. Here, an action $a \in A$ is a function that maps a state $s \in S$ to a new state (successor) $a(s)$, i.e., $a: S \rightarrow S$. Essentially, a plan is a sequence of actions $\tau = a_{1}, a_{2}, \dots, a_{n}$ that enables the system to transition from the initial state $s_{0}$ to the goal state $s_{n} = a(s_{n-1}) = G$. Various approaches have been proposed to solve the problem of finding a plan given a specific initial and goal state. These approaches either adhere to the classical PDDL formalism \cite{aeronautiques1998pddl}, and thus fit within the traditional planning framework, or introduce novel representations that do not rely on PDDL to address the planning problem.
+
+This review begins by examining methods that follows the \textit{Classic Planning Formalism}  (Section \ref{sec:pddl_formalism}), followed by a brief discussion of novel approaches that do not use this kind of formalism (Section \ref{}).
+
+\input{chapters/ch5/pddl_formalism.tex}
