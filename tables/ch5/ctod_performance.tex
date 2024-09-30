@@ -1,0 +1,14 @@
+\begin{table}[t]
+    \centering
+    \caption{Results of the CTOD module obtained in the real-world scenario. Performances are reported in terms of \textit{Precision} (Prec), \textit{Recall} (Rec) with an IoU threshold of 0.5 and the Average IoU $(IoU_{avg})$, for both the modal trained from scratch and the finetuned.}
+    \label{table:ctod_single_task_performance_real}
+    \begin{tabular}{|c|c|c|c|} 
+    \hline
+    \textbf{Task} & \textbf{Precision@0.5} & \textbf{Recall@0.5} & $\mathbf{IoU_{avg}}$ \\ 
+    \hhline{|====|}
+    \begin{tabular}[c]{@{}c@{}}Pick-Place\\(scratch)\end{tabular} & 0.640 & 1.00 & 0.563 \\ 
+    \hline
+    \begin{tabular}[c]{@{}c@{}}Pick-Place\\(finetuned)\end{tabular} & 0.604 & 1.00 & 0.535 \\
+    \hline
+    \end{tabular}
+    \end{table}

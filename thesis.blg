@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d (TeX Live 2022)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: thesis.aux
+A level-1 auxiliary file: chapters/abstract.aux
+The style file: IEEEtran.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated field_info (elt_size=4) to 11440 items from 5000.
+Database file #1: thesis.bib
+Warning--I didn't find a database entry for "calvin"
+-- IEEEtran.bst version 1.14 (2015/08/26) by Michael Shell.
+-- http://www.michaelshell.org/tex/ieeetran/bibtex/
+-- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--empty title in qian2024contrast
+
+Done.
+You've used 139 entries,
+            4087 wiz_defined-function locations,
+            1492 strings with 38580 characters,
+and the built_in function-call counts, 126235 in all, are:
+= -- 9274
+> -- 4083
+< -- 1030
++ -- 2263
+- -- 819
+* -- 6120
+:= -- 17070
+add.period$ -- 334
+call.type$ -- 139
+change.case$ -- 143
+chr.to.int$ -- 2622
+cite$ -- 140
+duplicate$ -- 8752
+empty$ -- 10474
+format.name$ -- 904
+if$ -- 29916
+int.to.chr$ -- 0
+int.to.str$ -- 139
+missing$ -- 1675
+newline$ -- 458
+num.names$ -- 145
+pop$ -- 4357
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 9455
+stack$ -- 0
+substring$ -- 6405
+swap$ -- 7247
+text.length$ -- 156
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 139
+warning$ -- 1
+while$ -- 515
+width$ -- 142
+write$ -- 1310
+(There were 2 warnings)

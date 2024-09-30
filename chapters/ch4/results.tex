@@ -1,2 +1,37 @@
 \section{Results}
 \label{sec:real_results}
+In this section the results obtained with the real-world experiments are going to be discussed.
+Specifically, the methods that were under real-world validation were the Conditioned (Target) Object Detector (C(T)OD) described in Chapter \ref{ch:cod}, and the MOSAIC-C(T)OD(-P) described in Chapter \ref{ch:occp}.
+
+\paragraph*{Conditioned (Target) Object Detection Validation}\mbox{}\\
+Here, the validation of the C(T)OD modules are going to be discussed. To validate this model also in a real-world scenario, the same metric used for the simulated counterpars are used (Section \ref{sec:cod_results}). 
+
+Table \ref{table:ctod_single_task_performance_real} and Table \ref{table:cod_single_task_performance_real} summarize the obtained performance of the both the CTOD and the COD modules respectively, trained in two different settings, the first one training the module from scratch, the second one by finetuning the model obtained with the dataset collected in the simulation environment (Section \ref{sec:cod_dataset}). These models were trained with a dataset splitted according to the 90-10 rules, and the results refers to the Precision, Recall and Average IoU obtained by the best model on the Validation set.
+
+\input{tables/ch5/ctod_performance.tex}
+\input{tables/ch5/cod_performance.tex}
+
+As noted, in this case, the system consistently assigns a bounding box to the target classes, with Recall always equal to 1.00. However, compared to the corresponding results in the simulated environment (Tables \ref{table:ctod_single_task} and \ref{table:cod_single_task_performance}), there is a general drop in performance. Specifically, Precision@0.5 for the CTOD module decreases from 0.770 to 0.640, and for the COD module, it drops from \textcolor{red}{X.XX} to \textcolor{red}{X.XX} for the model trained from scratch.
+
+To understand this drop in performance, it is essential to examine the error distribution. For both modules, there are \textbf{0} False Positives (FPs) during the reaching phase across all model variations, meaning the system can accurately detect the target object at this stage. However, as the robot moves the object in hand, the number of FPs increases significantly, reaching \textbf{8867/9771} (scratch/finetuned) for the CTOD module and \textbf{\textcolor{red}{X.XX}/\textcolor{red}{X.XX}} (scratch/finetuned) for the COD module.
+
+This increase in errors is due to several factors, with \textbf{occlusion} being a primary cause. Since the physical robot has a camera mounted on the gripper, the object can become partially occluded during motion, leading to detection difficulties. Furthermore, the automated bounding-box generation procedure can introduce noise, particularly during movement, due to errors in camera calibration and the physical measurement of the robot base link position relative to the center of the table (where the ARUCO marker is placed for calibration).
+
+Figure \ref{fig:ctod_cod_prediction} illustrates some predictions from both the CTOD and COD modules. While the system consistently detects the target objectg location, the error increases during the placement motion due to the aforementioned issues.
+
+\input{figures/ch5/ctod_predictions.tex}
+
+\paragraph*{MOSAIC-C(T)OD(-P) Validation}\mbox{}\\
+In this section, the validation of the MOSAIC-C(T)OD(-P) modules is going to be discussed. The systems have been trained in two different settings: first, with the model trained from scratch using only real-world data, and second, with the model fine-tuned starting from a model initially trained in the simulated environment.
+
+Table \ref{table:ocpl_real_word} summarizes the obtained results. Specifically, these results are based on 10 rollouts per variation, each starting from different initial configurations. Throughout the tests, the aim was to maintain consistency in the scenarios presented while also introducing new scenarios not encountered during training. The evaluation metrics remain the same as those used in Section \ref{sec:ocpl_results}, with a focus on the \textit{Reaching}, \textit{Picking}, and \textit{Success} metrics.
+\input{tables/ch5/occp.tex}
+
+Several observations can be drawn from these results. First, for models trained from scratch, the overall system performance is poor, with a maximum success rate of 30\%. However, the robot demonstrates a high \textit{Reaching-Rate}, which is consistently above 80\%. This suggests that the object prior is effective in informing the control policy about the object's position, even when trained with limited and noisy data. 
+
+The most common failure mode is evident in the drop between the \textit{Reaching} and \textit{Picking} rates, which is primarily due to the gripper colliding with the target object during the picking phase (Figure \ref{fig:robot_rollout}). This issue can be attributed to several factors: one major reason is the precision of the predicted bounding box, which may cause slight misalignment (by a few centimeters) of the gripper, resulting in a collision. Furthermore, the limited and noisy trajectories exacerbate the problem. Even with a correct bounding box, the noisy nature of the trajectories, combined with the probabilistic nature of the policy, can lead to high-variance actions, increasing the likelihood of collisions.
+\input{figures/ch5/rollout_robot.tex}
+
+To address these limitations, a fine-tuned model was introduced. This model leverages the initialization from a simulation-trained model, where the workspace coverage includes less noisy trajectories. As shown in Table \ref{table:ocpl_real_word}, the fine-tuned model significantly improves performance, with the highest success rate (\textbf{55.00\%}) achieved by the MOSAIC-COD module. All fine-tuned models outperform their scratch-trained counterparts. This supports the earlier observation regarding the control module's importance. With proper initialization, the fine-tuned model is better equipped to handle variations in object placement during testing, owing to the improved trajectories from the simulated environment.
+
+% \smalltodo{add figure}

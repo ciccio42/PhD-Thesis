@@ -15,10 +15,24 @@ For each task, 100 trajectories were collected for both the agent (UR5e robot) a
     \item \textbf{Press-Button}: The two sets of buttons are placed within a region of $4 \times 4 \ \text{cm}$.
 \end{itemize}
 
-The bounding-boxes are automatically generated. The procedure followed to generate the bounding boxes assume the knowledge of the pose and dimention of the object, as well as the knowledge of the pose of the camera and its intrinsic parameters. Giving all these information, it is possible to build a 3D bounding-box around the object in the continous world space, then project the corners in the 2D discrete camera space through a sequence of transformations described in Formula \ref{}.
+The bounding boxes are generated automatically using a procedure that assumes prior knowledge of the object's pose and dimensions, as well as the camera's pose and intrinsic parameters. With this information, a 3D bounding box can be constructed around the object in continuous world space. The corners of this bounding box are then projected into the 2D discrete camera space via a sequence of transformations, as described in Equation \ref{eq:transformation_from_world_to_px}.
+
 \begin{equation}
+    \label{eq:transformation_from_world_to_px}
+    \begin{matrix}
+        \tilde{p}^{camera}_{object} = T^{camera}_{world} \times \tilde{p}^{world}_{object}
+        \\ \\
+        px_x =  \frac{p_x}{p_z} \cdot f + \frac{w}{2} 
+        \\ \\
+        px_y =  \frac{p_y}{p_z} \cdot f + \frac{h}{2}
+    \end{matrix}
 \end{equation}
-\smalltodo{add equation}
+
+In this equation, $T^{camera}_{world} \in \mathcal{R}^{4 \times 4}$ represents the homogeneous transformation matrix that defines the camera orientation and position relative to the world frame. The term $\tilde{p}^{src}_{target} = \left[ p_x, p_y, p_z, 1 \right]$ denotes the homogeneous position vector of the \textit{target} frame relative to a given \textit{src} frame. For instance, $\tilde{p}^{world}_{object}$ describes the position of the object relative to the world frame. 
+
+The parameters $w$ and $h$ correspond to the image resolution width and height, respectively. The camera's focal length $f$ is given by $f = \frac{0.5 \times h}{\tan(fov_y)}$, where $fov_y$ is the vertical field of view. Finally, $px_x$ and $px_y$ represent the pixel coordinates obtained in the x and y axes, respectively.
+
+% \smalltodo{add equation}
 \subsection{Results}
 \label{sec:cod_results}
 This section presents the obtained results, divided into two main blocks. The first block (Section~\ref{sec:cod_tod}) discusses the results of the method trained to detect only the target object. The second block (Section~\ref{sec:cod_tod}) covers the results of the method trained to detect both the target object and the final (placing) location. For each method, results are reported for two different scenarios: first, where the method is trained in a single-task multi-variation scenario; and second, where the method is trained in a multi-task multi-variation scenario.

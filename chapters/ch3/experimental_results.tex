@@ -138,6 +138,15 @@ It is important to note that for 3 out of 4 tasks, the best performance is achie
 
 However, this improvement is not observed in the Press-Button task, where a 35\% drop in success rate is seen, even with the \textit{MOSAIC} baseline. In this task, the main failure cases are related to unstable robot behavior. Additionally, in variations focused on object orientation, the robot often gets stuck when correctly approaching the button.
 
+Notably, the same behavior is not observed in the Multi-Task scenario. In fact, the highest performance is achieved by methods that exclude proprioceptive information. Specifically, the introduction of proprioceptive data appears to exacerbate the imbalance between tasks, hindering the system from effectively utilizing this additional information during testing, which leads to instability. 
+
+For example, in the case of the MOSAIC-CTOD-P module, the robot successfully picks the target object only 58.87\% of the time. This occurs because the closing command is sent too early, relative to the object position. Furthermore, the success rate drops further to 38.14\%, as the robot, despite reaching the target peg, collides with it, an issue where proprioceptive information should theoretically provide assistance, especially since the pegs are fixed.
+
+This instability is most evident in the Stack-Block task, where the success rate falls to 22.77\% for the MOSAIC-COD-P module, despite the robot picking the target object with an average rate of 80.00\%. The errors in this case are due to the object being dropped during stacking, caused by imprecise placement, as well as instances where the robot becomes completely stuck.
+
+These results highlight the need for a balanced learning procedure in the context of Multi-Task Learning, as discussed earlier in Section \ref{sec:ocpl_results_scm}.
+
+\input{tables/ch3/generalization.tex}
 \paragraph*{Generalization}\mbox{}\\
 Regarding the generalization tests, we evaluated only the three tasks where the previously explained variation selection was applicable. Specifically, the following variations were removed for each task (Figure \ref{fig:generalization_dataset}):
 
@@ -153,4 +162,4 @@ Table \ref{table:generalization} summarizes the success rates obtained for both 
 
 This is a promising result, as it demonstrates that the system can effectively share knowledge across different variations, enabling robust training with less data.
 
-\input{tables/ch3/generalization.tex}
+
