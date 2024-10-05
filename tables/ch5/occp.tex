@@ -1,12 +1,15 @@
-\begin{table}[t]
+\begin{table}
     \centering
     \caption{Results obtained by the MOSAIC-C(T)OD(-P) models tested in the real-wolrd sceanrio. For each model two variants are proposed, the first one with the model trained from scratch, the second one with the model finetuned from a simulated trained one.}
     \label{table:ocpl_real_word}
+    \resizebox{\linewidth}{!}{%
     \begin{tabular}{|c|c|c|c|c|} 
     \hline
     \textbf{Task} & \textbf{Method} & \begin{tabular}[c]{@{}c@{}}\textbf{Reaching}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Picking}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Success}\\{[}\%]\end{tabular} \\ 
     \hhline{|=====|}
-    \multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Pick-Place\\(scratch)\end{tabular}} & MOSAIC-CTOD & 95.00 & 11.66 & 5.00 \\ 
+    \multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}Pick-Place\\(scratch)\end{tabular}} & MOSAIC & 11.29 & 0.00 & 0.00 \\ 
+    \cline{2-5}
+     & MOSAIC-CTOD & 95.00 & 11.66 & 5.00 \\ 
     \cline{2-5}
      & MOSAIC-CTOD-P & 100.00 & 30.00 & 30.00 \\ 
     \cline{2-5}
@@ -14,7 +17,9 @@
     \cline{2-5}
      & MOSAIC-COD-P & 55.36 & 21.43 & 12.50 \\ 
     \hhline{|=====|}
-    \multirow{4}{*}{\begin{tabular}[c]{@{}c@{}}Pick-Place\\(finetuned)\end{tabular}} & MOSAIC-CTOD & 93.22 & 44.07 & 33.90 \\ 
+    \multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}Pick-Place\\(finetuned)\end{tabular}} & MOSAIC & \textcolor{red}{X.XX} & \textcolor{red}{X.XX} & \textcolor{red}{X.XX} \\ 
+    \cline{2-5}
+     & MOSAIC-CTOD & 93.22 & 44.07 & 33.90 \\ 
     \cline{2-5}
      & MOSAIC-CTOD-P & 81.36 & 47.46 & 44.07 \\ 
     \cline{2-5}
@@ -23,4 +28,5 @@
      & MOSAIC-COD-P & 85.00 & 46.67 & 46.67 \\
     \hline
     \end{tabular}
+    }
     \end{table}

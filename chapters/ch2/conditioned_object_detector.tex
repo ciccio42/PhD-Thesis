@@ -1,4 +1,4 @@
-\chapter{Conditioned object detector}
+\chapter{Proposed conditioned object detector}
 \label{ch:cod}
 As discussed in Section \ref{sec:motivation}, this thesis proposes a modular approach to solve the Visual-Conditioned Multi-Task Imitation Learning Problem. This chapter focuses on the module responsible for addressing an instance of the ``Cognitive Task" relevant to the context under consideration. Specifically, the approach aims to leverage an \textbf{object-prior} to enable the system to ignore distractor objects in the scene and focus on the target region of interest. To achieve this goal, a preliminary step is to develop a system capable of computing this object-prior. Therefore, this chapter will present and discuss the design of the Conditioned Object Detector (COD), which is specifically designed to solve a \textbf{novel variation} of the well-known Object Detection problem. Unlike traditional object detection tasks, where a deep architecture produces bounding boxes for all objects in the scene, this variation requires generating bounding boxes only for the regions of interest based on the demonstrated task.
 
