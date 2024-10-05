@@ -1,2 +1,5 @@
 teleoperation
 hand-engineerend
+finetuned
+CTOD
+LfD
