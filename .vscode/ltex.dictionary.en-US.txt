@@ -3,3 +3,6 @@ hand-engineerend
 finetuned
 CTOD
 LfD
+MPLs
+STRIPS-GNN
+low-dimentional

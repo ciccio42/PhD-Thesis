@@ -1,0 +1,68 @@
+\section{Experimental Results}
+\label{sec:gnn_experimental_results}
+In this section, the experimental results are presented. These results are preliminary within the context of this thesis and primarily aim to evaluate the performance and limitations of using GNNs for learning heuristics, specifically through the assessment of the STRIPS-HGN method proposed in \cite{shen2020learning}.
+
+The method was tested in the well-known \textit{BlockWorld} domain \cite{slaney2001blocks}. This domain consists of a single object type, the \textbf{block}. 
+This domain then, contains five predicates, and four actions that are listed below: 
+
+\begin{itemize}
+    \item \textit{On}: True if block $x$ is on block $y$.
+    \item \textit{On-Table}: True if block $x$ is on the table.
+    \item \textit{Clear}: True if block $x$ has no object on top, making it available for manipulation.
+    \item \textit{Handempty}: True if the robotic gripper is not holding any object.
+    \item \textit{Holding}: True if the robotic gripper is holding block $x$.
+
+    \item \textit{Pick-Up}: Picks up block $x$ if it is clear, on the table, and the gripper is empty.
+    \item \textit{Put-Down}: Places the block currently held by the gripper onto the table.
+    \item \textit{Stack}: Stacks block $x$ (held by the gripper) onto a clear block $y$.
+    \item \textit{Unstack}: Removes block $x$ from on top of block $y$ (if block $x$ is clear) and picks it up with the gripper.
+\end{itemize}
+
+For the experiments, 50 problem instances of varying complexity were generated, with complexity measured by the number of blocks, ranging from 3 to 15. The STRIPS-HGN was trained on a subset of problems with block counts between 5 and 10. Testing was conducted in two scenarios:
+
+\begin{itemize}
+    \item \textit{In-Training Distribution}: The model was tested on new problems with complexities within the same range as the training data.
+    \item \textit{Out-of-Training Distribution}: The model was tested on problems with unseen complexities (3, 4, 11, 12, 13, and 15 blocks).
+\end{itemize}
+
+The ground-truth heuristic ($h^{*}$) was computed by solving each problem instance using the Scorpion planning solver \cite{seipp2020saturated}, in a configuration that ensure the optimality of the solution. In this case, the heuristic is represented as the number of actions needed to reach the goal state from the initial state.
+% configured with the LAMA search algorithm \cite{richter2010lama}. While this setup does not guarantee path optimality, it provides the most reliable method for obtaining a solution across all 50 problem instances, regardless of task complexity, within a 16-minute time limit per instance.
+
+The STRIPS-HGN performance was compared against several classic heuristics, including:
+$h_{max}$, an admissible heuristic; $h_{add}$, a generally faster heuristic; $LM-cut$ \cite{richter2010lama}, a heuristic offering a balance between path optimality and speed. The STRIPS-HGN was also compared against itself with different numbers of planning steps (1, 5, and 10).
+
+Moreover, different metrics have been proposed to compare the different algorithms. Specifically, the algorithms are compared with respect to:
+\begin{itemize}
+    \item \textit{Number of expanded nodes}, this measures the number of nodes that are traversed during the exploration of the state-space in order to find a given solution. This number is accumulated over the different problems of a given complexity, then the average and standard deviation is computed.
+    \item \textit{Search time}, this measures the time needed for the algorithm to return a valid solution.  This number is accumulated over the different problems of a given complexity, then the average and standard deviation is computed.
+    \item \textit{Plan length}, this measures the number of actions that are needed to reach a solution. This number is accumulated over the different problems of a given complexity, then the average and standard deviation is computed.
+    \item \textit{Ratio of solution found}, this measures the ratio of number of times the search algorithm with a given heuristic returns a solution before a timeout of 5 minutes over all the number of problems.
+\end{itemize}
+
+\paragraph*{In-Training Distribution Generalization}\mbox{}\\
+The first generalization test performed was related to the In-Training Distribution Generalization. This means that the algorithms are tested on 10 novel problem instances for each problem complexity.
+The first results are related to the number of solution found, reported in Table \ref{table:in_distribution_cnt_success}. It can be noted how most of the heuristics are able to completely return a solution in the given timeout. This does not happen for the admissible heuristic $h_{max}$, which starts to not return a valid solution, starting from the complexity of 9 boxes. 
+
+\input{tables/ch4/in_distribution_cnt_success.tex}
+
+To provide more insight into the generalization capabilities of STRIPS-HGN with respect to the training distribution, Tables \ref{table:in_distribution_avg_nodes_expanded}, \ref{table:in_distribution_avg_search_time}, and \ref{table:in_distribution_avg_plan_length} report key metrics, including the number of expanded nodes, search time, and plan length, respectively.
+
+\input{tables/ch4/in_distribution_avg_nodes_expanded.tex}
+\input{tables/ch4/in_distribution_avg_search_time.tex}
+\input{tables/ch4/in_distribution_avg_plan_length.tex}
+
+The results indicate that STRIPS-HGN can generate a valid path while using a limited number of nodes compared to traditional heuristics. This advantage is particularly pronounced at the complexity of 10 boxes, where $STRIPS-HGN_{10}$ requires an average of only 95.70 nodes to produce a valid path. This represents a significant improvement over other heuristics, which typically need a greater number of nodes to achieve similar results.
+
+Regarding search time, it is noteworthy that $STRIPS-HGN_1$, starting from complexity 7, generates valid paths in less time than the admissible heuristic $h_{max}$ and the well-known trade-off heuristic $LM-cut$. The only heuristic that outperforms STRIPS-HGN in terms of speed is the $h_{add}$ heuristic, recognized for its faster performance relative to the others. However, this speed comes at a cost: all STRIPS-HGN variants produce paths that are shorter on average compared to those generated by the $h_{add}$ heuristic.
+
+
+\paragraph*{Out-of-Training Distribution Generalization} \mbox{}\\
+In the second step, we evaluated the generalization capabilities of the STRIPS-HGN on problem instances with complexities outside the training distribution. For each task complexity, we considered 50 problem instances. The results are summarized in Table \ref{table:out_distribution_cnt_success}.
+
+\input{tables/ch4/out_distribution_cnt_success.tex}
+
+% As shown in the table, the STRIPS-HGN demonstrates relatively poor generalization capabilities compared to the \( h_{add} \) heuristic, which successfully returns valid solutions in most cases. Among the variations of STRIPS-HGN, only \( STRIPS-HGN_1 \) consistently produces a number of valid solutions across all complexities, achieving a success ratio of 0.48 for the complexity of 15 boxes. However, this ratio is significantly lower than that of the \( h_{add} \) heuristic, which reaches a ratio of 0.98.
+
+% To investigate whether this behavior is a result of overfitting the model trained on optimal solutions, we also trained a variant of STRIPS-HGN using suboptimal heuristics obtained by running the Scorpion solver with a different configuration which does not guarantee the optimality. The results of this analysis are reported in Table \ref{table:out_distribution_cnt_success_no_optimal}.
+
+

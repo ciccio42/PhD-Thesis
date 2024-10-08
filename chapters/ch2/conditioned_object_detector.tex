@@ -9,3 +9,12 @@ Section~\ref{sec:cod_problem} outlines the detection problem being addressed. Se
 \input{chapters/ch2/problem_formulation.tex}
 \input{chapters/ch2/proposed_architecture.tex}
 \input{chapters/ch2/experimental_results.tex}
+
+\section{Conclusion}
+In conclusion, this chapter proposed and detailed the Conditioned Object Detector (COD), marking the first step in developing a modular architecture for Visual-Conditioned Multi-Task Imitation Learning. Specifically, this module addresses a key aspect of Cognitive Task design: identifying the region of interest in an agent's scene, based on a demonstrated task. The goal is to identify the relevant target object and final placement location in scenarios where multiple objects and placing locations are possible. The specific semantic attributes of these objects (i.e., target or distractor) are determined at runtime through task demonstration.
+
+To tackle this challenge, a conditioned convolutional architecture was introduced and tested in both single-task multi-variation and multi-task multi-variation scenarios.
+
+The results demonstrated that the proposed COD architecture effectively identified objects of interest, consistently achieving a Recall@0.5 score of \textbf{1.00} across all tasks and testing scenarios. This means that for every frame, a bounding box corresponding to the target class was always present.
+
+Regarding Precision@0.5, there was variability across different tasks and scenarios, ranging from a minimum of \textbf{0.652} for the Pick-Place task in the multi-task multi-variation scenario to a maximum of \textbf{0.997} for the Press-Button task in the single-task multi-variation scenario. Despite this variation, the system was able to consistently identify the target object, with an average IoU always greater than 0.3. While this might appear low, further analysis of the generated bounding boxes revealed that the system successfully identified the target object during the initial stages of the rollout, particularly in the reaching phase, when conditioning on the target object is critical. However, a notable number of false positives occurred during the manipulation and placing phases, where the conditioning on the target object weakens, suggesting that the trained policy must be robust to errors in bounding box generation during these phases.

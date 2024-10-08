@@ -1,5 +1,12 @@
 \chapter{Graph Neural Network for heuristic estimation}
-The goal of this chapter is to evaluate and review the possibility of leveraging Graph Neural Network (GNN) in the context of robotics learning. Specifically, this chapter will devided into different sections: Section \ref{sec:gnn_related_works} will discuss the related works and in general the application of GNN in the context of Learning from Demonstration.
-\smalltodo{to continue}
+% The goal of this chapter is to evaluate and review the possibility of leveraging Graph Neural Network (GNN) in the context of robotics learning. Specifically, this chapter will divided into different sections: Section \ref{sec:gnn_related_works} will discuss the related works and in general the application of GNN in the context of Learning from Demonstration.
+This chapter presents an initial exploration of how learning algorithms could enhance the capabilities of the proposed system. The system, as introduced, operates based on a control policy capable of handling single-step tasks, meaning tasks that consist of a single manipulation step. However, in real-world applications, tasks are often more complex, involving multiple steps. For instance, a task may require performing several pick-and-place operations, with the additional constraint that they must follow a specified sequence. In traditional robotics, such problems are classified as \textit{Planning Problems}, where the objective is to produce a sequence of \textbf{high-level actions} that move the system from an initial state to a desired goal state. 
+
+The primary idea for future work is to integrate planning algorithms into the current framework. This would enable the planning system to generate the high-level action sequence, while the proposed OCCP module executes the corresponding low-level actions, directing the robot to fulfill the tasks derived from the high-level commands.
+
+The purpose of this chapter is twofold: first, to review state-of-the-art methods for solving planning problems, encompassing both classical planning approaches and modern data-driven techniques (Section \ref{sec:gnn_related_works}); and second, to present preliminary results that demonstrate the applicability of these methods within the specific context of the system under discussion, with a comparative analysis between these data-driven approaches and traditional planning algorithms (Section \ref{sec:gnn_experimental_results}).
+
+
 \input{chapters/ch5/related_works.tex}
-\input{chapters/ch5/problem_formulation.tex}
+\input{chapters/ch5/gnn_experimental_results.tex}
+\input{chapters/ch5/gnn_conclusion.tex}

@@ -1,10 +1,10 @@
 \section{Results}
 \label{sec:real_results}
 In this section the results obtained with the real-world experiments are going to be discussed.
-Specifically, the methods that were under real-world validation were the Conditioned (Target) Object Detector (C(T)OD) described in Chapter \ref{ch:cod}, and the MOSAIC-C(T)OD(-P) described in Chapter \ref{ch:occp}.
+Specifically, the focus is on evaluating the proposed conditioned object detectors, which were described in Chapter \ref{ch:cod}, and the proposed object conditioned control policies, which were described in Chapter \ref{ch:occp}.
 
-\paragraph*{Conditioned (Target) Object Detection Validation}\mbox{}\\
-Here, the validation of the C(T)OD modules are going to be discussed. To validate this model also in a real-world scenario, the same metric used for the simulated counterpart are used (Section \ref{sec:cod_results}). 
+\subsection{Conditioned object detector validation}\mbox{}\\
+In this section, the validation of the proposed C(T)OD modules is going to be discussed. To validate this model also in a real-world scenario, the same metric used for the simulated counterpart are used (Section \ref{sec:cod_results}). 
 
 Table \ref{table:ctod_single_task_performance_real} and Table \ref{table:cod_single_task_performance_real} summarize the obtained performance of the both the CTOD and the COD modules respectively, trained in two different settings, the first one training the module from scratch, the second one by finetuning the model obtained with the dataset collected in the simulation environment (Section \ref{sec:cod_dataset}). These models were trained with a dataset divided according to the 90-10 rules, and the results refers to the Precision, Recall and Average IoU obtained by the best model on the Validation set.
 
@@ -26,8 +26,8 @@ Finally, Figure \ref{fig:ctod_cod_prediction} shows sample predictions from both
 
 \input{figures/ch5/ctod_predictions.tex}
 
-\paragraph*{MOSAIC-C(T)OD(-P) Validation}\mbox{}\\
-In this section, the validation of the MOSAIC-C(T)OD(-P) modules is going to be discussed. The systems have been trained in two different settings: first, with the model trained from scratch using only real-world data, and second, with the model fine-tuned starting from a model initially trained in the simulated environment.
+\subsection{Object conditioned control policy validation}\mbox{}\\
+In this section, the validation of the MOSAIC-C(T)OD(-P) modules will be discussed, with a comparison of the performance of the proposed methods against the MOSAIC baseline. The systems were trained under two different settings: first, with the model trained from scratch using only real-world data, and second, with the model fine-tuned from an initial model that was pre-trained in a simulated environment.
 
 Table \ref{table:ocpl_real_word} summarizes the obtained results. Specifically, these results are based on 10 rollouts per variation, each starting from different initial configurations. Throughout the tests, the aim was to maintain consistency in the scenarios presented while also introducing new scenarios not encountered during training. The evaluation metrics remain the same as those used in Section \ref{sec:ocpl_results}, with a focus on the \textit{Reaching}, \textit{Picking}, and \textit{Success} metrics.
 \input{tables/ch5/occp.tex}
