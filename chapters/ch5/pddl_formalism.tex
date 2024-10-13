@@ -2,7 +2,7 @@
 \label{sec:pddl_formalism}
 In this section, we will describe the methods that follow the classic task-planning formalism. Before introducing the methods, it is crucial to define the formalism with a set of foundational definitions.
 
-Task-planning is a well-known problem that has been studied for many years. One of the most influent formalizations, still widely used today, is STRIPS (Stanford Research Institute Problem Solver) \cite{fikes1971strips}, which was developed in the 70s. STRIPS was initially an automated planning solver, but its primary contribution lies in its definition of a planning problem, which has served as the foundation for much of the research in subsequent decades.
+Task-planning is a well-known problem that has been studied for many years. One of the most important formalization, still widely used today, is STRIPS (Stanford Research Institute Problem Solver) \cite{fikes1971strips}, which was developed in the 70s. STRIPS was initially an automated planning solver, but its primary contribution lies in its definition of a planning problem, which has served as the foundation for much of the research in subsequent decades.
 
 According to the STRIPS formalism, a planning task is defined as a tuple $\Pi = (P, A, s_0, G, c)$, where:
 \begin{itemize}
@@ -10,7 +10,7 @@ According to the STRIPS formalism, a planning task is defined as a tuple $\Pi = 
     \item $A$ is a set of actions.
     \item A state $s$ is a subset of predicates, $s \subseteq P$, where $s_0$ is the initial state,
     \item $G \subseteq s$ represents the goal conditions.
-    \item $c: A \leftarrow R$ is the cost function, which assign to an anction $a \in A$ a real-value, $c(a)$ representing the cost of performing a given action.
+    \item $c: A \leftarrow R$ is the cost function, which assign to an action $a \in A$ a real-value, $c(a)$ representing the cost of performing a given action.
 \end{itemize}
 
 An action $a \in A$ is defined as a tuple $a = \left(pre(a), add(a), del(a)\right)$, where $pre(a), add(a), del(a) \subseteq P$. These represent:
@@ -51,19 +51,21 @@ Here, a heuristic is a function $h: S \rightarrow \mathbb{R}$, which maps a stat
 In the context of task planning, a common heuristic is computed by solving the \textbf{Relaxed-STRIPS} problem. This is a simplified version of the STRIPS problem, where the delete conditions ($del$) are ignored, i.e., an action $a$ is represented as $a = \left(pre(a), add(a), \emptyset \right)$. The Relaxed-STRIPS problem is easier to solve because removing the $del$ conditions relaxes some of the constraints, allowing the state to include predicates that logically cannot be true simultaneously. By solving this relaxed problem, an estimated cost for reaching the goal from a given state can be computed. This approach has been used in well-known algorithms such as Fast-Downward \cite{helmert2006fast} and combined with novel heuristics in LAMA \cite{richter2010lama}.
 
 \paragraph*{Heuristic Estimation}\mbox{}\\
-In this paragraph the methods that methods that propose GNN for computing heuristics estimation through the usage of GNNs are discussed. Specifically, the review will focus on two recent works \cite{shen2020learning,chen2024learning}.
+In this paragraph the methods that propose GNN for computing heuristics estimation through the usage of GNNs are discussed. Specifically, the review will focus on two recent works \cite{shen2020learning,chen2024learning}.
 
 The first remarkable work towards the use of GNN for heuristic estimation was proposed by authors of \cite{shen2020learning}. Here, authors started from the idea to leverage data-driven approaches to learn an heuristic function, and explore the possibility of such methods to generalize to different cardinalities and problems, and comparing the performance of such methods with classic heuristic functions.
 
-The first step to solve this problem is related to the definition of the input. Specifically, the authors started by the Relaxed-STRIPS formulation. The STRIPS problem can be easly formulated as a graph if the following observations are done:
+The first step to solve this problem is related to the definition of the input. Specifically, the authors started by the Relaxed-STRIPS formulation. The STRIPS problem can be easily formulated as a graph if the following observations are done:
 \begin{itemize}
     \item A node, can be described a predicate which can be either a pre-condition or an added condition.
     \item The edge is represented by the action that connects the pre-conditions to the added-conditions. 
 \end{itemize}
-\smalltodo{add figure}
-Figure \ref{} illustrates the mapping of predicates and actions to graph nodes and edges. As can be observed, an action connects multiple nodes. To model this, the authors use a generalized graph structure known as a \textit{hypergraph}. Formally, a hypergraph is defined as a triple $G = (u, V, E)$, where $V = \left\{ \textbf{v}_{i}: i \in \left\{1, 2, \dots, N^{v} \right\} \right\}$ is the set of $N^{v}$ vertices, and $E = \left\{ (e_{k}, R_{k}, S_{k}): k \in \left\{1, 2, \dots, N^{e} \right\} \right\}$ is the set of $N^{e}$ hyper-edges. In this structure, $R_{k}$ is the receiver set, containing the indices of the nodes for which the $k$-th edge acts as an incoming edge, and $S_{k}$ is the sender set, containing the indices of the nodes for which the $k$-th edge acts as an outgoing edge. Then, $\textbf{v}_{i}$ is the node embedding, which has been implemented as a binary-vector $v_i = [x_s, x_g]$, where $x_s, x_g \in \left\{0,1\right\}$. $x_s=1$ iff the i-th predicate is true in the state s and $x_g=1$ iff the predicate is true in the goal-state. While, $e_{k}$ is the edge embedding, $e_k = [c(a_k), |Pre(a_k)|, |Add(a_k)|]$, where $c(a_k)$ is the cost of the operator, $|Pre(a_k)|$ is the number of pre-condition and $|Add(a_k)|$ is the number of added condition.
+\input{figures/ch4/nodes_mapping.tex}
+Figure \ref{fig:nodes_mapping} illustrates the mapping of predicates and actions to graph nodes and edges. As can be observed, an action connects multiple nodes. To model this, the authors use a generalized graph structure known as a \textit{hypergraph}. Formally, a hypergraph is defined as a triple $G = (u, V, E)$, where $V = \left\{ \textbf{v}_{i}: i \in \left\{1, 2, \dots, N^{v} \right\} \right\}$ is the set of $N^{v}$ vertices, and $E = \left\{ (e_{k}, R_{k}, S_{k}): k \in \left\{1, 2, \dots, N^{e} \right\} \right\}$ is the set of $N^{e}$ hyper-edges. In this structure, $R_{k}$ is the receiver set, containing the indices of the nodes for which the $k$-th edge acts as an incoming edge, and $S_{k}$ is the sender set, containing the indices of the nodes for which the $k$-th edge acts as an outgoing edge. Then, $\textbf{v}_{i}$ is the node embedding, which has been implemented as a binary-vector $v_i = [x_s, x_g]$, where $x_s, x_g \in \left\{0,1\right\}$. $x_s=1$ iff the i-th predicate is true in the state s and $x_g=1$ iff the predicate is true in the goal-state. While, $e_{k}$ is the edge embedding, $e_k = [c(a_k), |Pre(a_k)|, |Add(a_k)|]$, where $c(a_k)$ is the cost of the operator, $|Pre(a_k)|$ is the number of pre-condition and $|Add(a_k)|$ is the number of added condition.
 
-Once the graph structure has been defined, the module that processes this input can be described. Specifically, the authors propose leveraging the concept behind the \textit{Interaction Network} \cite{battaglia2016interaction}. The architecture, depicted in Figure \ref{}, implements the computational flow shown in Figure \ref{}, and can be divided into the following three steps.
+\input{figures/ch4/strips_hgn_architecture.tex}
+\input{figures/ch4/computational_flow.tex}
+Once the graph structure has been defined, the module that processes this input can be described. Specifically, the authors propose leveraging the concept behind the \textit{Interaction Network} \cite{battaglia2016interaction}. The architecture, depicted in Figure \ref{fig:strips_hgn_architecture}, implements the computational flow shown in Figure \ref{fig:computation_flow}, and can be divided into the following three steps.
 
 \begin{enumerate}
     \item The \textit{Encoding Block} consists of two functions, $\phi^{e}$ and $\phi^{v}$, both implemented as Multi-Layer Perceptrons (MLPs). These functions transform the initial binary inputs into higher-dimensional representations, specifically, $\phi^{e}(e_j)$ produces $e_{hid}^{0}$ and $\phi^{v}(v_i)$ produces $v_{hid}^{0}$, where both $e_{hid}^{0}$ and $v_{hid}^{0} \in \mathbb{R}^{32}$. This step expands the original binary vectors (of size 2 or 3) into 32-dimensional vectors.
@@ -90,9 +92,29 @@ The system is trained by minimizing the loss function defined in Equation \ref{e
 
 Interesting results were obtained during the experiments. Notably, the system demonstrated the ability to learn both domain-dependent heuristics (when tested on the same domain it was trained on) and domain-independent heuristics (when tested on a different domain). This shows that the trained GNN was capable of generating meaningful heuristic values that could be effectively used by search algorithms like A*. However, a general drawback of this approach is the time required to compute the heuristic, particularly when the model is run on a CPU instead of a GPU, which significantly impacts performance.
 
-Development of such work was proposed by \cite{chen2024learning},
-\smalltodo{ToContinue}
+The development of such work was proposed by \cite{chen2024learning}. In this work, the authors conducted a comprehensive analysis of learned heuristics in relation to problem representation. Specifically, they introduced three distinct representations for the planning problem:
+
+\begin{itemize}
+    \item \textit{STRIPS Learning Graph} (SLG): This is a graph constructed from the STRIPS representation. Compared to the representation used in \cite{shen2020learning}, the main improvement lies in the use of labeled edges, which can now represent all edge types, namely, preconditions, added conditions, and deleted conditions.
+    
+    \item \textit{Finite Domain Representation Learning Graph} (FLG): This graph is built from the Finite Domain Representation. In this framework, nodes represent both facts (tuples of state variables $v_i$ and values $d \in D_v$) and actions, while edges represent the relationships between facts and actions, such as preconditions and effects.
+    
+    \item \textit{Lifted Learning Graph} (LLG): This representation avoids the grounding phase entirely. To achieve this, the authors proposed a schema consisting of two main components: the \textit{Action Schema} and the \textit{Instance Subgraph}. The Action Schema encodes domain-specific information, where nodes represent predicates, argument indices, and variables. The Instance Subgraph encodes specific information about the current state and goal state, where nodes represent predicates, states, goal arguments, and objects.
+\end{itemize}
+
+Using these representations, the authors trained a GNN architecture to learn the heuristic function across the three different representations. The results demonstrated that the proposed method was capable of learning both \textit{domain-dependent} and \textit{domain-independent} heuristics. However, when analyzing the coverage performance, i.e., the number of problems solved within a 10-minute timeout, it became clear that performance varied significantly depending on the problem domain. The classic feed-forward heuristic outperformed the GNN-based \\ heuristic in 3 out of 8 domains, while the GNN-based heuristic outperformed the feed-forward heuristic in 4 out of 8 domains. One domain showed equal performance between the two approaches. Notably, the GNN-based heuristic struggled with the domain-independent test scenarios, meaning that the model was not able to generalize well to unseen domains. This limitation represents a significant drawback, as one of the most important assumptions behind the use of GNNs, or data-driven approaches in general, is their ability to generalize to novel scenarios.
 
 \paragraph*{Grounding Problem}\mbox{}\\
-As stated before, one of the preliminary problem to solve, before running the search algorithm, is the Grounding Problem. In this problem 
-\smalltodo{ToContinue}
+As stated earlier, one of the preliminary challenges to address before running the search algorithm is the \textit{Grounding Problem}, which involves computing all valid instantiations that assign objects to the arguments of predicates and action parameters.
+
+It is important to note that the size of the grounded task grows exponentially with the number of arguments in the predicates and action schemas. Although this size remains constant for all tasks within a given domain, and grounding can be computed in polynomial time, it may still become prohibitive when the number of objects is large and/or when some predicates or actions have many parameters. This issue is particularly problematic in open multi-task environments, where many objects exist, but only a few are relevant to the task at hand.
+
+The authors in \cite{gnad2019learning} build upon these observations and propose an algorithm that performs \textit{partial grounding}. The main idea of this approach is to focus on the action instances most relevant to the specific problem instance. In this context, the challenge lies in how to identify and select the most relevant actions for grounding. To address this, a \textit{priority function}, $f: O \rightarrow \left[0, 1\right]$, is learned, where $O$ is the set of all operators, and $f(o)$ represents the priority of operator $o$.
+
+This priority function is learned using a supervised learning approach, with the training dataset defined as \\ $\mathcal{D} = \left\{s_{0}, G, \Sigma^{O}, o, \left\{0,1\right\} \right\}$. Here, $s_{0}$ is the initial state, $G$ is the goal state, $\Sigma^{O}$ is the set of objects, $o \in O$ is the operator, and $\left\{0,1\right\}$ is the label, where $1$ indicates that the operator is part of an optimal path, and $0$ otherwise.
+
+The authors trained a Support Vector Regression (SVR) model, representing the operators with \textit{Relational Rules} (RR). Each operator is associated with a set of rules that are instantiated by grounding the operator's variables. The operator is then represented by a binary feature vector, where each element corresponds to a rule, with a value of $1$ if the rule is satisfied, and $0$ otherwise. The SVR is trained to predict the priority of an operator based on its binary feature vector.
+
+The system was evaluated on problems where the size of grounded instances grows cubically with respect to the parameters of the generator, resulting in large instances that are difficult to fully ground. The model was trained on smaller problem instances, where full grounding could be computed in a reasonable time. During testing, the model was evaluated on larger instances. Results showed that the learned partial-grounding approach using SVR-RR was able to solve 255 out of 313 problems, outperforming the fully grounded approach, which solved only 156 out of 313 problems.
+
+However, no discussion on the quality of the generated plans was provided. In fact, an evolution of these methods was proposed at the ICAPS 2023 Planning Competition \cite{gzubicki2023huzar}. Results from the competition, however, revealed that these learning-based methods are still significantly behind classical grounding methods, both in terms of optimality and computation time.

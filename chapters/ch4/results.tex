@@ -39,4 +39,6 @@ The most common failure mode is evident in the drop between the \textit{Reaching
 
 To address these limitations, a fine-tuned model was introduced. This model leverages the initialization from a simulation-trained model, where the workspace coverage includes less noisy trajectories. As shown in Table \ref{table:ocpl_real_word}, the fine-tuned model significantly improves performance, with the highest success rate (\textbf{55.00\%}) achieved by the MOSAIC-COD module. All fine-tuned models outperform their scratch-trained counterparts. This supports the earlier observation regarding the control module's importance. With proper initialization, the fine-tuned model is better equipped to handle variations in object placement during testing, owing to the improved trajectories from the simulated environment.
 
+Finally, it is important to note that in the same training scenario, the MOSAIC baseline fails to solve the task, even after fine-tuning. Specifically, the baseline cannot reach any objects, sending the closing command before interacting with any object. This behavior is expected due to the challenges discussed in the training dataset. These results further highlight the importance of object priors in learning an effective control policy, especially when working with low-quality data.
+
 % \smalltodo{add figure}
