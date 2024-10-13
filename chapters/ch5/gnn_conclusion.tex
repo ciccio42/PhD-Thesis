@@ -1,4 +1,10 @@
 \section{Conclusions}
 \label{sec:gnn_conclusions}
 
-\smalltodo{toDo}
+In conclusion, this section has evaluated the potential of using data-driven methods for heuristic estimation within a specific domain of interest. The results indicate that it is feasible to learn effective heuristic values by leveraging learning algorithms and architectures such as Graph Neural Networks (GNNs), which can model relationships between objects more effectively.
+
+However, for these methods to be fully integrated into a framework that generalizes to multi-step tasks, further research is necessary. Specifically, a crucial next step is the development of a robust \textbf{perception system} capable of dynamically identifying objects in the environment, thus removing the need for prior knowledge about them.
+
+Once the current state of the environment is obtained, the corresponding PDDL (Planning Domain Definition Language) problem can be formulated, allowing the use of classical planning techniques. However, as noted in Section \ref{sec:gnn_experimental_results}, the learned heuristics have shown promise. In particular, within the \textit{in-training distribution} scenario, the learned heuristic \\ outperformed well-established heuristics like $h_{max}$ and $LM-cut$ in terms of nodes expanded and search time. While it did not surpass the faster $h_{add}$ heuristic in search time, it generated shorter plans.
+
+In the \textit{out-of-training distribution} scenario, however, the learned heuristics faced challenges in generating valid plans within the 5-minute timeout, underscoring the need for further research to enhance both the generalization capabilities of these heuristics and the overall performance of the algorithm.

@@ -61,8 +61,19 @@ In the second step, we evaluated the generalization capabilities of the STRIPS-H
 
 \input{tables/ch4/out_distribution_cnt_success.tex}
 
-% As shown in the table, the STRIPS-HGN demonstrates relatively poor generalization capabilities compared to the \( h_{add} \) heuristic, which successfully returns valid solutions in most cases. Among the variations of STRIPS-HGN, only \( STRIPS-HGN_1 \) consistently produces a number of valid solutions across all complexities, achieving a success ratio of 0.48 for the complexity of 15 boxes. However, this ratio is significantly lower than that of the \( h_{add} \) heuristic, which reaches a ratio of 0.98.
+As shown in Table \ref{table:out_distribution_cnt_success}, STRIPS-HGN exhibits weaker generalization capabilities compared to the  $h_{add}$ heuristic, which consistently returns valid solutions in most cases. Among the STRIPS-HGN variants, only $ STRIPS-HGN_1 $ consistently produces a reasonable number of valid solutions across all complexities, achieving a success ratio of 0.48 for the complexity involving 15 boxes. However, this performance is notably lower than the $ h_{add} $ heuristic, which achieves a success ratio of 0.98.
 
-% To investigate whether this behavior is a result of overfitting the model trained on optimal solutions, we also trained a variant of STRIPS-HGN using suboptimal heuristics obtained by running the Scorpion solver with a different configuration which does not guarantee the optimality. The results of this analysis are reported in Table \ref{table:out_distribution_cnt_success_no_optimal}.
+To examine whether this behavior results from overfitting the model to optimal solutions, we also trained a STRIPS-HGN variant using suboptimal heuristics obtained by running the Scorpion solver under a configuration that does not guarantee optimality. The results of this analysis are presented in Table \ref{table:out_distribution_cnt_success_no_optimal}. A comparison of the results for $ STRIPS-HGN_1 $ between Table \ref{table:out_distribution_cnt_success} and Table \ref{table:out_distribution_cnt_success_no_optimal} reveals that the model trained with suboptimal heuristics generalizes better to unseen complexities. This is particularly evident for the 15-box complexity, where the success ratio increases to 0.82, compared to 0.48 for the model trained with optimal heuristics.
 
+\input{tables/ch4/out_distribution_cnt_success_no_optimal.tex}
 
+To further evaluate the quality of STRIPS-HGN, a comparison between average plan length and search time was conducted between $h_{add}$ and $STRIPS-HGN_{1}$. Specifically, the problems considered are those that the optimally-trained $STRIPS-HGN_{1}$ was able to solve.
+
+\input{tables/ch4/out_of_distribution_avg_search_time.tex}
+\input{tables/ch4/out_of_distribution_avg_path_length.tex}
+
+As observed in Table \ref{table:out_distribution_avg_search_time}, the baseline heuristic $h_{add}$ is generally faster than the learned heuristic across 5 out of 7 complexities. However, at higher complexities, specifically with 14 and 15 blocks, the learned heuristic becomes faster than the baseline. It is particularly noteworthy that the heuristic learned with non-optimal heuristics outperforms both the baseline heuristic and the optimally-trained learned heuristic at these higher complexities.
+
+Regarding plan length, as shown in Table \ref{table:out_distribution_avg_path_length}, both learned heuristics generally produce shorter plans compared to the baseline. Moreover, the heuristic trained on non-optimal heuristics consistently generates shorter paths than the optimally-trained heuristic.
+
+These findings highlight the potential of learned heuristics to generalize better to novel problem complexities and to scale more effectively as the dimensionality of the problem increases. In general, the results align with the literature discussed in Section \ref{sec:gnn_related_works}. However, further work is necessary to optimize the inference process of these methods, as their primary limitation remains the computational cost of inference, as demonstrated by the results.
