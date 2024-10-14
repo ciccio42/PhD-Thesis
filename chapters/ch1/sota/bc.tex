@@ -44,7 +44,7 @@ In this framework, the learning procedure consists of two main components:
     \item \textbf{Modifying the elementary trajectory}, which entails determining whether the requested via-point can be accommodated by adjusting the shape modulation or by introducing a new linear segment into the elementary trajectory.
 \end{enumerate}
 
-To achieve this, VMP calculates the conditional probability of the shape modulation parameters given the desired via-point. If this probability exceeds a certain threshold \( \eta \), the shape modulation is adjusted to ensure the trajectory passes through the via-point. However, if the probability is below \( \eta \), indicating that the desired via-point is unlikely based on the learned prior probability of \( w \), VMP will modify the elementary trajectory instead.
+To achieve this, VMP computes the conditional probability of the shape modulation parameters given the desired via-point. If this probability exceeds a certain threshold \( \eta \), the shape modulation is adjusted to ensure the trajectory passes through the via-point. However, if the probability is below \( \eta \), indicating that the desired via-point is unlikely based on the learned prior probability of \( w \), VMP will modify the elementary trajectory instead.
 
 Overall, the VMP framework enhances the adaptability of movement primitives by enabling the robot to learn and adjust its trajectories based on a limited number of demonstrations and specified via-points, making it a practical solution for various robotic applications.
 
@@ -52,7 +52,7 @@ In addition to these methodological advancements, several works have leveraged D
 
 For instance, in the preliminary work \cite{meier2011movement_primitive}, the authors used a set of predefined motion primitives modeled as DMPs. The objective was to recognize these primitives within the demonstrated trajectory using an Expectation-Maximization algorithm. Similarly, in \cite{caccavale2019kinesthetic}, DMPs were utilized to learn and reproduce motion primitives from demonstrations during the kinesthetic teaching of structured tasks. In this work, action segmentation was performed based on either object proximity or explicit human commands. When the robot manager identifies a new action, the corresponding DMP is learned, and the sequence of tasks is organized into a hierarchical structure.
 
-Despite all the successfully applications saw previsously, DMPs and all the variants have a very relevant limitation, that is related to the difficulty of handling high-dimensional input such as images. For this reason, the scientific community has focused the attention on methods that leverage deep architecture, that will be explained in detail in the following paragraphs.
+Despite all the successfully applications saw previously, DMPs and all the variants have a very relevant limitation, that is related to the difficulty of handling \textbf{high-dimensional input} such as images. For this reason, the scientific community has focused the attention on methods that leverage deep architecture, that will be explained in detail in the following paragraphs.
 
 \input{chapters/ch1/sota/bc_single_task_imitation_learning.tex}
 \input{chapters/ch1/sota/bc_interactive_imitation_learning.tex}

@@ -34,9 +34,8 @@
 \end{equation}
 
 \begin{equation}
-    \begin{split}
+    \begin{aligned}
     \label{formula:ga_regularizer_conjugate}
-    \psi^{*}_{GA}(\rho_{\pi^{L}} - \rho_{\pi^{E}}) = \underset{D\in(0,1)^{S \times A}}{max} \mathbb{E}_{\pi^{L}}\left [ \log(D(s,a))\right ] + \\ 
-    & \mathbb{E}_{\pi^{E}}\left [ \log(1 - D(s,a))\right ]
-    \end{split}
+    \psi^{*}_{GA}(\rho_{\pi^{L}} - \rho_{\pi^{E}}) = \underset{D\in(0,1)^{S \times A}}{max} \mathbb{E}_{\pi^{L}}\left [ \log(D(s,a))\right ] + & \\ \mathbb{E}_{\pi^{E}}\left [ \log(1 - D(s,a))\right ]
+\end{aligned}
 \end{equation}

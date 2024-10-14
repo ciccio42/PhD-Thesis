@@ -58,7 +58,7 @@ Starting from these considerations, Algorithm \ref{alg:guided_cost_learning} was
     \end{aligned}
 \end{equation}
 
-The cost function was parameterized according to a neural network, and experiments performed on real-robot manipulation tasks such as dish placement and pouring proved the effectiveness of the proposed method and the necessity of a non-linear representation of the cost function for complex problems, outperforming the classic Max-Ent method.
+The cost function was parametrized according to a neural network, and experiments performed on real-robot manipulation tasks such as dish placement and pouring proved the effectiveness of the proposed method and the necessity of a non-linear representation of the cost function for complex problems, outperforming the classic Max-Ent method.
 
 Recent methods have aimed to advance IRL towards more complex learning scenarios, such as learning a reward function from video demonstrations. In \cite{das2021model_based_irl_from_vd}, the architecture shown in Figure \ref{fig:model_based_irl} was proposed. The goal was to obtain the parameters $\Psi$ of a cost function $C_{\Psi}(\hat{\boldsymbol{\tau}}, z_{goal})$, enabling the derivation of a sequence of actions by minimizing the cost function itself (Formula \ref{eq:das2021model_based_irl_from_vd}).
 \begin{equation}

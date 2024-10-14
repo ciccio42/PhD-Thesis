@@ -6,3 +6,6 @@ LfD
 MPLs
 STRIPS-GNN
 low-dimentional
+Max-Ent
+regularizer
+keypoints
