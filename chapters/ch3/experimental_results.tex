@@ -10,7 +10,7 @@ The dataset used for training the control architectures is described in this sec
 
 In this section, the dataset is analyzed in terms of the distribution of the action space, in order to highlight the challenges from a control perspective.
 
-Figure \ref{fig:dataset_distribution} illustrates the distribution of the trajectories followed by the robot. Each plot represents a density map illustrating the frequency with which the robot's end-effector passed through specific points across all variations and trajectories. Notably, the use of a simulated environment enables complete coverage of the workspace. This particular aspect of the workspace coverage will be further discussed in Chapter \ref{ch:real_world_application} where the real-world system will be discussed.
+Figure \ref{fig:dataset_distribution} illustrates the distribution of the trajectories followed by the robot. Each plot represents a density map illustrating the frequency with which the robot's end-effector passed through specific points across all variations and trajectories, specifically along the $x$ and $y$ axis. Notably, the use of a simulated environment enables complete coverage of the workspace. This particular aspect of the workspace coverage will be further discussed in Chapter \ref{ch:real_world_application} where the real-world system will be discussed.
 
 
 % \smalltodo{Add figure here.}
@@ -91,7 +91,7 @@ In this section the results obtained with the Double Control Module (Section \re
 As discussed in Section \ref{sec:ocpl_architecture_dcm}, the introduction of the Double Control Module (DCM) was motivated by the need to reduce errors associated with incorrect object placement. These errors arise from inaccurate bounding-box predictions, which can lead to error propagation. 
 
 To address this issue, the architecture of the Double Control Module evolved through incremental design iterations and validation steps.
-Specifically, the process started by observing that the positional information given by the bouding-box is usefull only during the reaching phase, while it becomes useless after it. For this reason, the training of the MOSAIC-CTOD has been changed, setting to zero the bounding-box after the picking. Then, observing the obtained results and the error cases, the Double Control Module has been realized.
+Specifically, the process started by observing that the positional information given by the bouding-box is useful only during the reaching phase, while it becomes useless after it. For this reason, the training of the MOSAIC-CTOD has been changed, setting to zero the bounding-box after the picking. Then, observing the obtained results and the error cases, the Double Control Module has been realized.
 
 \input{tables/ch3/double_policy_single_task.tex}
 Table \ref{table:double_policy_single_task} summarizes the obtained results, from which several important considerations can be made.
@@ -113,7 +113,7 @@ This further supports the central thesis, which suggests that the end-to-end arc
 \input{tables/ch3/double_policy_multi_task.tex}
 Given the results and observations from the previous section, the MOSAIC-COD module is directly compared to the baselines MOSAIC and MOSAIC-CTOD in the Multi-Task setting. Table \ref{table:cod_multi_task_performance} summarizes the results. As can be seen, the use of specialized models trained for the two task phases, reaching and placing, leads to a system that consistently picks the target object. This improvement is particularly evident in the more complex tasks, such as Pick-Place and Nut-Assembly. The enhanced picking rate demonstrates that having accurate information about the target object position enables correct target acquisition, while the presence of two control modules allows for training specific controllers for simpler primitives.
 
-However, despite the improvements observed in Pick-Place and Nut-Assembly, MOSAIC-COD has the lowest overall success rate. This can be attributed to two main factors. First, the Press-Button task is substantially different from the other three tasks. Unlike the others, it does not involve pick-and-place primitives, making it an out-of-distribution task. Second, the instability of the bounding boxes produced can lead to undesirable behaviors, such as sudden movements or freezing.
+However, despite the improvements observed in Pick-Place and Nut-Assembly, MOSAIC-COD has the lowest overall success rate on the Press-Button task. This can be attributed to two main factors. First, the Press-Button task is substantially different from the other three tasks. Unlike the others, it does not involve pick-and-place primitives, making it an out-of-distribution task. Second, the instability of the bounding boxes produced can lead to undesirable behaviors, such as sudden movements or freezing.
 % \smalltodo{add figure}
 
 \subsubsection{Proprioceptive state and Generalization tests}
@@ -122,7 +122,7 @@ However, despite the improvements observed in Pick-Place and Nut-Assembly, MOSAI
 \input{figures/ch3/end_to_end_vs_modular_proprioceptive.tex}
 In this section, additional experiments are described, focusing on two key objectives.
 
-The first set of experiments aims to determine whether incorporating proprioceptive information can enhance the system's robustness. This is particularly important for tasks requiring fine manipulation, such as the Nut-Assembly task, where the goal is to reduce errors during the assembly phase, specifically avoiding instances where the nut hits the peg.
+The first set of experiments aims to determine whether the integration of proprioceptive information can enhance the system's robustness. This is particularly important for tasks requiring fine manipulation, such as the Nut-Assembly task, where the goal is to reduce errors during the assembly phase, specifically avoiding instances where the nut hits the peg.
 
 The second set of experiments explores the generalization capabilities of the proposed system. Specifically, the goal is to assess whether the system can generalize to previously unseen task variations. To evaluate this, the system is trained on a subset of task variations selected as follows: for a set of variations involving a specific target object (e.g., a green box), one variation is excluded (e.g., placing the box into the first bin). However, in other sets involving different objects, the variation that requires placing the object into the first bin is retained. This setup allows for testing how well the system can transfer knowledge across different variations. By doing so, it becomes possible to evaluate whether the system can achieve robust performance with less training data, eliminating the need to collect every possible variation for each object (Figure \ref{fig:generalization_dataset}).
 % \smalltodo{add figure}
@@ -160,6 +160,6 @@ The models were trained on the remaining variations and tested on the excluded o
 
 Table \ref{table:generalization} summarizes the success rates obtained for both the Single-Task and Multi-Task settings. Notably, with the introduction of the CTOD and COD modules, the system consistently reaches the correct target object in unseen variations. Similarly, the robot is able to pick and complete tasks, outperforming the MOSAIC baseline across all tested tasks.
 
-This is a promising result, as it demonstrates that the system can effectively share knowledge across different variations, enabling robust training with less data.
+This is a promising result, as it demonstrates that the system can effectively share knowledge across different variations, enabling robust training with fewer data.
 
 
