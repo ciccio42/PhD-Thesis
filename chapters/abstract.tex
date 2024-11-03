@@ -50,7 +50,7 @@ Based on these considerations, this thesis explores the development of a \textbf
 
 To perform this explicit reasoning, a \textit{Conditioned Object Detector} (COD) has been developed. This module, given the video demonstration and the current agent observation as input, predicts the category-agnostic bounding box related to the target object and the final placing location. This low-level positional information is then provided to the control module, which predicts the actions to perform.
 
-The learning procedure is then divided into two steps. The first step involves training the \textit{Conditioned Object Detector} (COD) module, which focuses on explicitly solving cognitive tasks, such as detecting regions of interest represented by the object to be manipulated and its final location. The second step involves training the \textit{Object Conditioned Control Policy} (OCCP), which focuses on solving the control problem using low-level positional information that can be easily mapped into the corresponding actions.
+The learning procedure is then divided into two steps. The first step involves training the COD module, which focuses on explicitly solving cognitive tasks, such as detecting regions of interest represented by the object to be manipulated and its final location. The second step involves training the \textit{Object Conditioned Control Policy} (OCCP), which focuses on solving the control problem using low-level positional information that can be easily mapped into the corresponding actions.
 
 The final system has been extensively tested in simulation environments, then it was also validated on a real-world robotic platform. 
 

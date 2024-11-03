@@ -13,7 +13,7 @@ In the context of interest, the object detection problem can be formulated as fo
     \item \textit{No-Target-Place}, it refers to any other region that is not relevant to the current task variation, such as other bins in a pick-and-place task or other pegs in a nut-assembly task. 
 \end{itemize}
 
-This example highlights how the semantic attribute assigned to an object changes depending on the requested task $c_{m}$. In the first case, the green box and the first bin are marked as targets (green boxes), while other objects are labeled as distractors (red boxes). In the second case, even though the configuration remains the same, the roles of the objects changes. This is because, in the second task, the demonstrator manipulates the red box and places it into a different location. 
+The example shown in Figure \ref{fig:example_of_bb} highlights how the semantic attribute assigned to an object changes depending on the requested task $c_{m}$. In the first case, the green box and the first bin are marked as targets (green boxes), while other objects are labeled as distractors (red boxes). In the second case, even though the configuration remains the same, the roles of the objects changes. This is because, in the second task, the demonstrator manipulates the red box and places it into a different location. 
 
 Since the goal is to explicitly manage the changing semantic meaning of objects, traditional object detectors, which predict bounding boxes and object categories for all objects in the scene, are not suitable. Instead, a novel, specialized architecture is required to implement the function $f_{\theta}$. The details of this implementation are provided in Section \ref{sec:cod_architecture}.
 \input{figures/ch2/example_of_bb.tex}
