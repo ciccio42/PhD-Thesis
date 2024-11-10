@@ -1,4 +1,9 @@
-\begin{table}
+% \usepackage{graphicx}
+% \usepackage{multirow}
+% \usepackage{hhline}
+
+
+\begin{table}[t]
     \centering
     \caption{Results obtained by the MOSAIC-C(T)OD(-P) models tested in the real-wolrd sceanrio. For each model two variants are proposed, the first one with the model trained from scratch, the second one with the model finetuned from a simulated trained one.}
     \label{table:ocpl_real_word}
@@ -9,23 +14,23 @@
     \hhline{|=====|}
     \multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}Pick-Place\\(scratch)\end{tabular}} & MOSAIC & 11.29 & 0.00 & 0.00 \\ 
     \cline{2-5}
-     & MOSAIC-CTOD & 95.00 & 11.66 & 5.00 \\ 
+     & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-CTOD}}\\\textbf{\textit{(proposal)}}\end{tabular} & 95.00 & 11.66 & 5.00 \\ 
     \cline{2-5}
-     & MOSAIC-CTOD-P & 100.00 & 30.00 & 30.00 \\ 
+     & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-CTOD-P}}\\\textbf{\textit{(proposal)}}\end{tabular} & 100.00 & 30.00 & 30.00 \\ 
     \cline{2-5}
-     & MOSAIC-COD & 86.66 & 16.66 & 16.66 \\ 
+     & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-COD}}\\\textbf{\textit{(proposal)}}\end{tabular} & 86.66 & 16.66 & 16.66 \\ 
     \cline{2-5}
-     & MOSAIC-COD-P & 55.36 & 21.43 & 12.50 \\ 
+     & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-COD-P}}\\\textbf{\textit{(proposal)}}\end{tabular} & 55.36 & 21.43 & 12.50 \\ 
     \hhline{|=====|}
-    \multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}Pick-Place\\(finetuned)\end{tabular}} & MOSAIC & 16.95    & 0.00 & 0.00 \\ 
+    \multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}Pick-Place\\(finetuned)\end{tabular}} & MOSAIC & 16.95 & 0.00 & 0.00 \\ 
     \cline{2-5}
-     & MOSAIC-CTOD & 93.22 & 44.07 & 33.90 \\ 
+     & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-CTOD}}\\\textbf{\textit{(proposal)}}\end{tabular} & 93.22 & 44.07 & 33.90 \\ 
     \cline{2-5}
-     & MOSAIC-CTOD-P & 81.36 & 47.46 & 44.07 \\ 
+     & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-CTOD-P}}\\\textbf{\textit{(proposal)}}\end{tabular} & 81.36 & 47.46 & 44.07 \\ 
     \cline{2-5}
-     & MOSAIC-COD & 86.67 & 55.00 & \textbf{55.00} \\ 
+     & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-COD}}\\\textbf{\textit{(proposal)}}\end{tabular} & 86.67 & 55.00 & \textbf{55.00} \\ 
     \cline{2-5}
-     & MOSAIC-COD-P & 85.00 & 46.67 & 46.67 \\
+     & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-COD-P}}\\\textbf{\textit{(proposal)}}\end{tabular} & 85.00 & 46.67 & 46.67 \\
     \hline
     \end{tabular}
     }

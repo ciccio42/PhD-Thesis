@@ -1,38 +1,40 @@
+% \usepackage{graphicx}
+% \usepackage{multirow}
+% \usepackage{hhline}
+
+
 \begin{table}[t]
-  \scriptsize
-  \selectfont
   \centering
-  % \refstepcounter{table}
   \caption{MOSAIC-COD results obtained in the multi-task setting. The model is compared with MOSAIC and MOSAIC-CTOD models.}
   \label{table:double_policy_multi_task}
   \resizebox{\linewidth}{!}{%
   \begin{tabular}{|c|c|c|c|c|} 
   \hline
-  \textbf{Task} & \textbf{Model} & \begin{tabular}[c]{@{}c@{}}\textbf{Reaching}\\{[}\%]\end{tabular} &  \begin{tabular}[c]{@{}c@{}}\textbf{Picking}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Success}\\{[}\%]\end{tabular} \\ 
+  \textbf{Task} & \textbf{Model} & \begin{tabular}[c]{@{}c@{}}\textbf{Reaching}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Picking}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Success}\\{[}\%]\end{tabular} \\ 
   \hhline{|=====|}
   \multirow{3}{*}{Pick-Place} & MOSAIC & 25.83$\pm$1.30 & 23.96$\pm$0.72 & 22.71$\pm$0.72 \\ 
   \cline{2-5}
-   & MOSAIC-CTOD & 80.21$\pm$1.44 & 67.50$\pm$0.62 & 53.33$\pm$1.90 \\ 
+   & \begin{tabular}[c]{@{}c@{}}\textbf{MOSAIC-CTOD}\\\textbf{(proposal)}\end{tabular} & 80.21$\pm$1.44 & 67.50$\pm$0.62 & 53.33$\pm$1.90 \\ 
   \cline{2-5}
-   & \textit{MOSAIC-COD} & 100.00$\pm$0.00 & 94.79$\pm$0.90 & \textbf{89.58$\pm$3.55} \\ 
+   & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-COD}}\\\textbf{\textit{(proposal)}}\end{tabular} & 100.00$\pm$0.00 & 94.79$\pm$0.90 & \textbf{89.58$\pm$3.55} \\ 
   \hhline{|=====|}
   \multirow{3}{*}{Nut-Assembly} & MOSAIC & 32.96$\pm$1.28 & 30.74$\pm$2.31 & 28.53$\pm$2.31 \\ 
   \cline{2-5}
-   & MOSAIC-CTOD & 68.69$\pm$1.11 & 49.63$\pm$3.30 & 33.33$\pm$4.00 \\ 
+   & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-CTOD}}\\\textbf{\textit{(proposal)}}\end{tabular} & 68.69$\pm$1.11 & 49.63$\pm$3.30 & 33.33$\pm$4.00 \\ 
   \cline{2-5}
-   & \textit{MOSAIC-COD} & 99.63$\pm$0.64 & 78.15$\pm$2.31 & \textbf{70.74$\pm$4.49} \\ 
+   & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-COD}}\\\textbf{\textit{(proposal)}}\textit{}\end{tabular} & 99.63$\pm$0.64 & 78.15$\pm$2.31 & \textbf{70.74$\pm$4.49} \\ 
   \hhline{|=====|}
   \multirow{3}{*}{Stack-Block} & MOSAIC & 57.78$\pm$1.92 & 57.78$\pm$1.92 & 55.56$\pm$2.54 \\ 
   \cline{2-5}
-   & MOSAIC-CTOD & 97.92$\pm$2.09 & 96.67$\pm$2.35 & \textbf{87.92$\pm$2.00} \\ 
+   & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-CTOD}}\\\textbf{\textit{(proposal)}}\end{tabular} & 97.92$\pm$2.09 & 96.67$\pm$2.35 & \textbf{87.92$\pm$2.00} \\ 
   \cline{2-5}
-   & \textit{MOSAIC-COD} & 98.33$\pm$0.00 & 98.33$\pm$0.00 & 85.00$\pm$5.00 \\ 
+   & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-COD}}\\\textbf{\textit{(proposal)}}\textit{}\end{tabular} & 98.33$\pm$0.00 & 98.33$\pm$0.00 & 85.00$\pm$5.00 \\ 
   \hhline{|=====|}
   \multirow{3}{*}{Press-Button} & MOSAIC & 78.33$\pm$1.66 & - & 77.22$\pm$2.54 \\ 
   \cline{2-5}
-   & MOSAIC-CTOD & 92.78$\pm$0.96 & - & \textbf{91.11$\pm$2.54} \\ 
+   & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-CTOD}}\\\textbf{\textit{(proposal)}}\end{tabular} & 92.78$\pm$0.96 & - & \textbf{91.11$\pm$2.54} \\ 
   \cline{2-5}
-   & \textit{MOSAIC-COD} & 83.89$\pm$2.55 & - & 71.67$\pm$2.88 \\
+   & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-COD}}\\\textbf{\textit{(proposal)}}\textit{}\end{tabular} & 83.89$\pm$2.55 & - & 71.67$\pm$2.88 \\
   \hline
   \end{tabular}
   }
