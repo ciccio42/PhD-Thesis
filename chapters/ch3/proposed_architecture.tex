@@ -1,6 +1,6 @@
 \section{Proposed Architecture}
 \label{sec:ocpl_architecture}
-This section provides the effective implementation of the general modular architecture described in Section \ref{sec:cod_problem}. Since the Command Analysis task being solved is Conditioned-Object Detection (Chapter \ref{ch:cod}), the focus here is on how the COD module is effectively integrated into the control framework.
+This section provides the effective implementation of the general modular architecture described in Section \ref{sec:cod_problem}. Since the Command Analysis task being solved is Conditioned Object Detection (Chapter \ref{ch:cod}), the focus here is on how the COD module is effectively integrated into the control framework.
 
 The COD module is integrated into two different architectures, which vary in the number of control modules they use. Section~\ref{sec:ocpl_architecture_scm} outlines an architecture that employs a single control module to predict actions for the entire trajectory. In contrast, Section~\ref{sec:ocpl_architecture_dcm} describes an architecture that splits the control module into two distinct parts: one for computing actions during the reaching phase, and another for the final phase, where the specific primitive depends on the task.
 
