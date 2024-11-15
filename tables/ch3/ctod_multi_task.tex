@@ -3,36 +3,36 @@
 % \usepackage{hhline}
 
 
-\begin{table}[t]
+\begin{table}
   \centering
-  \caption{The multi-task performance of the proposed MOSAIC-CTOD module is compared to the MOSAIC and MOSAIC-GT-BB baselines. MOSAIC-GT-BB refers to the MOSAIC model, where the Control Module receives the ground-truth target bounding box as input.}
+  \caption{The multi-task performance of the proposed MOSAIC-CTOD module is compared to the MOSAIC and MOSAIC-GT-BB baselines. MOSAIC-GT-BB refers to the MOSAIC model, where the Control Module receives the ground-truth target bounding box as input which represents an ideal system.}
   \label{table:ctod_multi_task}
   \resizebox{\linewidth}{!}{%
   \begin{tabular}{|c|c|c|c|c|c|c|c|} 
   \hline
   \textbf{Task} & \textbf{Method} & \begin{tabular}[c]{@{}c@{}}\textbf{Reaching}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Picking}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Success}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Reaching }\\\textbf{Wrong~}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Picking}\\\textbf{Wrong}\\{[}\%]\end{tabular} & \begin{tabular}[c]{@{}c@{}}\textbf{Success with}\\\textbf{Wrong Object}\\{[}\%]\end{tabular} \\ 
   \hhline{|========|}
-  \multirow{3}{*}{Pick-Place} & MOSAIC & 25.83$\pm$1.30 & 23.96$\pm$0.72 & 22.71$\pm$0.72 & 65.63$\pm$2.87 & 63.96$\pm$1.90 & 67.92$\pm$1.30 \\ 
+  \multirow{3}{*}{\vspace{-30px}\rotatebox[origin=c]{90}{Pick-Place}} & MOSAIC & 25.83$\pm$1.30 & 23.96$\pm$0.72 & 22.71$\pm$0.72 & 65.63$\pm$2.87 & 63.96$\pm$1.90 & 67.92$\pm$1.30 \\ 
   \cline{2-8}
-   & MOSAIC-GT-BB & 100.00$\pm$0.00 & 89.58$\pm$2.19 & \textbf{58.33$\pm$0.90} & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
+   & \begin{tabular}[c]{@{}c@{}}MOSAIC-GT-BB\\(ideal system)\end{tabular} & 100.00$\pm$0.00 & 89.58$\pm$2.19 & \textbf{58.33$\pm$0.90} & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
   \cline{2-8}
    & \begin{tabular}[c]{@{}c@{}}\textit{\textbf{MOSAIC-CTOD}}\\\textit{\textbf{(proposal)}}\end{tabular} & 80.21$\pm$1.44 & 67.50$\pm$0.62 & 53.33$\pm$1.90 & 4.16$\pm$0.71 & 3.54$\pm$0.36 & 0.37$\pm$0.64 \\ 
   \hhline{|========|}
-  \multirow{3}{*}{Nut-Assembly} & MOSAIC & 32.96$\pm$1.28 & 30.74$\pm$2.31 & 28.53$\pm$2.31 & 56.30$\pm$4.49 & 48.15$\pm$4.20 & 41.67$\pm$1.66 \\ 
+  \multirow{3}{*}{\vspace{-30px}\rotatebox[origin=c]{90}{Nut-Assembly}} & MOSAIC & 32.96$\pm$1.28 & 30.74$\pm$2.31 & 28.53$\pm$2.31 & 56.30$\pm$4.49 & 48.15$\pm$4.20 & 41.67$\pm$1.66 \\ 
   \cline{2-8}
-   & MOSAIC-GT-BB & 99.63$\pm$0.64 & 91.48$\pm$2.31 & \textbf{37.04$\pm$5.70} & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
+   & \begin{tabular}[c]{@{}c@{}}MOSAIC-GT-BB\\(ideal system)\end{tabular} & 99.63$\pm$0.64 & 91.48$\pm$2.31 & \textbf{37.04$\pm$5.70} & 0.00$\pm$0.00 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
   \cline{2-8}
    & \begin{tabular}[c]{@{}c@{}}\textit{\textbf{MOSAIC-CTOD}}\\\textit{\textbf{(proposal)}}\end{tabular} & 68.69$\pm$1.11 & 49.63$\pm$3.30 & 33.33$\pm$4.00 & 11.48$\pm$1.69 & 5.55$\pm$2.94 & 0.00$\pm$0.00 \\ 
   \hhline{|========|}
-  \multirow{3}{*}{Stack-Block} & MOSAIC & 57.78$\pm$1.92 & 57.78$\pm$1.92 & 55.56$\pm$2.54 & 42.22$\pm$1.92 & 42.22$\pm$1.93 & 41.11$\pm$1.67 \\ 
+  \multirow{3}{*}{\vspace{-30px}\rotatebox[origin=c]{90}{Stack-Block}} & MOSAIC & 57.78$\pm$1.92 & 57.78$\pm$1.92 & 55.56$\pm$2.54 & 42.22$\pm$1.92 & 42.22$\pm$1.93 & 41.11$\pm$1.67 \\ 
   \cline{2-8}
-   & MOSAIC-GT-BB & 94.44$\pm$5.85 & 91.11$\pm$6.73 & 73.89$\pm$5.00 & 10.00$\pm$2.88 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
+   & \begin{tabular}[c]{@{}c@{}}MOSAIC-GT-BB\\~ (ideal system)\end{tabular} & 94.44$\pm$5.85 & 91.11$\pm$6.73 & 73.89$\pm$5.00 & 10.00$\pm$2.88 & 0.00$\pm$0.00 & 0.00$\pm$0.00 \\ 
   \cline{2-8}
    & \begin{tabular}[c]{@{}c@{}}\textit{\textbf{MOSAIC-CTOD}}\\\textit{\textbf{(proposal)}}\end{tabular} & 97.92$\pm$2.09 & 96.67$\pm$2.35 & \textbf{87.92$\pm$2.00} & 1.25$\pm$0.83 & 0.41$\pm$0.83 & 0.00$\pm$0.00 \\ 
   \hhline{|========|}
-  \multirow{3}{*}{Press-Button} & MOSAIC & 78.33$\pm$1.66 & - & 77.22$\pm$2.54 & 22.78$\pm$2.54 & - & 22.78$\pm$2.54 \\ 
+  \multirow{3}{*}{\vspace{-30px}\rotatebox[origin=c]{90}{Press-Button}} & MOSAIC & 78.33$\pm$1.66 & - & 77.22$\pm$2.54 & 22.78$\pm$2.54 & - & 22.78$\pm$2.54 \\ 
   \cline{2-8}
-   & MOSAIC-GT-BB & 100.00$\pm$0.00 & - & \textbf{98.33$\pm$0.00} & 0.55$\pm$0.96 & - & 0.55$\pm$0.96 \\ 
+   & \begin{tabular}[c]{@{}c@{}}MOSAIC-GT-BB\\~ (ideal system)\end{tabular} & 100.00$\pm$0.00 & - & \textbf{98.33$\pm$0.00} & 0.55$\pm$0.96 & - & 0.55$\pm$0.96 \\ 
   \cline{2-8}
    & \begin{tabular}[c]{@{}c@{}}\textbf{\textit{MOSAIC-CTOD}}\\\textbf{\textit{(proposal)}}\end{tabular} & 92.78$\pm$0.96 & - & 91.11$\pm$2.54 & 3.89$\pm$4.19 & - & 3.88$\pm$4.19 \\
   \hline
