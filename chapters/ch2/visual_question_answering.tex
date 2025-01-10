@@ -3,7 +3,7 @@
 The \textit{Visual-Question Answering} (VQA) problem refers to the ability of a system of ``reasoning'' over an image, based on a given query expressed in terms of text. This means that, given in input an arbitrary image and an arbitrary textual prompt the system must be able to generate an answer to the given prompt (Figure \ref{fig:vqa_example}).
 \input{figures/ch2/vqa_problem.tex}
 
-The key aspect related to this problem is related to the fact that for a given image different questions can be made, this means that there is not an a priori mapping between the input image and the corresponding answer, but the system must be able to dynamically adapt its \textbf{attention} on specific part of the image based on the given query, meaning that the system must be able to correlate effectively the encoding of the image and the encoding of the prompt, in order to create a \textbf{conditioned} embedding that can be effectively used to generate a valid answer.
+The key aspect related to this problem is related to the fact that for a given image different questions can be made. There is no predefined mapping between an input image and its corresponding answer. Instead, the system must dynamically adjust its \textbf{attention} to specific regions of the image based on the given query. This requires effectively \textbf{correlating} the image encoding with the prompt encoding to generate a conditioned embedding that can reliably produce a valid answer.
 
 Based on these preliminary considerations, various solutions have been proposed using both Convolutional Neural Network architectures \cite{perez2018film} and novel Transformer architectures \cite{chen2022caan,chen2024mpcct,liu2024visual}.
 

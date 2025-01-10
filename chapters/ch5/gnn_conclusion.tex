@@ -8,3 +8,12 @@ However, for these methods to be fully integrated into a framework that generali
 Once the current state of the environment is obtained, the corresponding PDDL (Planning Domain Definition Language) problem can be formulated, allowing the use of classical planning techniques. However, as noted in Section \ref{sec:gnn_experimental_results}, the learned heuristics have shown promise. In particular, within the \textit{in-training distribution} scenario, the learned heuristic \\ outperformed well-established heuristics like $h_{max}$ and $LM-cut$ in terms of nodes expanded and search time. While it did not surpass the faster $h_{add}$ heuristic in search time, it generated shorter plans.
 
 In the \textit{out-of-training distribution} scenario, however, the learned heuristics faced challenges in generating valid plans within the 5-minute timeout, underscoring the need for further research to enhance both the generalization capabilities of these heuristics and the overall performance of the algorithm.
+
+Moreover, while these data-driven algorithms have demonstrated promising capabilities in solving planning problems, two key questions arise within the context of interest:
+
+\begin{enumerate}
+    \item Given the initial image of the robot workspace, how can we generate the corresponding PDDL description? This description needs to include not only the object instances (e.g., table, red-box, blue-box) but also the relationships between these objects, such as their spatial arrangement and any relevant properties or interactions.
+    \item Given the initial state representation, how can we generate the desired goal-state, which is typically defined through a video demonstration? The challenge lies in interpreting the video to identify the goal configuration of the workspace, and translating this into a formal representation compatible with the planning system.
+\end{enumerate}
+
+To address these questions and effectively extend the proposed methods to handle multi-step tasks, it is necessary to integrate robust mechanisms for object recognition, state representation, and goal specification. This will enable the system to not only understand the current state of the environment but also plan and execute sequences of actions to reach the desired goal state.

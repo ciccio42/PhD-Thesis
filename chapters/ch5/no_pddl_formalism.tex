@@ -1,7 +1,7 @@
 \subsection{Alternative Formalism}
 \label{sec:gnn_alternative_formalism}
 
-In this section, the methods that do not rely on classical planning formalism are going to be discussed. These approaches instead focus on using a graph-based representation of the environment, where nodes represent objects and edges denote relationships between objects or possible actions. This structure enables the application of Graph Neural Networks (GNNs) to process the graph and select the next high-level action the robot should perform. The following paragraphs will describe various ways the environment can be represented and how the network's output is translated into corresponding robot actions.
+This section discusses methods that do not rely on classical planning but instead use a graph-based environment representation, where nodes represent objects and edges denote relationships or possible actions. This structure allows Graph Neural Networks to process the graph and select the next high-level action for the robot. The following paragraphs explore different environment representations and how the network's output is translated into robot actions.
 
 \paragraph*{Geometric Graph} \mbox{}\\
 This section explores methods based on the concept of the Geometric Graph. In its initial formulation \cite{lin2022efficient}, a Geometric Graph is a scene representation where nodes correspond to task-relevant entities, such as objects and their target positions. A fully connected graph is constructed by linking two types of nodes: \textit{object} nodes, which represent current instances of objects with their positions as attributes, and \textit{goal} nodes, which represent the desired final positions of these objects, also characterized by spatial attributes.
@@ -20,7 +20,7 @@ To address these limitations, the authors in \cite{zhu2021hierarchical} extended
 While this method showed promising results, including reduced computation times compared to the PDDLStream \cite{garrett2020pddlstream} baseline, it has limitations. The primary challenge lies in the cognitive module, which relies on 3D object pose estimation. This technique is only robust and reliable when used with pre-known objects.
 
 \paragraph*{Conjugate Task Graph} \mbox{}\\
-The Conjugate Task Graph (CTG) is an alternative representation proposed in \cite{huang2019neural}. This representation is based on the idea that constructing a traditional \textit{Task Graph}, a graph where nodes represent possible states and edges represent valid transitions between those states, can be challenging, especially for novel, unseen tasks. In such cases, mapping the states encountered in a new task to novel nodes is often infeasible. However, in the Conjugate Task Graph, nodes represent actions, and edges implicitly represent states and their preconditions (Figure \ref{fig:conjugate_task_graph}).
+The Conjugate Task Graph (CTG) \cite{huang2019neural} addresses challenges in constructing traditional Task Graphs, where nodes represent states and edges represent transitions. For novel tasks, mapping states to new nodes is often infeasible. In contrast, the CTG uses nodes to represent actions, with edges implicitly representing states and their preconditions (Figure \ref{fig:conjugate_task_graph}).
 \input{figures/ch4/conjugate_task_graph.tex}
 Based on this representation, and assuming all possible actions have been observed in the training set, it is possible to build and train a modular architecture composed of the following components:
 \begin{itemize}
