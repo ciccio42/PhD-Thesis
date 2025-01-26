@@ -22,7 +22,7 @@ The initial DMPs formulation proposed in \cite{ijspeert2002learning} has several
 \begin{itemize}
     \item \textbf{Handling stochasticity in demonstrations}. Different demonstrations can vary slightly due to differences in demonstrators, task completion methods, speeds, and paths. This variability creates a distribution in the demonstration space, requiring a method to manage it.
     
-    \item \textbf{Defining different basis function}. In DMPs, the weights $\omega_{i}$ of the basis functions are learned. However, the force term can also be defined using other formalisms, such as Gaussian Mixture Models \cite{si2023composite}, Neural-Network Radial Basis Functions \cite{li2023human}, or Gaussian Processes \cite{fanger2016gaussian}. Therefore, the choice of how to model the force term is a hyper-parameter of the problem.
+    \item \textbf{Defining different basis function}. In DMPs, the weights $\omega_{i}$ of the basis functions are learned. However, the force term can also be defined using other formalism, such as Gaussian Mixture Models \cite{si2023composite}, Neural-Network Radial Basis Functions \cite{li2023human}, or Gaussian Processes \cite{fanger2016gaussian}. Therefore, the choice of how to model the force term is a hyper-parameter of the problem.
 
     \item \textbf{Managing arbitrary desired trajectories with intermediate via-points}. Once the behavior encoded in the demonstration is learned, generating novel trajectories that pass through new points (possibly defined by a human agent) is not possible. Therefore, a method to generalize to different waypoints is needed.
     

@@ -17,13 +17,13 @@ The observation and control spaces for these tasks are detailed in Table \ref{ta
 
 However, as noted in Table \ref{table:gail_tasks}, the tested tasks are characterized by low-dimensional state spaces. More recent research \cite{liu2018imitation_from_observation,reddy2019sqil,zolna2021task_relevant_ail,rafailov2021visual_ail} has focused on testing the GAIL algorithms in high-dimensional state spaces, where the input is an image. Specifically, with respect to the Adversarial Imitation Learning setting, works of interest are \cite{zolna2021task_relevant_ail,rafailov2021visual_ail}. 
 
-In \cite{zolna2021task_relevant_ail}, the authors focused on solving the \textbf{casual-confusion} problem. This problem occurs when the discriminator, during the learning process, focuses on task-irrelevant features between expert and policy generated transitions, for example a difference in the expert and agent embodiment like the gripper, this causes the rewards to become uninformative. To reduce the casual-confusion problem, in \cite{zolna2021task_relevant_ail} two elements have been proposed: 
+In \cite{zolna2021task_relevant_ail}, the authors focused on solving the \textbf{casual confusion} problem. This problem occurs when the discriminator, during the learning process, focuses on task-irrelevant features between expert and policy generated transitions, for example a difference in the expert and agent embodiment like the gripper, this causes the rewards to become uninformative. To reduce the casual-confusion problem, in \cite{zolna2021task_relevant_ail} two elements have been proposed: 
 \begin{enumerate}[label=\arabic*.]
     \item A \textit{regularization term}, with the aim to make the discriminator \textbf{unable} to distinguish between constraining sets $I_{E}$ and $I_{A}$. These sets are composed of expert and agent observations, such that a sample can belong either to $I_{E}$ or $I_{A}$, based on spurious features (e.g., a different gripper color);
-    \item An \textit{early-stopping policy} called Actor Early-Stopping (AES), that restarts the episode if the discriminator score at the current step exceeds the median score of the episode so far for $T_{patience}$ consecutive steps.
+    \item An \textit{early-stopping policy} called Actor Early-Stopping \\ (AES), that restarts the episode if the discriminator score at the current step exceeds the median score of the episode so far for $T_{patience}$ consecutive steps.
 \end{enumerate} 
 
-To prevent the discriminator from focusing on task-irrelevant features, the authors proposed a regularization term based on the constraining-set accuracy defined in Formula \ref{eq:trail}. The idea is that if the discriminator achieves an accuracy greater than $\frac{1}{2}$ on the constraining set, the maximized adversarial cost function should be inverted, as shown in Formula \ref{eq:trail_discriminator}.
+To prevent the discriminator from focusing on task irrelevant features, the authors proposed a regularization term based on the constraining-set accuracy defined in Formula \ref{eq:trail}. The idea is that if the discriminator achieves an accuracy greater than $\frac{1}{2}$ on the constraining set, the maximized adversarial cost function should be inverted, as shown in Formula \ref{eq:trail_discriminator}.
 
 \begin{equation}
 \label{eq:trail}
@@ -52,7 +52,7 @@ The authors of \cite{rafailov2021visual_ail} proposed a more data-efficient Adve
     \item Train a \textit{policy} $\pi^{L}_{\theta}$, by maximizing the Value function (Formula \ref{formula:value_function}).
 \end{enumerate}
 \input{formula/vmail.tex}
-With this learning setting the proposed system outperforms previous works such as \cite{reddy2019sqil,kostrikov2018discriminator} both in terms of \textbf{data-efficiency} and \textbf{overall performance}, on a set of continous control tasks.
+With this learning setting the proposed system outperforms previous works such as \cite{reddy2019sqil,kostrikov2018discriminator} both in terms of \textbf{data efficiency} and \textbf{overall performance}, on a set of continous control tasks.
 % \input{Figures/vmail.tex}
 
 Generally speaking, the Generative Adversarial Imitation Learning has shown very promising performance in simulated control tasks and simulated robot manipulation tasks, even in complex high-dimensional state-space. However, it is not so clear, how these methods could perform in real-world robotic manipulation tasks, in terms of data-efficiency, generalization capability, and safety during real-world interactions. 

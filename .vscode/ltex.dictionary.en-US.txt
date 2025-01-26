@@ -15,3 +15,15 @@ misidentification
 backpropagation
 bouding-box
 exteroceptive
+MOSAIC-CTOD
+workcell
+Roboturk
+keypoint
+MAML
+DAML
+Regularizer
+TOSIL
+ARUCO
+BlockWorld
+STRIPS-HGN
+SoTA

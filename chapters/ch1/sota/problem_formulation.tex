@@ -4,7 +4,7 @@ In this section, the problem of Learning from Demonstration, also known as Imita
 
 The core idea behind IL is to program a robot by allowing a human expert to demonstrate how to solve a specific task. This approach avoids methods requiring complex, handcrafted rules to define actions based on environmental dynamics, saving time and reducing the need for coding expertise. To achieve this goal, a way to transfer knowledge from the expert to the robot is necessary. One possibility is to leverage \textit{data-driven} methods that can infer control rules from demonstrated trajectories~\cite{osa2018algorithmic}.
 
-In this context, two general actors must be defined: the \textbf{expert}, who demonstrates the desired behaviors, and the \textbf{learner}, whose goal is to learn and replicate the behaviors demonstrated by the expert~\cite{osa2018algorithmic,zare2024survey}. Both the expert behaviors and the learner behaviors are described in terms of \textbf{policy}, generally denoted as $\pi^{E}$ and $\pi^{L}$ respectively.
+In this context, two general actors must be defined: the \textbf{expert}, who demonstrates the desired behaviors, and the \\ \textbf{learner}, whose goal is to learn and replicate the behaviors demonstrated by the expert~\cite{osa2018algorithmic,zare2024survey}. Both the expert behaviors and the learner behaviors are described in terms of \textbf{policy}, generally denoted as $\pi^{E}$ and $\pi^{L}$ respectively.
 
 Since IL relies on expert demonstrations, these are collected in a dataset $\mathcal{D}^{E}=\left\{\left(\boldsymbol{\tau}^{E}_{i}, c_{i}\right)\right\}_{i=1}^{N}$, where:
 \begin{itemize}
@@ -63,7 +63,7 @@ In teleoperation (Figure \ref{fig:teleoperation}), a human operator remotely con
 
 Demonstrations collected with hand-written policies assume that the expert has access to ground truth information, such as the precise position of the object of interest. This assumption holds in simulated environments commonly used for training, testing, and validating robotic learning methods, as shown in \cite{dasari2021transformers_one_shot,mandi2022towards_more_generalizable_one_shot,chang2023one}. These works employed Robosuite \cite{zhu2020robosuite}, a widely used simulation environment in the robotics community, to collect demonstrations with hand-written policies that leverage ground truth positional data to solve tasks like Pick-Place, Nut-Assembly, and Stack-Block. Simulation environments enable consistent evaluation, reproducibility, and controlled testing of proposed methods. 
 
-However, hand-engineered policies are not restricted to simulation. For example, \cite{dasari2020robonet} combined automatic grasping primitives with diagonal Gaussian distributions to collect demonstrations on real-world robots. This approach aims to generate a large number of trajectories with minimal human intervention.
+However, hand-engineered policies are not restricted to simulation. For example, \cite{dasari2020robonet} combined automatic grasping primitives with diagonal Gaussian distributions to collect demonstrations on real-world robots. This approach aims to generate numerous trajectories with minimal human intervention.
 
 
 \input{figures/ch1/indirect_demonstration.tex}

@@ -13,20 +13,20 @@ A specific protocol was implemented to collect trajectories within the extensive
 \input{figures/ch5/box_placement.tex}
 % \smalltodo{add figure}
 % \smalltodo{add figure}
-Trajectories are collected through teleoperation the robot is controlled in its operational space, with the controller that sends continous velocity commands on a specific axis, this velocity command is defined by the value read by the controller's potentiometers.
-During teleoperation different informatin are recorded:
+Trajectories are collected through teleoperation the robot is controlled in its operational space, with the controller that sends continuous velocity commands on a specific axis, this velocity command is defined by the value read by the controller's potentiometers.
+During teleoperation different information are recorded:
 \begin{itemize}
     \item \textit{Images} from the front, laterals and gripper cameras, both RGB and Depth images are recorded.
     \item \textit{Proprioceptive information} like joints positions and velocities.
     \item \textit{Trajectory state}, which is manually changed by the human operators based on the task state. The phases are:
         \begin{enumerate}
             \item \textit{Start}, this phase starts at the beginning of the trajectory till the robot gripper is perpendicular to the target object.
-            \item \textit{Approaching}, this phase starts when the robot approaches the target object with its discending movement.
+            \item \textit{Approaching}, this phase starts when the robot approaches the target object with its descending movement.
             \item \textit{Picking}, this phase is characterized by the gripper that is ready to be closed to pick the object, and contains the closing command.
             \item \textit{Moving}, this phase starts after the robot picks the object and lift it from the table, this phase ends when the gripper is perpendicular to the target bin.
-            \item \textit{Placing}, this phase starts when the robot is ready to place the object, starting the discending phase towards the target bin, this phase also contains the opening command.
+            \item \textit{Placing}, this phase starts when the robot is ready to place the object, starting the descending phase towards the target bin, this phase also contains the opening command.
         \end{enumerate}
-    \item \textit{Objects bounding boxes}, which are are generated automatically, requiring minimal input from human operators. At the start of the trajectory, the operator needs to specify the position of each object in the scene, including both boxes and bins. This is done by displaying the first frontal frame of the trajectory and clicking on the objects with the cursor. The positions, initially defined in discrete pixel-space, are then converted into continuous world-space through a series of transformations, using the camera's intrinsic and extrinsic parameters. The extrinsic parameters are obtained via a calibration procedure that uses ARUCO markers.
+    \item \textit{Objects bounding boxes}, which are generated automatically, requiring minimal input from human operators. At the start of the trajectory, the operator needs to specify the position of each object in the scene, including both boxes and bins. This is done by displaying the first frontal frame of the trajectory and clicking on the objects with the cursor. The positions, initially defined in discrete pixel-space, are then converted into continuous world-space through a series of transformations, using the camera's intrinsic and extrinsic parameters. The extrinsic parameters are obtained via a calibration procedure that uses ARUCO markers.
 \end{itemize}
 The overall space coverage of the real-world dataset is shown in Figure \ref{fig:real_world_coverage}. As observed, the coverage is more limited and significantly noisier compared to the simulated dataset, even when restricted to the same variations. This is due to the collection of fewer trajectories and the use of teleoperation without hand-written control rules, which typically produce smoother and more deterministic robot behaviors. These limitations pose additional challenges in learning a robust control policy, particularly for generalizing to different target object placements. This issue will be addressed in this thesis by initially training the policy in the simulation environment, where a complete dataset is available, and then fine-tuning it on the noisy real-world dataset.
 \input{figures/ch5/real_world_place_coverage.tex}

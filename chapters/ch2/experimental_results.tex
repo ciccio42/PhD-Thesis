@@ -7,12 +7,12 @@ Section~\ref{sec:cod_dataset} the dataset used for training procedure will be de
 To validate the proposed architecture, a simulated dataset was generated, focusing on four primary tasks: \textit{Pick-Place}, \textit{Nut-Assembly}, \textit{Stack-Block}, and \textit{Press-Button}. Each task consists of multiple variations. Specifically, the Pick-Place task has 16 variations, Nut-Assembly has 9 variations, Stack-Block has 6 variations, and Press-Button has 6 variations. Each task and its variations are graphically described in Figure~\ref{fig:dataset_cod}.
 \input{figures/ch2/dataset_cod.tex}
 
-For each task, 100 trajectories were collected for both the agent (UR5e robot) and the demonstrator (Franka-Emika Panda robot) using hand-written policies that take as input ground-truth information about the object position. Across these trajectories, the position of the objects of interest varies. The workspace for each task is divided as follows:
+For each task, 100 trajectories were collected for both the agent (UR5e robot) and the demonstrator (Franka-Emika \\ Panda robot) using hand-written policies that take as input ground-truth information about the object position. Across these trajectories, the position of the objects of interest varies. The workspace for each task is divided as follows:
 \begin{itemize}
-    \item \textbf{Pick-Place}: The bins are fixed in position, while the boxes can change according to the following rule. The workspace is divided into 4 slots, parrallel to the bins, each with a width of $6 \ \text{cm}$ and a height of $15 \ \text{cm}$. A slot is randomly selected, and the box is randomly spawned within the chosen slot, ensuring that each slot is filled with only one object.
-    \item \textbf{Nut-Assembly}: The pegs are fixed in position, while the nuts vary in placement. A spawn region of $75 \times 10 \ \text{cm}$ is defined, and the nuts are randomly spawned in this region, ensuring they do not collide with one another.
+    \item \textbf{Pick-Place}, the bins are fixed in position, while the boxes can change according to the following rule. The workspace is divided into 4 slots, parallel to the bins, each with a width of $6 \ \text{cm}$ and a height of $15 \ \text{cm}$. A slot is randomly selected, and the box is randomly spawned within the chosen slot, ensuring that each slot is filled with only one object.
+    \item \textbf{Nut-Assembly}, the pegs are fixed in position, while the nuts vary in placement. A spawn region of $75 \times 10 \ \text{cm}$ is defined, and the nuts are randomly spawned in this region, ensuring they do not collide with one another.
     \item \textbf{Stack-Block}: The placing box is spawned in a region of $16 \times 5 \ \text{cm}$, while the target box is spawned in a region of $24 \times 5 \ \text{cm}$, ensuring no collisions between the boxes.
-    \item \textbf{Press-Button}: The two sets of buttons are placed within a region of $4 \times 4 \ \text{cm}$.
+    \item \textbf{Press-Button}, the two sets of buttons are placed within a region of $4 \times 4 \ \text{cm}$.
 \end{itemize}
 
 The bounding boxes are generated automatically using a procedure that assumes prior knowledge of the object's pose and dimensions, as well as the camera's pose and intrinsic parameters. With this information, a 3D bounding box can be constructed around the object in continuous world space. The corners of this bounding box are then projected into the 2D discrete camera space via a sequence of transformations, as described in Equation \ref{eq:transformation_from_world_to_px}.
@@ -39,7 +39,7 @@ This section presents the obtained results, divided into two main blocks. The fi
 
 For all the test configurations described below, the testing procedure was consistent. Specifically, for each task and its variations, 10 rollouts were performed. During each rollout, the robot was controlled by a hand-written policy, and the predicted bounding box was compared with the ground truth, obtained using the same procedure as described earlier.
 
-The metrics used to evaluate the methods were \textit{Precision@0.5} (Equation \ref{eq:prec}) and \textit{Recall@0.5} (Equation \ref{eq:rec}).
+The metrics used to evaluate the methods were \\ \textit{Precision@0.5} (Equation \ref{eq:prec}) and \textit{Recall@0.5} (Equation \ref{eq:rec}).
 \begin{equation}
     \label{eq:prec}
     Pre = \frac{TP}{TP+FP}
